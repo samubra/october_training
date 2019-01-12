@@ -1,0 +1,16 @@
+plugin:
+    name: 培训管理系统
+    description: 'samubra.training::lang.plugin.description'
+    author: samubra
+    icon: oc-icon-coffee
+    homepage: ''
+navigation:
+    training-man-menu:
+        label: 培训管理
+        url: samubra/training/categories
+        icon: icon-life-ring
+        sideMenu:
+            training-category:
+                label: 培训类别
+                url: samubra/training/categories
+                icon: icon-sitemap

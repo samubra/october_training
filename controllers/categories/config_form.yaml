@@ -1,0 +1,10 @@
+name: Categories
+form: $/samubra/training/models/category/fields.yaml
+modelClass: Samubra\Training\Models\Category
+defaultRedirect: samubra/training/categories
+create:
+    redirect: 'samubra/training/categories/update/:id'
+    redirectClose: samubra/training/categories
+update:
+    redirect: samubra/training/categories
+    redirectClose: samubra/training/categories

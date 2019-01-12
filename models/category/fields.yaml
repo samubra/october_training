@@ -1,0 +1,29 @@
+fields:
+    name:
+        label: 分类名称
+        span: auto
+        required: 1
+        type: text
+    slug:
+        label: 缩略名
+        span: auto
+        context:
+            - create
+            - preview
+        type: text
+        comment: 留空则自动生成
+    num_display:
+        label: 每页显示数量
+        span: auto
+        default: '10'
+        type: number
+    active:
+        label: 是否启用
+        span: auto
+        required: 1
+        type: balloon-selector
+    description:
+        label: 分类描述
+        size: small
+        span: full
+        type: textarea

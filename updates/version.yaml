@@ -1,0 +1,41 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table samubra_training_categories'
+    - builder_table_create_samubra_training_categories.php
+1.0.3:
+    - 'Created table samubra_training_organizations'
+    - builder_table_create_samubra_training_organizations.php
+1.0.4:
+    - 'Created table samubra_training_teachers'
+    - builder_table_create_samubra_training_teachers.php
+1.0.5:
+    - 'Created table samubra_training_courses'
+    - builder_table_create_samubra_training_courses.php
+1.0.6:
+    - 'Created table samubra_training_certificates'
+    - builder_table_create_samubra_training_certificates.php
+1.0.7:
+    - 'Created table samubra_training_plans'
+    - builder_table_create_samubra_training_plans.php
+1.0.8:
+    - 'Created table samubra_training_projects'
+    - builder_table_create_samubra_training_projects.php
+1.0.9:
+    - 'Created table samubra_training_plan_courses'
+    - builder_table_create_samubra_training_plan_courses.php
+1.0.10:
+    - 'Created table samubra_training_project_courses'
+    - builder_table_create_samubra_training_project_courses.php
+1.0.11:
+    - 'Created table samubra_training_records'
+    - builder_table_create_samubra_training_records.php
+1.0.14:
+    - 'Created table samubra_training_status'
+    - builder_table_create_samubra_training_status.php
+1.0.15:
+    - 'Created table samubra_training_status_change'
+    - builder_table_create_samubra_training_status_change.php
+1.0.16:
+    - 'Created table samubra_training_routes'
+    - builder_table_create_samubra_training_routes.php

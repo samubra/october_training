@@ -4,26 +4,35 @@ fields:
         span: auto
         required: 1
         type: text
-    slug:
-        label: 缩略名
-        span: auto
-        context:
-            - create
-            - preview
-        type: text
-        comment: 留空则自动生成
-    num_display:
-        label: 每页显示数量
-        span: auto
-        default: '10'
-        type: number
     active:
         label: 是否启用
         span: auto
+        default: '1'
         required: 1
         type: balloon-selector
+    slug:
+        label: 缩略名
+        span: left
+        type: text
+        comment: 留空则自动生成
+    image:
+        label: 图片
+        mode: image
+        fileTypes: 'jpg,png'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        required: 1
+        type: fileupload
+    num_display:
+        label: 每页显示数量
+        span: left
+        default: '10'
+        type: number
     description:
         label: 分类描述
         size: small
-        span: full
+        span: left
         type: textarea

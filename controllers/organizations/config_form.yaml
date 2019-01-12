@@ -1,0 +1,10 @@
+name: Organizations
+form: $/samubra/training/models/organization/fields.yaml
+modelClass: Samubra\Training\Models\Organization
+defaultRedirect: samubra/training/organizations
+create:
+    redirect: 'samubra/training/organizations/update/:id'
+    redirectClose: samubra/training/organizations
+update:
+    redirect: samubra/training/organizations
+    redirectClose: samubra/training/organizations

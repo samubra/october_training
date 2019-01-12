@@ -1,0 +1,9 @@
+<?php
+      if (!empty($record->image)) {
+          //$thumb = Samubra\Training\Classes\ImageResize::resizeImage($record->image->getThumb(100, 100, ['mode' => 'crop']));
+          $thumb = $record->image->getThumb(100, 100, ['mode' => 'crop']);
+      } else {
+        $thumb = '/plugins/samubra/training/assets/img/no_image.jpg';
+        }
+?>
+<img src="<?php echo $thumb ?>" style="max-height: 50px; max-width: 50px;"/>

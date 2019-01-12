@@ -25,6 +25,10 @@ class Category extends Model
         'name' => 'required'
     ];
 
+    public $attachOne = [
+        'image' => 'System\Models\File'
+    ];
+
 
     /**
      * Delete routes after delete category
@@ -57,6 +61,7 @@ class Category extends Model
     {
         $categorySaved = $this->attributes;
         $post = post();
+        trace_log($_POST);
         $idEdit = isset($post['id']) ? $post['id']:'0';
         $slug = $categorySaved['slug'];
         $entityId = $categorySaved['id'];

@@ -1,4 +1,4 @@
-title: Categories
+title: 培训类别
 modelClass: Samubra\Training\Models\Category
 list: $/samubra/training/models/category/columns.yaml
 recordUrl: 'samubra/training/categories/update/:id'
@@ -10,3 +10,4 @@ toolbar:
     buttons: list_toolbar
     search:
         prompt: 'backend::lang.list.search_prompt'
+showTree: 1

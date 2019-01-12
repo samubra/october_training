@@ -1,11 +1,17 @@
 <?php namespace Samubra\Training\Controllers;
 
-use Backend\Classes\Controller;
 use BackendMenu;
 
-class Categories extends Controller
+class Categories extends TrainingController
 {
-    public $implement = [        'Backend\Behaviors\ListController',        'Backend\Behaviors\FormController',        'Backend\Behaviors\ReorderController'    ];
+    public $requiredPermissions = ['samubra.training.access_category'];
+    public $controllerName = 'categories';
+
+    public $implement = [
+        'Backend\Behaviors\ListController',
+        'Backend\Behaviors\FormController',
+        'Backend\Behaviors\ReorderController'
+    ];
     
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
@@ -14,6 +20,6 @@ class Categories extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Samubra.Training', 'training-man-menu', 'training-category');
+        BackendMenu::setContext('Samubra.Training', 'training', 'categories');
     }
 }

@@ -1,0 +1,42 @@
+columns:
+    name:
+        label: 姓名
+        type: text
+        searchable: true
+        sortable: true
+    identity:
+        label: 身份证号码
+        type: text
+        searchable: true
+        sortable: true
+    qualification_num:
+        label: 资格证号码
+        type: text
+        searchable: true
+        sortable: true
+    job_title:
+        label: 职称
+        type: text
+        searchable: true
+        sortable: true
+    phone:
+        label: 联系电话
+        type: number
+        searchable: true
+        sortable: true
+    company:
+        label: 单位名称
+        type: text
+        searchable: true
+        sortable: true
+    edu_type:
+        label: 学历
+        type: text
+        searchable: true
+        sortable: true
+    id:
+        label: ID
+        type: number
+        searchable: true
+        invisible: true
+        sortable: true

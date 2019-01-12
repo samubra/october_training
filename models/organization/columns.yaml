@@ -1,0 +1,16 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    name:
+        label: 机构名称
+        type: text
+        searchable: true
+        sortable: true
+    complete_type:
+        label: 结业类型
+        type: partial
+        path: ~/plugins/samubra/training/controllers/organizations/list/_complete_type.htm
+

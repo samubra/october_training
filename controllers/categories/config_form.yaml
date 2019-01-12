@@ -1,4 +1,4 @@
-name: Categories
+name: 培训类别
 form: $/samubra/training/models/category/fields.yaml
 modelClass: Samubra\Training\Models\Category
 defaultRedirect: samubra/training/categories

@@ -1,4 +1,4 @@
-title: Categories
+title: 培训类别
 modelClass: Samubra\Training\Models\Category
 toolbar:
     buttons: reorder_toolbar

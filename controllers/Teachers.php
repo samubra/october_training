@@ -19,7 +19,7 @@ class Teachers extends TrainingController
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Samubra.Training', 'training', 'teacher');
+        //BackendMenu::setContext('Samubra.Training', 'training', 'teacher');
     }
 
     /**

@@ -1,0 +1,25 @@
+fields:
+    title:
+        label: 课程标题
+        span: auto
+        required: 1
+        type: text
+    course_type:
+        label: 课程类型
+        span: auto
+        required: 1
+        type: balloon-selector
+    teacher:
+        label: 授课教师
+        nameFrom: name
+        descriptionFrom: identity
+        prompt: '点击 %s 选择授课教师'
+        list: $/samubra/training/models/teacher/relation_columns.yaml
+        span: auto
+        type: recordfinder
+    default_hours:
+        label: 默认课时
+        span: auto
+        default: '4.0'
+        type: number
+        comment: 在具体的培训项目中可以修改

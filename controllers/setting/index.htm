@@ -1,0 +1,50 @@
+<div id="settings-div">
+    <div class="row">
+        <div class="col-md-3 menu-row">
+            <div class="header-menu">
+                <?php echo $this->pageTitle;?>
+            </div>
+            <div class="body-menu">
+                <div class="body-menu-li">
+                    <a href="<?php echo Backend::url('samubra/training/categories'); ?>">
+                        培训类别管理
+                    </a>
+                </div>
+                <div class="body-menu-li">
+                    <a href="<?php echo Backend::url('samubra/training/organizations'); ?>">
+                        发证机构管理
+                    </a>
+                </div>
+                <div class="body-menu-li">
+                    <a href="<?php echo Backend::url('samubra/training/teachers'); ?>">
+                        授课教师管理
+                    </a>
+                </div>
+                <div class="body-menu-li">
+                    <a href="<?php echo Backend::url('samubra/training/courses'); ?>">
+                        课程管理
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- create event to extend setting view->
+    <div class="row">
+        <div class="col-md-12">
+            <!--<h3 class="header-menu-plugins">-->
+                <!--<?php echo e(trans('ideas.cart::lang.cart.plugin')) ?>-->
+            <!--</h3>->
+            <div class="row">
+                <?php echo $this->fireViewEvent('ideas.cart.extendSettingView') ?>
+            </div>
+        </div>
+    </div>
+    -->
+
+
+</div>
+
+

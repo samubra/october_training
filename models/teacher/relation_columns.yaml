@@ -1,8 +1,4 @@
 columns:
-    _image:
-        label: 照片
-        type: partial
-        path: ~/plugins/samubra/training/controllers/baseview/list/_imageResize.htm
     name:
         label: 姓名
         type: text

@@ -1,0 +1,10 @@
+name: Courses
+form: $/samubra/training/models/course/fields.yaml
+modelClass: Samubra\Training\Models\Course
+defaultRedirect: samubra/training/courses
+create:
+    redirect: 'samubra/training/courses/update/:id'
+    redirectClose: samubra/training/courses
+update:
+    redirect: samubra/training/courses
+    redirectClose: samubra/training/courses

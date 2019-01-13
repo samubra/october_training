@@ -11,7 +11,8 @@ columns:
         sortable: true
     course_type:
         label: 课程类型
-        type: text
+        type: partial
+        path: ~/plugins/samubra/training/controllers/courses/list/_course_type.htm
         searchable: true
         sortable: true
     teacher_id:

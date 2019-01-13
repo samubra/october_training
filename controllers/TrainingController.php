@@ -32,7 +32,7 @@ class TrainingController extends Controller
         parent::__construct();
         //$this->addCss("/plugins/ideas/cart/assets/vendor/alertable/jquery.alertable.css", "1.0.0");
         //$this->addJs("/plugins/ideas/cart/assets/vendor/string_to_slug/speakingurl.js", "1.0.0");
-        BackendMenu::setContext('Samubra.Training', 'training', 'category');
+        BackendMenu::setContext('Samubra.Training', 'training', 'setting');
     }
 
     public function index()

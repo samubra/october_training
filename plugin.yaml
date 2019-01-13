@@ -7,18 +7,10 @@ plugin:
 navigation:
     training:
         label: 培训管理
-        url: samubra/training/categories
-        icon: icon-life-ring
+        url: samubra/training/setting/index
+        icon: icon-archive
         sideMenu:
-            categories:
-                label: 培训类别
-                url: samubra/training/categories
-                icon: icon-sitemap
-            organization:
-                label: 发证机构
-                url: samubra/training/organizations
-                icon: icon-suitcase
-            teacher:
-                label: 教师管理
-                url: samubra/training/teachers
-                icon: icon-user-md
+            setting:
+                label: 设置
+                url: samubra/training/setting/index
+                icon: icon-cog

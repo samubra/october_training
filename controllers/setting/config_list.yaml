@@ -1,0 +1,9 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# Model List Column configuration
+list:
+
+# Model Class name
+modelClass: Samubra\Training\Models\Setting

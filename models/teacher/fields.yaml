@@ -1,0 +1,43 @@
+fields:
+    name:
+        label: 姓名
+        span: left
+        required: 1
+        type: text
+    image:
+        label: 照片
+        mode: image
+        imageWidth: '150'
+        imageHeight: '150'
+        fileTypes: 'jpg,png'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+    identity:
+        label: 身份证号码
+        span: left
+        required: 1
+        type: text
+    qualification_num:
+        label: 资格证号
+        span: left
+        type: text
+    job_title:
+        label: 职称
+        span: left
+        type: dropdown
+    edu_type:
+        label: 学历
+        span: left
+        type: dropdown
+    phone:
+        label: 联系电话
+        span: left
+        type: text
+    company:
+        label: 单位名称
+        span: left
+        type: text

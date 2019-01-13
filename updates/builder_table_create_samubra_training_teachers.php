@@ -15,7 +15,7 @@ class BuilderTableCreateSamubraTrainingTeachers extends Migration
             $table->string('identity');
             $table->string('qualification_num')->nullable();
             $table->smallInteger('job_title')->nullable();
-            $table->integer('phone')->nullable()->unsigned();
+            $table->string('phone',12)->nullable();
             $table->string('company')->nullable();
             $table->smallInteger('edu_type')->nullable()->unsigned();
         });

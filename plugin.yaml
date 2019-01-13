@@ -18,3 +18,7 @@ navigation:
                 label: 发证机构
                 url: samubra/training/organizations
                 icon: icon-suitcase
+            teacher:
+                label: 教师管理
+                url: samubra/training/teachers
+                icon: icon-user-md

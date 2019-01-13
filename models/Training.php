@@ -37,6 +37,42 @@ class Training extends Model
 
     const PER_PAGE_DEFAULT = 10;
 
+    const JOB_TITLE_NONE = 0;
+    const JOB_TITLE_ELEMENTARY = 1;
+    const JOB_TITLE_INTERMEDIATE = 2;
+    const JOB_TITLE_HIGH_GRADE = 3;
+
+    public static $jobTitleMap = [
+        self::JOB_TITLE_NONE => '无',
+        self::JOB_TITLE_ELEMENTARY => '初级',
+        self::JOB_TITLE_INTERMEDIATE => '中级',
+        self::JOB_TITLE_HIGH_GRADE => '高级',
+    ];
+    const EDU_TYPE_ELEMENTAR_SCHOOL = 1;
+    const EDU_TYPE_JUNIOR_HIGH_SCHOOL = 2;
+    const EDU_TYPE_SENIOR_HIGH_SCHOOL = 3;
+    const EDU_TYPE_TECHNICAL_SECONDARY_SCHOOL = 4;
+    const EDU_TYPE_JUNIOR_SCHOOL = 5;
+    const EDU_TYPE_UNDERGRADUATE = 6;
+    const EDU_TYPE_POSTGRADUATE = 7;
+    const EDU_TYPE_BACHELOR = 8;
+    const EDU_TYPE_MASTER = 9;
+    const EDU_TYPE_DOCTOR = 10;
+
+    public static $eduTypeMap = [
+        self::EDU_TYPE_DOCTOR    => '博士',
+        self::EDU_TYPE_MASTER    => '硕士',
+        self::EDU_TYPE_BACHELOR    => '学士',
+        self::EDU_TYPE_POSTGRADUATE => '研究生',
+        self::EDU_TYPE_UNDERGRADUATE    => '本科',
+        self::EDU_TYPE_JUNIOR_SCHOOL    => '大学专科',
+        self::EDU_TYPE_TECHNICAL_SECONDARY_SCHOOL    => '中等专业学校',
+        self::EDU_TYPE_SENIOR_HIGH_SCHOOL    => '高中',
+        self::EDU_TYPE_JUNIOR_HIGH_SCHOOL    => '初中',
+        self::EDU_TYPE_ELEMENTAR_SCHOOL    => '小学',
+    ];
+
+
     /**
      * Convert object to Array
      */

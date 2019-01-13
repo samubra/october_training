@@ -1,5 +1,4 @@
 columns:
-
     id:
         label: ID
         type: number
@@ -60,4 +59,3 @@ columns:
         label: 更新时间
         type: datetime
         searchable: true
-

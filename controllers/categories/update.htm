@@ -5,12 +5,4 @@
     </ul>
 <?php Block::endPut() ?>
 
-<?php if (!$this->fatalError): ?>
-
-
     <?php echo $this->makePartial('plugins/samubra/training/controllers/baseview/update') ?>
-
-<?php else: ?>
-    <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
-    <p><a href="<?= Backend::url('samubra/training/categories') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
-<?php endif ?>

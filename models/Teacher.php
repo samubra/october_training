@@ -30,6 +30,26 @@ class Teacher extends Model
     ];
 
     public $attachOne = [
-        'photo' => 'System\Models\File'
+        'image' => 'System\Models\File'
     ];
+
+    public function getJobTitleOptions()
+    {
+        return Training::$jobTitleMap;
+    }
+
+    public function getJobTitleText()
+    {
+        return Training::$jobTitleMap[$this->job_title];
+    }
+
+    public function getEduTypeOptions()
+    {
+        return Training::$eduTypeMap;
+    }
+
+    public function getEduTypeText()
+    {
+        return Training::$eduTypeMap[$this->edu_type];
+    }
 }

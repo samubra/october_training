@@ -1,8 +1,9 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('samubra/training/organizations') ?>">发证机构管理</a></li>
+        <li><a href="<?= Backend::url('samubra/training/teachers') ?>">教师管理</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
+
 
 <?php echo $this->makePartial('plugins/samubra/training/controllers/baseview/update') ?>

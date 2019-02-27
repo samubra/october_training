@@ -11,7 +11,7 @@ class BuilderTableCreateSamubraTrainingCertificates extends Migration
         {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
-            $table->string('num');
+            $table->string('num')->unquie();
             $table->string('id_num');
             $table->smallInteger('id_type');
             $table->string('name');
@@ -20,7 +20,6 @@ class BuilderTableCreateSamubraTrainingCertificates extends Migration
             $table->string('company')->nullable();
             $table->smallInteger('edu_type')->nullable();
             $table->integer('category_id')->nullable()->unsigned();
-            $table->integer('operation_id')->nullable()->unsigned();
             $table->integer('organization_id')->nullable()->unsigned();
             $table->date('first_get_date')->nullable();
             $table->date('print_date')->nullable();

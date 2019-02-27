@@ -9,8 +9,3 @@ navigation:
         label: 培训管理
         url: samubra/training/setting/index
         icon: icon-archive
-        sideMenu:
-            setting:
-                label: 设置
-                url: samubra/training/setting/index
-                icon: icon-cog

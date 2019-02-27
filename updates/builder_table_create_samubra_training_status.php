@@ -13,7 +13,7 @@ class BuilderTableCreateSamubraTrainingStatus extends Migration
             $table->increments('id')->unsigned();
             $table->string('name');
             $table->string('color', 10);
-            $table->string('type');
+            $table->tinyInteger('type');
             $table->tinyInteger('sort');
         });
     }

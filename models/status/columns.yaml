@@ -1,0 +1,15 @@
+columns:
+    id:
+        label: ID
+        type: number
+    name:
+        label: 状态名称
+        type: partial
+        path: $/samubra/training/controllers/status/list/_name.htm
+    type:
+        label: 状态类别
+        type: partial
+        path: $/samubra/training/controllers/status/list/_type.htm
+    sort:
+        label: 排序
+        type: text

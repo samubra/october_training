@@ -1,0 +1,69 @@
+fields:
+    id_num:
+        label: 证件号码
+        span: auto
+        required: 1
+        type: text
+    id_type:
+        label: 证件类型
+        span: auto
+        required: 1
+        type: balloon-selector
+    name:
+        label: 姓名
+        span: auto
+        required: 1
+        type: text
+    phone:
+        label: 联系电话
+        span: auto
+        required: 1
+        type: text
+    address:
+        label: 联系地址
+        span: auto
+        required: 1
+        type: text
+    company:
+        label: 单位名称
+        span: auto
+        required: 1
+        type: text
+    category:
+        label: 培训类别
+        span: auto
+        nameFrom: name
+        descriptionFrom: description
+        prompt: '点击 %s 选择培训类别'
+        list: $/samubra/training/models/category/columns.yaml
+        required: 1
+        type: recordfinder
+    organization:
+        label: 发证机构
+        span: auto
+        nameFrom: name
+        descriptionFrom: description
+        prompt: '点击 %s 选择发证机构'
+        list: $/samubra/training/models/organization/columns.yaml
+        required: 1
+        type: recordfinder
+    first_get_date:
+        label: 初领证日期
+        span: auto
+        mode: date
+        type: datepicker
+    print_date:
+        label: 发证日期
+        span: auto
+        mode: date
+        type: datepicker
+    review_date:
+        label: 复审日期
+        span: auto
+        mode: date
+        type: datepicker
+    invalid_date:
+        label: 有效期期
+        span: auto
+        mode: date
+        type: datepicker

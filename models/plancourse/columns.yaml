@@ -1,0 +1,19 @@
+columns:
+    id:
+        label: ID
+        type: number
+    plan_id:
+        label: 培训方案
+        type: text
+        searchable: true
+        select: title
+        relation: plan
+    course_id:
+        label: 课程
+        type: text
+        searchable: true
+        select: title
+        relation: course
+    hours:
+        label: 课时
+        type: number

@@ -9,6 +9,7 @@ columns:
         label: 图片
         type: partial
         path: ~/plugins/samubra/training/controllers/baseview/list/_imageResize.htm
+        sortable: false
     name:
         label: 分类名称
         type: text
@@ -18,6 +19,7 @@ columns:
         label: 缩略名
         type: text
         searchable: true
+        invisible: true
         sortable: true
     parent_id:
         label: 'parent id'
@@ -47,7 +49,7 @@ columns:
     description:
         label: 分类描述
         type: text
-        invisible: true
+        invisible: false
     num_display:
         label: 显示数量
         type: number

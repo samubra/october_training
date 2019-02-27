@@ -1,0 +1,21 @@
+fields:
+    title:
+        label: 课程标题
+        required: 1
+        disabled: 1
+        type: text
+        span: storm
+        cssClass: col-md-6
+    course_type:
+        label: 课程类型
+        span: storm
+        cssClass: col-md-3
+        required: 1
+        disabled: 1
+        type: balloon-selector
+    'pivot[hours]':
+        label: 课时
+        span: storm
+        cssClass: col-md-3
+        type: number
+

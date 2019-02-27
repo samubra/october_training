@@ -1,6 +1,6 @@
 <?php
       if (!empty($record->image)) {
-          //$thumb = Samubra\Training\Classes\ImageResize::resizeImage($record->image->getThumb(100, 100, ['mode' => 'crop']));
+         // $thumb = Samubra\Training\Classes\ImageResize::resizeImage($record->image->getThumb(100, 100, ['mode' => 'crop']));
           $thumb = $record->image->getThumb(100, 100, ['mode' => 'crop']);
       } else {
         $thumb = '/plugins/samubra/training/assets/img/no_image.jpg';

@@ -1,0 +1,153 @@
+fields:
+    title:
+        label: 标题
+        span: storm
+        cssClass: col-md-8
+        required: 1
+        type: text
+    is_retraining:
+        label: 是否复审
+        span: storm
+        cssClass: col-md-2
+        type: balloon-selector
+        required: 1
+    is_certificate:
+        label: 是否发证
+        span: storm
+        cssClass: col-md-2
+        default: '1'
+        required: 1
+        type: balloon-selector
+    category:
+        label: 培训类别
+        nameFrom: name
+        descriptionFrom: description
+        prompt: '点击 %s 选择培训类别'
+        list: $/samubra/training/models/category/columns.yaml
+        span: storm
+        cssClass: col-md-8
+        required: 1
+        conditions: 'active = 1'
+        type: recordfinder
+    organization:
+        label: 发证机构
+        nameFrom: name
+        descriptionFrom: complete_type_text
+        prompt: 点击%s选择发证机构
+        list: $/samubra/training/models/organization/columns.yaml
+        span: storm
+        cssClass: col-md-4
+        trigger:
+            action: show
+            field: is_certificate
+            condition: 'value[1]'
+        type: recordfinder
+tabs:
+    fields:
+        theroy_hours:
+            label: 理论学时
+            type: number
+            span: storm
+            cssClass: col-md-3
+            step: 0.5
+            min: 0.5
+            max: 100
+            tab: 培训信息
+        operate_hours:
+            label: 操作学时
+            type: number
+            span: storm
+            cssClass: col-md-3
+            step: 0.5
+            min: 0.5
+            max: 100
+            tab: 培训信息
+        contact_person:
+            label: 联系人
+            span: storm
+            cssClass: col-md-3
+            required: 1
+            type: text
+            tab: 培训信息
+        contact_phone:
+            label: 联系电话
+            span: storm
+            cssClass: col-md-3
+            required: 1
+            type: text
+            tab: 培训信息
+        training_address:
+            label: 培训地址
+            span: full
+            required: 1
+            type: text
+            tab: 培训信息
+        target:
+            label: 目标内容
+            size: small
+            span: full
+            type: textarea
+            tab: 培训目标
+        material:
+            label: 培训教材
+            prompt: 添加教材
+            span: full
+            type: repeater
+            tab: 培训教材
+            form:
+                fields:
+                    title:
+                        label: 教材名称
+                        span: auto
+                        required: 1
+                        type: text
+                    press:
+                        label: 出版社
+                        span: auto
+                        type: text
+        document:
+            label: 培训文档
+            prompt: 添加文档
+            span: full
+            type: repeater
+            tab: 文档需求
+            form:
+                fields:
+                    title:
+                        label: 文档名称
+                        span: storm
+                        cssClass: col-md-6
+                        required: 1
+                        type: text
+                    num:
+                        label: 分数
+                        span: storm
+                        cssClass: col-md-2
+                        required: 1
+                        type: number
+                        default: '1'
+                    provide_type:
+                        label: 提交方式
+                        span: storm
+                        cssClass: col-md-2
+                        required: 1
+                        type: balloon-selector
+                    is_required:
+                        label: 是否必须
+                        span: storm
+                        cssClass: col-md-2
+                        required: 1
+                        default: true
+                        type: balloon-selector
+        other:
+            label: 补充内容
+            span: full
+            size: large
+            type: richeditor
+            tab: 其他内容
+        courses:
+            label: 课程列表
+            span: full
+            type: partial
+            path: $/samubra/training/controllers/plans/list/_courses.htm
+            tab: 授课计划

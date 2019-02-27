@@ -1,0 +1,55 @@
+columns:
+    id:
+        label: ID
+        type: number
+    title:
+        label: 标题
+        type: text
+    category_id:
+        label: 培训类别
+        type: partial
+        path: ~/plugins/samubra/training/controllers/plans/list/_category.htm
+    is_training:
+        label: 是否复训
+        type: partial
+        path: ~/plugins/samubra/training/controllers/plans/list/_is_retraining.htm
+        invisible: true
+    organization_id:
+        label: 发证机构
+        type: partial
+        path: ~/plugins/samubra/training/controllers/plans/list/_is_certificate.htm
+    operate_hours:
+        label: 操作学时
+        type: number
+        invisible: true
+    theroy_hours:
+        label: 理论学时
+        type: number
+        invisible: true
+    training_address:
+        label: 培训地址
+        type: text
+        invisible: true
+    contact_phone:
+        label: 联系电话
+        type: text
+        invisible: true
+    contact_person:
+        label: 联系人
+        type: text
+        invisible: true
+    target:
+        label: 培训目标
+        type: text
+        invisible: true
+    document:
+        label: 文档需求
+        type: partial
+        path: $/samubra/training/controllers/plans/list/_document.htm
+    updated_at:
+        label: 最后修改
+        type: datetime
+    created_at:
+        label: 添加时间
+        type: datetime
+        invisible: true

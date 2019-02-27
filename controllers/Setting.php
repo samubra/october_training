@@ -29,7 +29,7 @@ class Setting extends Controller
     public function index()
     {
 
-        $this->pageTitle = '基础信息设置';
+        $this->pageTitle = '报名管理';
         $this->asExtension('ListController')->index();
     }
 

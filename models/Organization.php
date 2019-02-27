@@ -48,4 +48,9 @@ class Organization extends Model
         $list = $this->getCompleteTypeOptions();
         return $list[$this->complete_type];
     }
+
+    public function getCompleteTypeTextAttribute()
+    {
+        return $this->getCompleteTypeText();
+    }
 }

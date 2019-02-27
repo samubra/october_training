@@ -1,0 +1,24 @@
+fields:
+    name:
+        label: 状态名称
+        span: storm
+        cssClass: col-md-3
+        required: 1
+        type: text
+    color:
+        label: 颜色
+        span: storm
+        cssClass: col-md-3
+        required: 1
+        type: colorpicker
+    type:
+        label: 状态类型
+        span: storm
+        cssClass: col-md-3
+        required: 1
+        type: balloon-selector
+    sort:
+        label: 排序
+        span: storm
+        cssClass: col-md-3
+        type: number

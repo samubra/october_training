@@ -1,0 +1,13 @@
+title: Status
+modelClass: Samubra\Training\Models\Status
+list: $/samubra/training/models/status/columns.yaml
+recordUrl: 'samubra/training/status/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
+defaultSort: 'sort ASC'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

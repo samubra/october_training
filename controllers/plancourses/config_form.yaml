@@ -1,0 +1,5 @@
+name: 课程计划
+modelClass: Samubra\Training\Models\PlanCourse
+form: $/samubra/training/models/plancourse/fields.yaml
+defaultRedirect: samubra/training/planscourses
+preview: {  }

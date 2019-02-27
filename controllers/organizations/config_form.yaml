@@ -3,8 +3,12 @@ form: $/samubra/training/models/organization/fields.yaml
 modelClass: Samubra\Training\Models\Organization
 defaultRedirect: samubra/training/organizations
 create:
+    title: 添加新的发证机构
     redirect: 'samubra/training/organizations/update/:id'
     redirectClose: samubra/training/organizations
 update:
+    title: 修改发证机构
     redirect: samubra/training/organizations
     redirectClose: samubra/training/organizations
+preview:
+    title: 查看详情

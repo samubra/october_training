@@ -29,5 +29,6 @@ class PlanCourse extends Model
 
     public $belongsTo = [
         'plan' => Plan::class,
+        'course' => Course::class
     ];
 }

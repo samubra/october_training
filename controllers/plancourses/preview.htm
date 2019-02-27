@@ -1,0 +1,81 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('samubra/training/organizations') ?>">查看课程计划</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+<div class="row">
+    <div class="form-preview col-md-6">
+        <div class="control-list">
+            <h3>课程信息</h3>
+            <table class="table data">
+                <thead>
+                <tr>
+                    <th style="width: 150px"><span>名称</span></th>
+                    <th><span>值</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="text-right">ID：</td><td><?php echo $formModel->id;?></td></tr>
+                    <tr><td class="text-right">课程名称：</td><td><?php echo $formModel->course->title;?></td></tr>
+                    <tr><td class="text-right">课程类型：</td><td><?php echo $formModel->course->getCourseTypeText();?></td></tr>
+                    <tr><td class="text-right">授课教师：</td><td><?php echo $formModel->course->teacher->name;?></td></tr>
+                    <tr><td class="text-right">授课学时：</td><td><?php echo $formModel->hours;?>学时</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-preview col-md-6">
+        <div class="control-list">
+            <h3>培训方案信息</h3>
+            <table class="table data">
+                <thead>
+                <tr>
+                    <th style="width: 150px"><span>名称</span></th>
+                    <th><span>值</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td class="text-right">ID：</td><td><?php echo $formModel->plan->id;?></td></tr>
+                <tr><td class="text-right">方案名称：</td><td><?php echo $formModel->plan->title;?></td></tr>
+                <tr><td class="text-right">培训类型：</td><td><?php echo $formModel->plan->category->name;?>(<?php echo $formModel->plan->getIsRetrainingTxt();?>)</td></tr>
+                <tr><td class="text-right">发证信息：</td>
+                    <td>
+                        <?php echo $formModel->plan->is_certificate ? $formModel->plan->organization->name . '(' . $formModel->plan->organization->getCompleteTypeText() . ')':'未发证';?>
+                    </td>
+                </tr>
+                <tr><td class="text-right">课时：</td><td><?php echo $formModel->plan->theroy_hours;?>(理论) + <?php echo $formModel->plan->operate_hours;?>(操作) = <?php echo $formModel->plan->operate_hours + $formModel->plan->theroy_hours;?>学时</td></tr>
+                <tr><td class="text-right">培训地址：</td><td><?php echo $formModel->plan->training_address;?></td></tr>
+                <tr><td class="text-right">联系方式：</td><td><?php echo $formModel->plan->contact_phone;?>(<?php echo $formModel->plan->contact_person;?>)</td></tr>
+                <tr><td class="text-right">培训目标：</td><td><?php echo $formModel->plan->target;?></td></tr>
+                <tr>
+                    <td class="text-right">培训教材：</td>
+                    <td><?php foreach($formModel->plan->material as $material){
+                        echo '<p>《' . $material['title'] . '》--' . $material['press'].'</p>';
+                        }?></td>
+                </tr>
+                <tr>
+                    <td class="text-right">材料需求：</td>
+                    <td><?php foreach($formModel->plan->document as $document){
+                        echo '<p>《' . $document['title'] . '》--' . $document['num'].'份,';
+                            echo $document['is_required']?'必须,':'非必须,';
+                            echo $document['provide_type'].'</p>';
+                        }?></td>
+                </tr>
+                <tr><td class="text-right">最后更新：</td><td><?php echo $formModel->plan->updated_at;?></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<?php else: ?>
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+<?php endif ?>
+
+<p>
+    <a href="<?= Backend::url('samubra/training/plancourses') ?>" class="btn btn-default oc-icon-chevron-left">
+        <?= e(trans('backend::lang.form.return_to_list')) ?>
+    </a>
+</p>

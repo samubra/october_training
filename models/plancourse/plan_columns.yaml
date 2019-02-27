@@ -1,0 +1,20 @@
+columns:
+    title:
+        label: 课程标题
+        type: text
+    pivot[hours]:
+        label: 学时
+        type: number
+    course_type:
+        label: 课程类型
+        type: partial
+        path: $/samubra/training/controllers/courses/list/_course_type.htm
+        searchable: true
+        sortable: true
+    teacher_id:
+        label: 授课教师
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: teacher

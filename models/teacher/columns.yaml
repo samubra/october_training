@@ -1,8 +1,10 @@
 columns:
-    _image:
-        label: 照片
-        type: partial
-        path: ~/plugins/samubra/training/controllers/baseview/list/_imageResize.htm
+    id:
+        label: ID
+        type: number
+        searchable: true
+        invisible: true
+        sortable: true
     name:
         label: 姓名
         type: text
@@ -40,9 +42,4 @@ columns:
         type: number
         searchable: true
         sortable: true
-    id:
-        label: ID
-        type: number
-        searchable: true
-        invisible: true
-        sortable: true
+

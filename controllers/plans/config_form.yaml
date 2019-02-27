@@ -1,0 +1,11 @@
+name: Plans
+modelClass: Samubra\Training\Models\Plan
+form: $/samubra/training/models/plan/fields.yaml
+defaultRedirect: samubra/training/plans
+create:
+    redirect: 'samubra/training/plans/update/:id'
+    redirectClose: samubra/training/plans
+update:
+    redirect: samubra/training/plans
+    redirectClose: samubra/training/plans
+preview: {  }

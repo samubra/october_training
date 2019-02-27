@@ -1,0 +1,11 @@
+name: Status
+modelClass: Samubra\Training\Models\Status
+form: $/samubra/training/models/status/fields.yaml
+defaultRedirect: samubra/training/status
+create:
+    redirect: 'samubra/training/status/update/:id'
+    redirectClose: samubra/training/status
+update:
+    redirect: samubra/training/status
+    redirectClose: samubra/training/status
+preview: {  }

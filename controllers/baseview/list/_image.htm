@@ -1,7 +1,8 @@
 <?php
 $thumb = '/plugins/ideas/cart/assets/img/no_image.jpg';
 if (!empty($record->image)) {
-$thumb = '/storage/app/media'.$record->image;
+    dd($record->image);
+    $thumb = '/storage/app/media'.$record->image;
 }
 ?>
 <img src="<?php echo $thumb ?>" style="max-height: 75px; max-width: 75px;"/>

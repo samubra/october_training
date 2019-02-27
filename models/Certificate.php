@@ -2,6 +2,7 @@
 
 use Model;
 use RainLab\User\Models\User;
+use Samubra\Train\Models\Train;
 
 /**
  * Model
@@ -24,6 +25,24 @@ class Certificate extends Model
     ];
 
     public $belongsTo = [
-        'user' => User::class
+        'user' => User::class,
+        'category' => Category::class,
+        'organization' => Organization::class
     ];
+    public function getDropdownOptions($fieldName, $value, $formData)
+    {
+        if($fieldName == 'edu_type')
+            return Train::$eduTypeMap;
+
+        if($fieldName == 'active')
+            return [
+                Train::NO => '无效',
+                Train::YES => '有效'
+            ];
+
+        return [
+            Train::NO => '否',
+            Train::YES => '是'
+        ];
+    }
 }

@@ -1,0 +1,58 @@
+columns:
+    id:
+        label: id
+        type: number
+    num:
+        label: num
+        type: text
+    id_num:
+        label: id_num
+        type: text
+    id_type:
+        label: id_type
+        type: text
+    name:
+        label: name
+        type: text
+    phone:
+        label: phone
+        type: number
+    address:
+        label: address
+        type: text
+    company:
+        label: company
+        type: text
+    edu_type:
+        label: edu_type
+        type: text
+    category_id:
+        label: category_id
+        type: number
+    organization_id:
+        label: organization_id
+        type: number
+    first_get_date:
+        label: first_get_date
+        type: text
+    print_date:
+        label: print_date
+        type: text
+    review_date:
+        label: review_date
+        type: text
+    invalid_date:
+        label: invalid_date
+        type: text
+    active:
+        label: active
+        type: text
+    user_id:
+        label: user_id
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

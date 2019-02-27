@@ -29,4 +29,22 @@ class Status extends Model
 
     const STATUS_RECORD = 1;
     CONST STATUS_PROJECT = 2;
+
+
+    public static $statusTypeMap = [
+        self::STATUS_RECORD => '申请记录',
+        self::STATUS_PROJECT => '培训项目',
+    ];
+
+    public function getDropdownOptions($fieldName, $value, $formData)
+    {
+        return self::$statusTypeMap;
+    }
+
+    public function getTypeText()
+    {
+        $list = self::$statusTypeMap;
+
+        return $list[$this->type];
+    }
 }

@@ -1,10 +1,10 @@
 fields:
     name:
         label: 机构名称
-        span: left
+        span: auto
         type: text
     complete_type:
         label: 发证类型
-        span: left
+        span: auto
         required: 1
         type: balloon-selector

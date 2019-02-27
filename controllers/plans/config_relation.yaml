@@ -1,0 +1,12 @@
+courses:
+    label: 课程计划
+    view:
+        list: $/samubra/training/models/plancourse/plan_columns.yaml
+        toolbarButtons: create|add|remove|link|unlink
+    manage:
+        form: $/samubra/training/models/course/fields.yaml
+        recordsPerPage: 10
+        showSearch: true
+        list: $/samubra/training/models/course/columns.yaml
+    pivot:
+        form: $/samubra/training/models/plancourse/plan_fields.yaml

@@ -38,7 +38,7 @@ class Course extends Model
     static $courseTypeMap = [
         self::COURSE_TYPE_THEORY=>'理论课',
         self::COURSE_TYPE_OPERATE=>'操作课',
-        self::COURSE_TYPE_SELF_STUDY =>'自学课'
+        self::COURSE_TYPE_SELF_STUDY =>'自学'
     ];
 
     public function getCourseTypeOptions()

@@ -13,7 +13,7 @@ class BuilderTableCreateSamubraTrainingPlans extends Migration
             $table->increments('id')->unsigned();
             $table->string('title');
             $table->integer('category_id')->nullable()->unsigned();
-            $table->integer('operation_id')->nullable()->unsigned();
+            $table->integer('organization_id')->nullable()->unsigned();
             $table->boolean('is_retraining');
             $table->boolean('is_certificate');
             $table->decimal('operate_hours', 10, 1)->default(0);

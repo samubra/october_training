@@ -9,3 +9,16 @@ navigation:
         label: 培训管理
         url: samubra/training/setting/index
         icon: icon-archive
+        sideMenu:
+            setting:
+                label: 基础信息设置
+                url: samubra/training/setting/index
+                icon: icon-wheelchair
+            plan:
+                label: 培训方案管理
+                url: samubra/training/plans
+                icon: icon-tint
+            project:
+                label: 培训项目管理
+                url: samubra/training/plans
+                icon: icon-simplybuilt

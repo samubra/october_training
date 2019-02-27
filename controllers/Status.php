@@ -19,5 +19,6 @@ class Status extends Controller
     {
         parent::index();
         $this->addCss('/plugins/samubra/training/assets/backend.css');
+        BackendMenu::setContext('Samubra.Training', 'training', 'setting');
     }
 }

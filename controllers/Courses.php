@@ -18,6 +18,6 @@ class Courses extends TrainingController
     public function __construct()
     {
         parent::__construct();
-        //BackendMenu::setContext('Samubra.Training', 'training', 'course');
+        BackendMenu::setContext('Samubra.Training', 'training', 'setting');
     }
 }

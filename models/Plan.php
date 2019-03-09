@@ -1,7 +1,6 @@
 <?php namespace Samubra\Training\Models;
 
 use Model;
-use Samubra\Train\Models\Train;
 
 /**
  * Model

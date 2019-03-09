@@ -15,7 +15,7 @@ class BuilderTableCreateSamubraTrainingCertificates extends Migration
             $table->string('id_num');
             $table->smallInteger('id_type');
             $table->string('name');
-            $table->integer('phone')->nullable()->unsigned();
+            $table->string('phone',20)->nullable();
             $table->string('address')->nullable();
             $table->string('company')->nullable();
             $table->smallInteger('edu_type')->nullable();

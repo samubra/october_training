@@ -2,7 +2,6 @@
 
 use Model;
 use RainLab\User\Models\User;
-use Samubra\Train\Models\Train;
 
 /**
  * Model
@@ -39,10 +38,25 @@ class Certificate extends Model
                 Train::NO => '无效',
                 Train::YES => '有效'
             ];
+        if($fieldName == 'id_type')
+            return Train::$idTypeMap;
 
         return [
             Train::NO => '否',
             Train::YES => '是'
         ];
+    }
+    public function beforeCreate()
+    {
+            $this->num = $this->getRateRandom();
+    }
+
+    protected function getRateRandom($length = 10)
+    {
+        $num = Train::generateRandomString();
+        if(\DB::table($this->table)->where('num',$num)->count())
+            $this->getRateRandom($length);
+        else
+            return $num;
     }
 }

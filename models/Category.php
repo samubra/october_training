@@ -42,8 +42,8 @@ class Category extends Model
     public function getActiveOptions()
     {
         return [
-            Training::ENABLE => '启用',
-            Training::DISABLE => '停用',
+            Train::ENABLE => '启用',
+            Train::DISABLE => '停用',
         ];
     }
 
@@ -52,7 +52,7 @@ class Category extends Model
         $post = post();
 
         if(!$post['Category']['slug'])
-            $this->slug = Training::generateRandomString(10);
+            $this->slug = Train::generateRandomString(10);
     }
     /**
      * Save routes for category to table #_routes
@@ -80,12 +80,4 @@ class Category extends Model
         return $parents->toArray();
     }
 
-    /**
-     * Get data for widget multi select
-     */
-    public static function getDataForWidgetMultiSelect()
-    {
-        $data = self::where('status', IdeasCart::ENABLE)->get();
-        return IdeasCart::convertArrayKeyValue($data, 'id', 'name');
-    }
 }

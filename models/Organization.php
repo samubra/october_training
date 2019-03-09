@@ -16,9 +16,6 @@ class Organization extends Model
      */
     public $timestamps = false;
 
-    const COMPLET_TYPE_GRADUATION = 1;
-    const COMPLET_TYPE_TRAINING_CERTIFICATE = 2;
-    const COMPLET_TYPE_OPERATIONS_CERTIFICATE = 3;
 
 
     /**
@@ -36,17 +33,12 @@ class Organization extends Model
 
     public function getCompleteTypeOptions()
     {
-        return [
-            self::COMPLET_TYPE_GRADUATION => '培训结业证',
-            self::COMPLET_TYPE_TRAINING_CERTIFICATE => '培训合格证',
-            Self::COMPLET_TYPE_OPERATIONS_CERTIFICATE => '特种作业操作证'
-        ];
+        return Train::$completeTypeMap;
     }
 
     public function getCompleteTypeText()
     {
-        $list = $this->getCompleteTypeOptions();
-        return $list[$this->complete_type];
+        return Train::$completeTypeMap[$this->complete_type];
     }
 
     public function getCompleteTypeTextAttribute()

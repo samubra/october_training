@@ -35,21 +35,21 @@ class Teacher extends Model
 
     public function getJobTitleOptions()
     {
-        return Training::$jobTitleMap;
+        return Train::$jobTitleMap;
     }
 
     public function getJobTitleText()
     {
-        return Training::$jobTitleMap[$this->job_title];
+        return Train::$jobTitleMap[$this->job_title];
     }
 
     public function getEduTypeOptions()
     {
-        return Training::$eduTypeMap;
+        return Train::$eduTypeMap;
     }
 
     public function getEduTypeText()
     {
-        return Training::$eduTypeMap[$this->edu_type];
+        return Train::$eduTypeMap[$this->edu_type];
     }
 }

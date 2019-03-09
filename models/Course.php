@@ -31,25 +31,17 @@ class Course extends Model
         'teacher' => Teacher::class,
     ];
 
-    const COURSE_TYPE_THEORY = 1;
-    const COURSE_TYPE_OPERATE = 2;
-    const COURSE_TYPE_SELF_STUDY = 3;
 
-    static $courseTypeMap = [
-        self::COURSE_TYPE_THEORY=>'理论课',
-        self::COURSE_TYPE_OPERATE=>'操作课',
-        self::COURSE_TYPE_SELF_STUDY =>'自学'
-    ];
 
     public function getCourseTypeOptions()
     {
-        return self::$courseTypeMap;
+        return Train::$courseTypeMap;
     }
     public function getCourseTypeText($type = null)
     {
         if(is_null($type))
             $type = $this->course_type;
-        return self::$courseTypeMap[$type];
+        return Train::$courseTypeMap[$type];
 
     }
 }

@@ -2,11 +2,13 @@
 
 namespace Samubra\Training\Models;
 
+use Backend\Widgets\Table\ServerEventDataSource;
 use October\Rain\Database\Model;
 use Illuminate\Support\Facades\Cache;
 use Mail;
+use phpDocumentor\Reflection\Types\Self_;
 
-class Training extends Model
+class Train extends Model
 {
     const ENABLE = 1;
     const DISABLE = 0;
@@ -72,6 +74,35 @@ class Training extends Model
         self::EDU_TYPE_ELEMENTAR_SCHOOL    => '小学',
     ];
 
+    const COMPLETE_TYPE_GRADUATION = 1;
+    const COMPLETE_TYPE_TRAINING_CERTIFICATE = 2;
+    const COMPLETE_TYPE_OPERATIONS_CERTIFICATE = 3;
+
+    public static $completeTypeMap = [
+        self::COMPLETE_TYPE_GRADUATION => '培训结业证',
+        self::COMPLETE_TYPE_TRAINING_CERTIFICATE => '培训合格证',
+        self::COMPLETE_TYPE_OPERATIONS_CERTIFICATE => '特种作业操作证'
+    ];
+
+    const ID_TYPE_IDENTITY = 1;
+    const ID_TYPE_OFFIER = 2;
+    const ID_TYPE_OTHER = 3;
+
+    public static $idTypeMap = [
+        self::ID_TYPE_IDENTITY => '身份证',
+        self::ID_TYPE_OFFIER => '军官证',
+        self::ID_TYPE_OTHER => '港澳台证',
+    ];
+    const COURSE_TYPE_THEORY = 1;
+    const COURSE_TYPE_OPERATE = 2;
+    const COURSE_TYPE_SELF_STUDY = 3;
+
+    static $courseTypeMap = [
+        self::COURSE_TYPE_THEORY=>'理论课',
+        self::COURSE_TYPE_OPERATE=>'操作课',
+        self::COURSE_TYPE_SELF_STUDY =>'自学'
+    ];
+
 
     /**
      * Convert object to Array
@@ -121,7 +152,8 @@ class Training extends Model
      */
     public static function generateRandomString($length = 10)
     {
-        $prefix = date('YmdHis');
+        $prefix = time();
+        //$prefix = date('YmdHis');
 
         $characters = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

@@ -15,8 +15,9 @@
     "require": {
         "php": ">=5.4.0",
         "maatwebsite/excel": "~2.1.0",
-        "intervention/image": "^2.4"
-
+        "intervention/image": "^2.4",
+        "jxlwqq/id-validator": "^1.4",
+        "propaganistas/laravel-phone": "^4.1"
     },
     "autoload": {
         "psr-4": {

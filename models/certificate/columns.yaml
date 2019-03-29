@@ -1,58 +1,92 @@
 columns:
     id:
-        label: id
+        label: ID
         type: number
+        searchable: true
+        sortable: true
     num:
-        label: num
+        label: 证书编号
         type: text
-    id_num:
-        label: id_num
-        type: text
+        searchable: true
+        sortable: true
     id_type:
-        label: id_type
+        label: 证件类型
+        type: partial
+        searchable: true
+        sortable: true
+        path: id_type
+    id_num:
+        label: 证件号码
         type: text
-    name:
-        label: name
-        type: text
-    phone:
-        label: phone
-        type: number
-    address:
-        label: address
-        type: text
-    company:
-        label: company
-        type: text
-    edu_type:
-        label: edu_type
-        type: text
+        searchable: true
+        sortable: true
     category_id:
-        label: category_id
+        label: 培训类别
         type: number
-    organization_id:
-        label: organization_id
-        type: number
-    first_get_date:
-        label: first_get_date
+        searchable: true
+        sortable: true
+        select: name
+        relation: category
+    name:
+        label: 姓名
         type: text
+        searchable: true
+        sortable: true
+    phone:
+        label: 联系电话
+        type: number
+        searchable: true
+        sortable: true
+    address:
+        label: 联系地址
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true
+    company:
+        label: 单位名称
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true
+    edu_type:
+        label: 文化程度
+        type: text
+        searchable: true
+        sortable: true
+        invisible: true
+    organization_id:
+        label: 发证机构
+        type: number
+        searchable: true
+        invisible: true
+        sortable: true
+    first_get_date:
+        label: 初领证日期
+        type: text
+        invisible: true
     print_date:
-        label: print_date
+        label: 发证日期
         type: text
     review_date:
-        label: review_date
+        label: 复审日期
         type: text
+        invisible: true
     invalid_date:
-        label: invalid_date
-        type: text
+        label: 失效日期
+        type: switch
+        invisible: true
     active:
-        label: active
-        type: text
+        label: 是否有效
+        type: switch
     user_id:
-        label: user_id
+        label: 账户
         type: number
+        invisible: true
     created_at:
-        label: created_at
+        label: 创建时间
         type: datetime
+        invisible: true
     updated_at:
-        label: updated_at
+        label: 更新时间
         type: datetime

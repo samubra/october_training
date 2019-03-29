@@ -31,4 +31,11 @@ class PlanCourse extends Model
         'plan' => Plan::class,
         'course' => Course::class
     ];
+
+    public $hasMany = [
+        'projectCourses' => [
+            ProjectCourse::class,
+            'key' => 'plan_course_id'
+        ]
+    ];
 }

@@ -1,0 +1,40 @@
+columns:
+    id:
+        label: id
+        type: number
+    slug:
+        label: slug
+        type: text
+    title:
+        label: title
+        type: text
+    active:
+        label: active
+        type: text
+    training_status_id:
+        label: training_status_id
+        type: number
+    training_begin_date:
+        label: training_begin_date
+        type: text
+    training_end_date:
+        label: training_end_date
+        type: text
+    plan_exam_date:
+        label: plan_exam_date
+        type: text
+    cost:
+        label: cost
+        type: text
+    plan_id:
+        label: plan_id
+        type: number
+    remark:
+        label: remark
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

@@ -26,6 +26,31 @@
                 </tbody>
             </table>
         </div>
+        <?php if($formModel->projectCourses){?>
+        <div class="control-list">
+            <h3>授课详情</h3>
+            <table class="table data">
+                <thead>
+                <tr>
+                    <th><span>授课时间</span></th>
+                    <th><span>授课教师</span></th>
+                    <th><span>学时</span></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <?php foreach($formModel->projectCourses as $course){?>
+                    <tr>
+                        <td><?php echo $course->course_time_start;?> 至 <?php echo $course->course_time_end;?></td>
+                        <td><?php echo $course->teacher_id;?></td>
+                        <td><?php echo $course->hours;?></td>
+
+                    </tr>
+                <?php }?>
+                </tbody>
+            </table>
+        </div>
+        <?php }?>
     </div>
     <div class="form-preview col-md-6">
         <div class="control-list">

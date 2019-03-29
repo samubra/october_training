@@ -1,0 +1,93 @@
+fields:
+    title:
+        label: 培训项目名称
+        span: storm
+        cssClass: col-md-6
+        required: 1
+        type: text
+    slug:
+        label: 缩略名
+        span: storm
+        cssClass: col-md-3
+        preset:
+            field: title
+            type: slug
+        required: 1
+        type: text
+    active:
+        label: 是否启用
+        span: storm
+        cssClass: col-md-3
+        default: '1'
+        type: balloon-selector
+    training_begin_date:
+        label: 培训开始日期
+        span: storm
+        cssClass: col-md-4
+        mode: date
+        required: 1
+        type: datepicker
+    training_end_date:
+        label: 培训结束日期
+        span: storm
+        cssClass: col-md-4
+        mode: date
+        required: 1
+        type: datepicker
+    plan_exam_date:
+        label: 受理截止日期
+        span: storm
+        cssClass: col-md-4
+        mode: date
+        required: 1
+        type: datepicker
+    plan:
+        label: 培训方案
+        nameFrom: title
+        descriptionFrom: description
+        prompt: '点击 %s 选择培训方案'
+        list: $/samubra/training/models/plan/columns.yaml
+        span: storm
+        cssClass: col-md-8
+        required: 1
+        type: recordfinder
+    cost:
+        label: 收费
+        span: storm
+        cssClass: col-md-4
+        default: '0.00'
+        type: number
+    condition:
+        label: 复审条件
+        prompt: 添加条件
+        maxItems: '2'
+        span: full
+        type: repeater
+        form:
+            fields:
+                print_dat_start:
+                    label: 发证日期开始
+                    mode: date
+                    span: storm
+                    cssClass: col-md-4
+                    type: datepicker
+                print_date_end:
+                    label: 发证日期截止
+                    mode: date
+                    span: storm
+                    cssClass: col-md-4
+                    type: datepicker
+                is_valid:
+                    label: 是否有效
+                    span: storm
+                    cssClass: col-md-3
+                    default: '1'
+                    type: balloon-selector
+    remark:
+        label: 其他内容
+        size: ''
+        span: auto
+        type: textarea
+    status_change:
+        type: partial
+        path: status

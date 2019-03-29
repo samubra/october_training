@@ -1,0 +1,10 @@
+name: Projects
+form: $/samubra/training/models/project/fields.yaml
+modelClass: Samubra\Training\Models\Project
+defaultRedirect: samubra/training/projects
+create:
+    redirect: 'samubra/training/projects/update/:id'
+    redirectClose: samubra/training/projects
+update:
+    redirect: samubra/training/projects
+    redirectClose: samubra/training/projects

@@ -17,7 +17,7 @@ class BuilderTableCreateSamubraTrainingRecords extends Migration
             $table->string('record_address')->change();
             $table->string('record_company')->change();
             $table->smallInteger('record_edu_type')->nullable();
-            $table->smallInteger('healt_type')->nullable();
+            $table->smallInteger('health_type')->nullable();
             $table->integer('certificate_id')->nullable()->unsigned();
             $table->integer('project_id')->nullable()->unsigned();
             $table->smallInteger('theory_score')->default(0);

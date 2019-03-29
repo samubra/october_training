@@ -20,5 +20,5 @@ navigation:
                 icon: icon-tint
             project:
                 label: 培训项目管理
-                url: samubra/training/plans
+                url: samubra/training/projects
                 icon: icon-simplybuilt

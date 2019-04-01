@@ -2,7 +2,7 @@
 
 use Backend\Classes\Controller;
 use BackendMenu;
-use Samubra\Training\Models\Training;
+use Samubra\Training\Models\Train;
 
 class Teachers extends TrainingController
 {
@@ -28,8 +28,8 @@ class Teachers extends TrainingController
     public function formExtendFields($formWidget, $fields)
     {
         if ($this->action == 'create') {
-            $fields['edu_type']->value = Training::EDU_TYPE_JUNIOR_HIGH_SCHOOL;
-            $fields['job_title']->value = Training::JOB_TITLE_ELEMENTARY;
+            $fields['edu_type']->value = Train::EDU_TYPE_JUNIOR_HIGH_SCHOOL;
+            $fields['job_title']->value = Train::JOB_TITLE_ELEMENTARY;
             return $fields;
         }
     }

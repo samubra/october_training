@@ -1,40 +1,44 @@
 columns:
     id:
-        label: id
+        label: ID
         type: number
     slug:
-        label: slug
+        label: 缩略名
         type: text
     title:
-        label: title
+        label: 项目名称
         type: text
     active:
-        label: active
-        type: text
+        label: 启用
+        type: switch
     training_status_id:
-        label: training_status_id
-        type: number
+        label: 状态
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: status
     training_begin_date:
-        label: training_begin_date
-        type: text
-    training_end_date:
-        label: training_end_date
-        type: text
+        label: 培训时间
+        type: partial
+        path: lists/_start_to_end
     plan_exam_date:
-        label: plan_exam_date
+        label: 考试
         type: text
     cost:
-        label: cost
+        label: 费用
         type: text
     plan_id:
-        label: plan_id
-        type: number
+        label: 培训方案
+        type: text
+        select: title
+        relation: plan
     remark:
-        label: remark
+        label: 备注
         type: text
     created_at:
-        label: created_at
+        label: 创建时间
         type: datetime
     updated_at:
-        label: updated_at
+        label: 更新时间
         type: datetime

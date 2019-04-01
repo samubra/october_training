@@ -26,7 +26,7 @@ class Teacher extends Model
      */
     public $rules = [
         'name' => 'required',
-        'identity'  => 'identity|required'
+        //'identity'  => 'identity|required'
     ];
 
     public $attachOne = [

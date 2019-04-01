@@ -28,7 +28,7 @@ class Course extends Model
     ];
 
     public $belongsTo = [
-        'teacher' => Teacher::class,
+        'teacher' => [Teacher::class,'key' => 'teacher_id']
     ];
 
 

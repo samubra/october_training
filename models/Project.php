@@ -32,7 +32,8 @@ class Project extends Model
     ];
 
     public $belongsTo = [
-        'plan' => Plan::class
+        'plan' => Plan::class,
+        'status' => [Status::class,'key' => 'training_status_id']
     ];
 
     public $belongsToMany = [

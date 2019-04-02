@@ -148,6 +148,7 @@ tabs:
         courses:
             label: 课程列表
             span: full
+            context: update
             type: partial
             path: $/samubra/training/controllers/plans/list/_courses.htm
             tab: 授课计划

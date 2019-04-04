@@ -103,6 +103,16 @@ class Train extends Model
         self::COURSE_TYPE_SELF_STUDY =>'自学'
     ];
 
+    const HEALTH_TYPE_NONE = 0;
+    const HEALTH_TYPE_ELIGIBLE = 1;
+    const HEALTH_TYPE_NOT_INDICATED = 2;
+
+    static $healthTypeMap = [
+        self::HEALTH_TYPE_NONE => '无需体检',
+        self::HEALTH_TYPE_ELIGIBLE => '体检合格',
+        self::HEALTH_TYPE_NOT_INDICATED => '无意见性结论',
+    ];
+
 
     /**
      * Convert object to Array

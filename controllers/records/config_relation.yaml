@@ -1,0 +1,7 @@
+status_change:
+  label: 状态
+  view:
+    list: $/samubra/training/models/status/columns.yaml
+  manage:
+    form: $/samubra/training/models/status/fields.yaml
+    recordsPerPage: 10

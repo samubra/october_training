@@ -2,6 +2,7 @@
 
 use Model;
 use RainLab\User\Models\User;
+use Samubra\Training\Models\Traits\CreateNumTrait;
 
 /**
  * Model
@@ -9,6 +10,7 @@ use RainLab\User\Models\User;
 class Certificate extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use CreateNumTrait;
     
 
     /**
@@ -45,18 +47,5 @@ class Certificate extends Model
             Train::NO => '否',
             Train::YES => '是'
         ];
-    }
-    public function beforeCreate()
-    {
-            $this->num = $this->getRateRandom();
-    }
-
-    protected function getRateRandom($length = 10)
-    {
-        $num = Train::generateRandomString();
-        if(\DB::table($this->table)->where('num',$num)->count())
-            $this->getRateRandom($length);
-        else
-            return $num;
     }
 }

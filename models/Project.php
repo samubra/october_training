@@ -1,6 +1,7 @@
 <?php namespace Samubra\Training\Models;
 
 use Model;
+use Samubra\Training\Models\Traits\SaveStatusId;
 
 /**
  * Model
@@ -8,6 +9,10 @@ use Model;
 class Project extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+
+    use SaveStatusId;
+
+    public $status_filed = 'training_status_id';
     
 
     /**
@@ -69,12 +74,5 @@ class Project extends Model
             Train::ENABLE => '启用',
             Train::DISABLE => '停用',
         ];
-    }
-
-    public function beforeSave()
-    {
-        $lastStatus = $this->status_change->sortByDesc('updated_at');
-        $this->training_status_id = $lastStatus->first()->id;
-        trace_log($this->training_status_id);
     }
 }

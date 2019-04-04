@@ -23,7 +23,7 @@ class Setting extends Controller
         //add style
         $this->addCss("/plugins/samubra/training/assets/css/styles.css", "1.0.0");
 
-        BackendMenu::setContext('Samubra.Training', 'training', 'setting');
+        //BackendMenu::setContext('Samubra.Training', 'training', 'setting');
     }
 
     public function index()

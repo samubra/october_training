@@ -14,7 +14,7 @@ columns:
         type: partial
         searchable: true
         sortable: true
-        path: id_type
+        path: $/samubra/training/controllers/certificates/_id_type.htm
     id_num:
         label: 证件号码
         type: text

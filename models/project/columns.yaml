@@ -21,7 +21,7 @@ columns:
     training_begin_date:
         label: 培训时间
         type: partial
-        path: lists/_start_to_end
+        path: $/samubra/training/controllers/projects/lists/_start_to_end.htm
     plan_exam_date:
         label: 考试
         type: text

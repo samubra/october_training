@@ -1,6 +1,8 @@
 <?php namespace Samubra\Training\Models;
 
 use Model;
+use Samubra\Training\Models\Traits\CreateNumTrait;
+use Samubra\Training\Models\Traits\SaveStatusId;
 
 /**
  * Model
@@ -8,12 +10,16 @@ use Model;
 class Record extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use CreateNumTrait;
+    use SaveStatusId;
+
+    public $status_filed = 'record_status_id';
     
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'samubra_training_categories';
+    public $table = 'samubra_training_records';
 
     /**
      * @var array Validation rules
@@ -35,6 +41,26 @@ class Record extends Model
             Status::class,
             'name' => 'entity',
             'table' => 'samubra_training_status_change',
+            'timestamps' => true,
         ],
     ];
+
+
+    public function getDropdownOptions($fieldName, $value, $formData)
+    {
+        if($fieldName == 'record_edu_type')
+            return Train::$eduTypeMap;
+        if($fieldName == 'health_type')
+            return Train::$healthTypeMap;
+
+        if($fieldName == 'is_eligible')
+            return [
+                Train::NO => '不合格',
+                Train::YES => '合格'
+            ];
+        return [
+            Train::NO => '否',
+            Train::YES => '是'
+        ];
+    }
 }

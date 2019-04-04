@@ -1,0 +1,10 @@
+name: Records
+form: $/samubra/training/models/record/fields.yaml
+modelClass: Samubra\Training\Models\Record
+defaultRedirect: samubra/training/records
+create:
+    redirect: 'samubra/training/records/update/:id'
+    redirectClose: samubra/training/records
+update:
+    redirect: samubra/training/records
+    redirectClose: samubra/training/records

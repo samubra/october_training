@@ -1,0 +1,68 @@
+fields:
+    certificate:
+        label: 证书
+        span: auto
+        nameFrom: id_num
+        descriptionFrom: name
+        prompt: 点击%s选择证书
+        list: $/samubra/training/models/certificate/columns.yaml
+        type: recordfinder
+    project:
+        label: 培训项目
+        span: auto
+        nameFrom: title
+        descriptionFrom: training_begin_date
+        prompt: 点击%s选择培训项目
+        list: $/samubra/training/models/project/columns.yaml
+        type: recordfinder
+    record_name:
+        label: 姓名
+        span: auto
+        required: 1
+        type: text
+        dependsOn: certificate
+    record_phone:
+        label: 联系电话
+        span: auto
+        required: 1
+        type: text
+        dependsOn: certificate
+    record_address:
+        label: 联系地址
+        span: auto
+        required: 1
+        type: text
+        dependsOn: certificate
+    record_company:
+        label: 单位名称
+        span: auto
+        default: 个体
+        required: 1
+        type: text
+        dependsOn: certificate
+    record_edu_type:
+        label: 文化程度
+        span: auto
+        required: 1
+        type: dropdown
+        dependsOn: certificate
+    health_type:
+        label: 健康状况
+        span: auto
+        type: dropdown
+    theory_score:
+        label: 理论成绩
+        span: auto
+        type: number
+    operate_score:
+        label: 操作成绩
+        span: auto
+        type: number
+    is_eligible:
+        label: 是否合格
+        span: auto
+        default: '0'
+        type: balloon-selector
+    status_change:
+        type: partial
+        path: status

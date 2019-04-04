@@ -1,0 +1,49 @@
+columns:
+    id:
+        label: id
+        type: number
+    num:
+        label: num
+        type: text
+    record_status_id:
+        label: record_status_id
+        type: number
+    record_edu_type:
+        label: record_edu_type
+        type: text
+    health_type:
+        label: health_type
+        type: text
+    certificate_id:
+        label: certificate_id
+        type: number
+    project_id:
+        label: project_id
+        type: number
+    theory_score:
+        label: theory_score
+        type: text
+    operate_score:
+        label: operate_score
+        type: text
+    is_eligible:
+        label: is_eligible
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    record_name:
+        label: record_name
+        type: text
+    record_phone:
+        label: record_phone
+        type: text
+    record_address:
+        label: record_address
+        type: text
+    record_company:
+        label: record_company
+        type: text

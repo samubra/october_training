@@ -39,3 +39,6 @@
 1.0.16:
     - 'Created table samubra_training_routes'
     - builder_table_create_samubra_training_routes.php
+1.0.17:
+    - 'Updated table samubra_training_records'
+    - builder_table_update_samubra_training_records.php

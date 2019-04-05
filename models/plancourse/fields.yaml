@@ -22,3 +22,4 @@ fields:
         span: auto
         defaultFrom: default_hours
         type: number
+        dependsOn: course

@@ -18,4 +18,5 @@ fields:
         span: storm
         cssClass: col-md-3
         type: number
+        defaultFrom: default_hours
 

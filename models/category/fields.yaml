@@ -14,6 +14,7 @@ fields:
         label: 缩略名
         span: left
         type: text
+        preset: name
         comment: 留空则自动生成
     image:
         label: 图片

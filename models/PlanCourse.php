@@ -49,4 +49,11 @@ class PlanCourse extends Model
     {
         return $this->course->title;
     }
+
+    public function filterFields($fields, $context = null)
+    {
+        if ($course = $this->course) {
+            $fields->hours->value = $course->default_hours;
+        }
+    }
 }

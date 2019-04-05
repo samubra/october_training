@@ -1,0 +1,25 @@
+columns:
+    id:
+        label: ID
+        type: number
+    project_id:
+        label: 培训项目
+        type: text
+        select: title
+        relation: project
+    plan_course_id:
+        label: 课程内容
+        type: partial
+        path: $/samubra/training/controllers/projectcourses/lists/_plan_course.htm
+    teacher_id:
+        label: 授课教师
+        type: text
+        select: name
+        relation: teacher
+    hours:
+        label: 学时
+        type: text
+    course_time_start:
+        label: 授课时间
+        type: partial
+        path: $/samubra/training/controllers/projectcourses/lists/_course_start_to_end.htm

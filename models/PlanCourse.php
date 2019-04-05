@@ -21,6 +21,8 @@ class PlanCourse extends Model
      */
     public $table = 'samubra_training_plan_courses';
 
+    protected $appends = ['plan_title','course_title'];
+
     /**
      * @var array Validation rules
      */
@@ -38,4 +40,13 @@ class PlanCourse extends Model
             'key' => 'plan_course_id'
         ]
     ];
+
+    public function getPlanTitleAttribute()
+    {
+        return $this->plan->title;
+    }
+    public function getCourseTitleAttribute()
+    {
+        return $this->course->title;
+    }
 }

@@ -1,0 +1,65 @@
+fields:
+    plan_course:
+        label: 课程计划
+        nameFrom: course_title
+        descriptionFrom: plan_title
+        prompt: 点击%s选择课程计划
+        list: $/samubra/training/models/plancourse/columns.yaml
+        span: storm
+        cssClass: col-md-4
+        required: 1
+        type: recordfinder
+    project:
+        label: 培训项目
+        nameFrom: title
+        descriptionFrom: training_begin_date
+        prompt: 点击%s选择培训项目
+        list: $/samubra/training/models/project/columns.yaml
+        span: storm
+        cssClass: col-md-4
+        required: 1
+        type: recordfinder
+    teacher:
+        label: 授课教师
+        nameFrom: name
+        descriptionFrom: qualification_num
+        prompt: 点击%s选择授课教师
+        list: $/samubra/training/models/teacher/columns.yaml
+        span: storm
+        cssClass: col-md-4
+        required: 1
+        type: recordfinder
+        dependsOn:
+            - plan_course
+    course_time_start:
+        label: 课程开始时间
+        span: storm
+        cssClass: col-md-4
+        required: 1
+        type: datepicker
+        mode: datetime
+        format: Y-m-d
+        dependsOn:
+            - project
+    course_time_end:
+        label: 课程结束时间
+        span: storm
+        cssClass: col-md-4
+        required: 1
+        type: datepicker
+        mode: datetime
+        format: Y-m-d
+        dependsOn:
+            - project
+            - hours
+    hours:
+        label: 课时
+        span: storm
+        cssClass: col-md-4
+        required: 1
+        type: number
+        defaultFrom: hours
+        step: 0.5  # defaults to 'any'
+        min: 0.5   # defaults to not present
+        max: 100 # defaults to not present
+        dependsOn: plan_course

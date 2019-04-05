@@ -1,5 +1,6 @@
 <?php namespace Samubra\Training\Models;
 
+use Carbon\Carbon;
 use Model;
 
 /**
@@ -8,6 +9,7 @@ use Model;
 class ProjectCourse extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    protected $with = ['plan_course','plan_course.course','project','teacher'];
     
     /*
      * Disable timestamps by default.
@@ -35,4 +37,28 @@ class ProjectCourse extends Model
         'project' => Project::class,
         'teacher' => Teacher::class,
     ];
+
+    public function filterFields($fields)
+    {
+        //race_log($fields);
+        // trace_log($this->certificate);
+        if($planCourse = $this->plan_course){
+            $fields->hours->value = $planCourse->hours;
+            $fields->teacher->value = $planCourse->course->teacher->id;
+        }
+        if($project = $this->project){
+            $fields->course_time_start->value = $project->training_begin_date;
+            $days = intval($this->hours / 8); //舍去小数
+            //traceLog($days);
+            //traceLog($project->training_begin_date);
+            $fields->course_time_end->value = Carbon::createFromFormat('Y-m-d',$project->training_begin_date)->addDays($days)->toDateString();
+        }
+        if($this->hours && $this->course_time_start)
+        {
+            $days = intval($this->hours / 8); //舍去小数
+            traceLog($this->course_time_start);
+            $fields->course_time_end->value = Carbon::createFromFormat('Y-m-d H:i:s',$this->course_time_start)->addDays($days)->toDateString();
+
+        }
+    }
 }

@@ -1,7 +1,7 @@
 <div data-control="toolbar">
     <a href="<?php echo Backend::url('samubra/training/'.$controller.'/create') ?>"
             class="btn btn-primary oc-icon-plus" id="new-<?php echo $controller; ?>">
-        添加
+        添加<?= e($controller_title);?>
     </a>
 
     <?php if ($this->user->hasAccess('samubra.training.delete_'.$controller)): ?>

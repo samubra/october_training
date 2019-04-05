@@ -12,7 +12,7 @@ navigation:
         sideMenu:
             setting:
                 label: 基础信息设置
-                url: samubra/training/setting/index
+                url: samubra/training/categories
                 icon: icon-wheelchair
             plan:
                 label: 培训方案管理

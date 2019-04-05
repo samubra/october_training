@@ -53,6 +53,8 @@ class Plugin extends PluginBase
             'category'  => '分类',
             'teacher'   => '教师',
             'course'    => '课程',
+            'plancourse'    => '授课方案',
+            'projectcourse'    => '日程安排',
             'plan'      => '培训方案',
             'project'   => '培训项目',
             'certificate'   => '证书',

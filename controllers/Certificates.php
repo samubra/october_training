@@ -1,10 +1,13 @@
 <?php namespace Samubra\Training\Controllers;
 
-use Backend\Classes\Controller;
 use BackendMenu;
 
-class Certificates extends Controller
+class Certificates extends TrainingController
 {
+    public $requiredPermissions = ['samubra.training.access_certificate'];
+    public $controllerName = 'certificates';
+    public $controllerTitle = '培训证书';
+
     public $implement = [
         'Backend\Behaviors\ListController',
         'Backend\Behaviors\FormController',

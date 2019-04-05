@@ -14,7 +14,7 @@ columns:
         type: partial
         searchable: true
         sortable: true
-        path: $/samubra/training/controllers/certificates/_id_type.htm
+        path: $/samubra/training/controllers/certificates/lists/_id_type.htm
     id_num:
         label: 证件号码
         type: text
@@ -91,3 +91,4 @@ columns:
     updated_at:
         label: 更新时间
         type: datetime
+        invisible: true

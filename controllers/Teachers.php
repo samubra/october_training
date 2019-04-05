@@ -1,6 +1,5 @@
 <?php namespace Samubra\Training\Controllers;
 
-use Backend\Classes\Controller;
 use BackendMenu;
 use Samubra\Training\Models\Train;
 
@@ -12,6 +11,8 @@ class Teachers extends TrainingController
     ];
 
     public $controllerName = 'teachers';
+    public $requiredPermissions = ['samubra.training.access_teacher'];
+    public $controllerTitle = '教师';
     
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';

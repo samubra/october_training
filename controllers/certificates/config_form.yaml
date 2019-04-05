@@ -1,4 +1,4 @@
-name: Certificates
+name: 培训证书
 modelClass: Samubra\Training\Models\Certificate
 form: $/samubra/training/models/certificate/fields.yaml
 defaultRedirect: samubra/training/certificates

@@ -1,6 +1,5 @@
 <?php namespace Samubra\Training\Controllers;
 
-use Backend\Classes\Controller;
 use BackendMenu;
 
 class Organizations extends TrainingController
@@ -10,6 +9,8 @@ class Organizations extends TrainingController
         'Backend\Behaviors\FormController'
     ];
     public $controllerName = 'organizations';
+    public $controllerTitle = '发证机构';
+    public $requiredPermissions = ['samubra.training.access_organization'];
     
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';

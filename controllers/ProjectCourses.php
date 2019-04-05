@@ -1,12 +1,18 @@
 <?php namespace Samubra\Training\Controllers;
 
-use Backend\Classes\Controller;
 use BackendMenu;
 
-class ProjectCourses extends Controller
+class ProjectCourses extends TrainingController
 {
-    public $implement = [        'Backend\Behaviors\ListController',        'Backend\Behaviors\FormController'    ];
-    
+    public $implement = [
+        'Backend\Behaviors\ListController',
+        'Backend\Behaviors\FormController'
+    ];
+
+    public $controllerName = 'projectcourses';
+    public $controllerTitle = '日程安排';
+    public $requiredPermissions = ['samubra.training.access_projectcourse'];
+
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
 
@@ -14,5 +20,6 @@ class ProjectCourses extends Controller
     {
         parent::__construct();
         $this->addCss('/plugins/samubra/training/assets/backend.css');
+        BackendMenu::setContext('Samubra.Training', 'training', 'plan');
     }
 }

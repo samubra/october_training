@@ -6,6 +6,7 @@ class Categories extends TrainingController
 {
     public $requiredPermissions = ['samubra.training.access_category'];
     public $controllerName = 'categories';
+    public $controllerTitle = '培训类别';
 
     public $implement = [
         'Backend\Behaviors\ListController',
@@ -20,7 +21,6 @@ class Categories extends TrainingController
     public function __construct()
     {
         parent::__construct();
-        //BackendMenu::setContext('Samubra.Training', 'training', 'categories');
         BackendMenu::setContext('Samubra.Training', 'training', 'setting');
     }
 }

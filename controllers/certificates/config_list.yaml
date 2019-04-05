@@ -1,4 +1,4 @@
-title: Certificates
+title: 培训证书
 modelClass: Samubra\Training\Models\Certificate
 list: $/samubra/training/models/certificate/columns.yaml
 recordUrl: 'samubra/training/certificates/update/:id'

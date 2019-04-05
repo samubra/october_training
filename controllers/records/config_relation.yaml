@@ -1,7 +1,9 @@
 status_change:
   label: 状态
   view:
-    list: $/samubra/training/models/status/columns.yaml
+    list: $/samubra/training/models/status/relate_columns.yaml
+    toolbarButtons: create|add|remove
   manage:
     form: $/samubra/training/models/status/fields.yaml
     recordsPerPage: 10
+    scope: record

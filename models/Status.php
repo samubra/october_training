@@ -47,4 +47,14 @@ class Status extends Model
 
         return $list[$this->type];
     }
+
+
+    public function scopeProject($query)
+    {
+        return $query->whereType(self::STATUS_PROJECT);
+    }
+    public function scopeRecord($query)
+    {
+        return $query->whereType(self::STATUS_RECORD);
+    }
 }

@@ -1,0 +1,11 @@
+columns:
+    id:
+        label: ID
+        type: number
+    name:
+        label: 状态名称
+        type: partial
+        path: $/samubra/training/controllers/status/list/_name.htm
+    pivot[created_at]:
+        label: 变更时间
+        type: date

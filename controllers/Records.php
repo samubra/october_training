@@ -21,21 +21,5 @@ class Records extends Controller
         parent::__construct();
     }
 
-    public function filterFields($fields, $context = null)
-    {
-        trace_log($fields);
-        //trace_log($this->certifiacte->name);
-        if ($this->certifiacte) {
-            $fields->record_name->hidden = true;
-        }
-        /**
-        $certificate = Certificate::find($this->certifiacte);
-        if (str_contains($displayedVendors, 'provider1')) {
-            $fields->{'specificfields[for][provider1]'}->hidden = false;
-        }
-        if (str_contains($displayedVendors, 'provider2')) {
-            $fields->{'specificfields[for][provider2]'}->hidden = false;
-        }
-         * **/
-    }
+
 }

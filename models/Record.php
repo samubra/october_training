@@ -63,4 +63,18 @@ class Record extends Model
             Train::YES => '是'
         ];
     }
+
+   public function filterFields($fields)
+   {
+       //race_log($fields);
+      // trace_log($this->certificate);
+       $certificate = $this->certificate;
+       if($certificate){
+           $fields->record_name->value = $certificate->name;
+           $fields->record_phone->value = $certificate->phone;
+           $fields->record_address->value = $certificate->address;
+           $fields->record_company->value = $certificate->company;
+           $fields->record_edu_type->value = $certificate->edu_type;
+       }
+    }
 }

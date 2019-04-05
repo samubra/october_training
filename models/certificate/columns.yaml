@@ -51,7 +51,8 @@ columns:
         invisible: true
     edu_type:
         label: 文化程度
-        type: text
+        type: partial
+        path: $/samubra/training/controllers/certificates/lists/_edu.htm
         searchable: true
         sortable: true
         invisible: true

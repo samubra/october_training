@@ -8,6 +8,9 @@
 
 namespace Samubra\Training\Models\Traits;
 
+use mysql_xdevapi\Exception;
+use Samubra\Training\Models\Status;
+
 trait SaveStatusId
 {
     //public $status_filed = '';
@@ -16,11 +19,27 @@ trait SaveStatusId
     {
         //此处在新建记录时应设置默认值
         $lastStatus = $this->status_change->sortByDesc('updated_at');
+        $status_id = '';
         if(!count($lastStatus->toArray())) {
-            $this->attributes[$this->status_filed] = 1;
+            switch (self::class) {
+                case 'Samubra\Training\Models\Record':
+                    $statusModel = Status::record();
+                    break;
+                case 'Samubra\Training\Models\Project':
+                    $statusModel = Status::project();
+                    break;
+                default:
+                    $statusModel = false;
+                    break;
+            }
+            throw_if(!$statusModel,new \Exception('无法设置初始值'));
+            $ids = $statusModel->orderBy('id')->pluck('id');
+            traceLog($ids);
+            $status_id = $ids[0];
         }else{
-            $this->attributes[$this->status_filed] = $lastStatus->first()->id;
+            $status_id = $lastStatus->first()->id;
         }
+        $this->attributes[$this->status_filed] = $status_id;
         //trace_log($lastStatus->first()->id);
     }
 }

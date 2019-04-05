@@ -30,7 +30,7 @@ class Record extends Model
     public $belongsTo = [
         'project' => Project::class,
         'certificate' => Certificate::class,
-        'status' => Status::class,
+        'status' => [Status::class,'key' => 'record_status_id'],
     ];
 
     //$related, $name, $table = null, $foreignPivotKey = null,

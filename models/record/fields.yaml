@@ -65,4 +65,4 @@ fields:
         type: balloon-selector
     status_change:
         type: partial
-        path: status
+        path: $/samubra/training/controllers/records/lists/_status_list.htm

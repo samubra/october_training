@@ -1,0 +1,5 @@
+<?php if($value){?>
+<div class="mall-badge" style="background: #2ecc71">已通过（理论：<?= e($record->theory_score);?>,操作:<?= e($record->operate_score);?>)</div>
+<?php }else{ ?>
+<div class="mall-badge" style="background: #e74c3c">未通过</div>
+<?php } ?>

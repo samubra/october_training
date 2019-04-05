@@ -13,11 +13,10 @@ columns:
         type: switch
     training_status_id:
         label: 状态
-        type: text
+        type: partial
+        path: $/samubra/training/controllers/records/lists/_status_name.htm
         searchable: true
         sortable: true
-        select: name
-        relation: status
     training_begin_date:
         label: 培训时间
         type: partial

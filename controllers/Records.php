@@ -18,7 +18,9 @@ class Records extends Controller
 
     public function __construct()
     {
+
         parent::__construct();
+        $this->addCss('/plugins/samubra/training/assets/backend.css');
     }
 
 

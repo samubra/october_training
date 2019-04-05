@@ -1,49 +1,89 @@
 columns:
     id:
-        label: id
+        label: ID
         type: number
+        searchable: false
+        sortable: true
     num:
-        label: num
+        label: 申请编号
         type: text
-    record_status_id:
-        label: record_status_id
-        type: number
-    record_edu_type:
-        label: record_edu_type
-        type: text
-    health_type:
-        label: health_type
-        type: text
-    certificate_id:
-        label: certificate_id
-        type: number
-    project_id:
-        label: project_id
-        type: number
-    theory_score:
-        label: theory_score
-        type: text
-    operate_score:
-        label: operate_score
-        type: text
-    is_eligible:
-        label: is_eligible
-        type: text
-    created_at:
-        label: created_at
-        type: datetime
-    updated_at:
-        label: updated_at
-        type: datetime
+        invisible: true
+        searchable: true
     record_name:
-        label: record_name
+        label: 姓名
         type: text
+        searchable: true
+        sortable: true
     record_phone:
-        label: record_phone
+        label: 联系电话
         type: text
+        searchable: true
+        sortable: true
     record_address:
-        label: record_address
+        label: 联系地址
         type: text
+        searchable: true
+        sortable: true
     record_company:
-        label: record_company
+        label: 单位名称
         type: text
+        searchable: true
+        sortable: true
+
+    theory_score:
+        label: 理论成绩
+        type: number
+        invisible: true
+        sortable: true
+    operate_score:
+        label: 操作成绩
+        type: number
+        invisible: true
+        sortable: true
+    is_eligible:
+        label: 是否通过
+        type: partial
+        path: $/samubra/training/controllers/records/lists/_is_eligible.htm
+        searchable: true
+        sortable: true
+    record_status_id:
+        label: 受理状态
+        type: partial
+        sortable: true
+        path: $/samubra/training/controllers/records/lists/_status_name.htm
+    record_edu_type:
+        label: 文化程度
+        type: partial
+        invisible: true
+        sortable: true
+        path: $/samubra/training/controllers/certificates/lists/_edu.htm
+    health_type:
+        label: 健康状况
+        type: partial
+        invisible: true
+        sortable: true
+        path: $/samubra/training/controllers/records/lists/_health.htm
+    certificate_id:
+        label: 证书
+        type: partial
+        invisible: true
+        sortable: true
+        path: $/samubra/training/controllers/records/lists/_certificate_name.htm
+    project_id:
+        label: 培训项目
+        type: text
+        searchable: true
+        invisible: false
+        sortable: true
+        select: title
+        relation: project
+    created_at:
+        label: 申请时间
+        type: datetime
+        invisible: true
+        sortable: true
+    updated_at:
+        label: 最后更新
+        type: datetime
+        sortable: true
+

@@ -22,7 +22,18 @@ class Certificate extends Model
      * @var array Validation rules
      */
     public $rules = [
-
+        'id_num' => 'required|identity',
+        'id_type' => 'required',
+        'name' => 'required',
+        'phone' => 'required|phone:CN',
+        'edu_type' => 'required',
+        'category_id' => 'required',
+        'organization_id' => 'required',
+        'first_get_date' => 'date',
+        'print_date' => 'date|after_or_equal:first_get_date',
+        'review_date' => 'date|after:print_date',
+        'invalid_date' => 'date|after:review_date',
+        'active' => 'boolean'
     ];
 
     public $belongsTo = [

@@ -22,7 +22,9 @@ class Category extends Model
     public $table = 'samubra_training_categories';
 
     public $rules = [
-        'name' => 'required'
+        'name' => 'required|min:2',
+        'num_display' => 'numeric',
+        'active' => 'boolean'
     ];
 
     public $attachOne = [

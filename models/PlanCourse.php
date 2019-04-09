@@ -8,6 +8,8 @@ use Model;
 class PlanCourse extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+
+    public $with = ['course','course'];
     
     /*
      * Disable timestamps by default.

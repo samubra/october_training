@@ -9,7 +9,7 @@ use Model;
 class ProjectCourse extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    protected $with = ['plan_course','plan_course.course','project','teacher'];
+    //protected $with = ['plan_course','plan_course.course','project','teacher'];
     
     /*
      * Disable timestamps by default.

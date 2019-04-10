@@ -4,19 +4,27 @@ fields:
         type: text
         span: storm
         readOnly: true
-        cssClass: col-md-5
+        cssClass: col-md-4
+        stretch: true
     id_num:
         label: 证件号码
         required: 1
         type: text
         span: storm
-        cssClass: col-md-5
+        cssClass: col-md-4
+        stretch: true
     id_type:
         label: 证件类型
         span: storm
         cssClass: col-md-2
         required: 1
         default: 1
+        type: balloon-selector
+
+    active:
+        label: 是否有效
+        span: storm
+        cssClass:  col-md-2
         type: balloon-selector
     category:
         label: 培训类别
@@ -97,9 +105,5 @@ fields:
         mode: date
         format: Y-m-d
         type: datepicker
-    active:
-        label: 是否有效
-        span: storm
-        cssClass:  col-md-3
-        type: balloon-selector
+
 

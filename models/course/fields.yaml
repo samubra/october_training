@@ -14,6 +14,7 @@ fields:
         nameFrom: name
         descriptionFrom: identity
         prompt: '点击 %s 选择授课教师'
+        required: 1
         list: $/samubra/training/models/teacher/columns.yaml
         span: auto
         type: recordfinder

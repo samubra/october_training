@@ -15,6 +15,8 @@ class Course extends Model
      */
     public $timestamps = false;
 
+    public $with = ['teacher'];
+
 
     /**
      * @var string The database table used by the model.
@@ -25,6 +27,10 @@ class Course extends Model
      * @var array Validation rules
      */
     public $rules = [
+        'title' => 'required|min:2',
+        'course_type' => 'required',
+        'teacher_id' => 'required',
+        'default_hours' => 'required|numeric'
     ];
 
     public $belongsTo = [

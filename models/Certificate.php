@@ -7,6 +7,7 @@ use October\Rain\Exception\ApplicationException;
 use October\Rain\Support\Facades\Flash;
 use RainLab\User\Models\User;
 use Samubra\Training\Models\Traits\CreateNumTrait;
+use Samubra\Training\Models\Traits\CustomValidateMessage;
 
 /**
  * Model
@@ -16,6 +17,7 @@ class Certificate extends Model
     use \October\Rain\Database\Traits\Validation;
     use CreateNumTrait;
     use SoftDelete;
+    use CustomValidateMessage;
     
 
     /**
@@ -40,16 +42,12 @@ class Certificate extends Model
         'invalid_date' => 'date|after:review_date',
         'active' => 'boolean'
     ];
-    public $customMessages = [
-        'id_num.identity' => '证件号码格式不正确',
-        'phone.phone' => '电话号码格式不正确',
-    ];
-
     public $belongsTo = [
         'user' => User::class,
         'category' => Category::class,
         'organization' => Organization::class
     ];
+
     public function getDropdownOptions($fieldName, $value, $formData)
     {
         if($fieldName == 'edu_type')

@@ -1,6 +1,7 @@
 <?php namespace Samubra\Training\Models;
 
 use Model;
+use Samubra\Training\Models\Traits\CustomValidateMessage;
 
 /**
  * Model
@@ -8,6 +9,8 @@ use Model;
 class Plan extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+
+    use CustomValidateMessage;
     
 
     /**
@@ -15,10 +18,18 @@ class Plan extends Model
      */
     public $table = 'samubra_training_plans';
 
+    public $with = ['category'];
+
     /**
      * @var array Validation rules
      */
     public $rules = [
+        'title' => 'required|min:3',
+        'category_id' => 'required',
+        'organization_id' => 'required_if:is_certificate,true',
+        'operate_hours' => 'numeric',
+        'theroy_hours' => 'numeric',
+        'contact_phone' => 'phone:CN',
     ];
 
     protected $appends= [

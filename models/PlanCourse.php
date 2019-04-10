@@ -29,6 +29,7 @@ class PlanCourse extends Model
      * @var array Validation rules
      */
     public $rules = [
+
     ];
 
     public $belongsTo = [

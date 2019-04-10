@@ -24,6 +24,13 @@ class Project extends Model
      * @var array Validation rules
      */
     public $rules = [
+        'slug' => 'required',
+        'title' => 'required|min3',
+        'training_begin_date' => 'date',
+        'training_end_date' => 'date|after:training_begin_date',
+        'plan_exam_date' => 'date|after:training_end_date',
+        'cost' => 'numeric',
+        'plan_id' => 'required'
     ];
 
     protected $jsonable = ['condition'];

@@ -4,6 +4,7 @@ columns:
         type: number
     slug:
         label: 缩略名
+        invisible: true
         type: text
     title:
         label: 项目名称
@@ -24,19 +25,19 @@ columns:
     plan_exam_date:
         label: 考试
         type: text
+        invisible: true
     cost:
         label: 费用
         type: text
+        invisible: true
     plan_id:
         label: 培训方案
         type: text
         select: title
         relation: plan
-    remark:
-        label: 备注
-        type: text
     created_at:
         label: 创建时间
+        invisible: true
         type: datetime
     updated_at:
         label: 更新时间

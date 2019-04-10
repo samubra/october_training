@@ -1,6 +1,10 @@
 <?php namespace Samubra\Training\Models;
 
 use Model;
+use October\Rain\Database\Traits\SoftDelete;
+use October\Rain\Exception\AjaxException;
+use October\Rain\Exception\ApplicationException;
+use October\Rain\Support\Facades\Flash;
 use RainLab\User\Models\User;
 use Samubra\Training\Models\Traits\CreateNumTrait;
 
@@ -11,6 +15,7 @@ class Certificate extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     use CreateNumTrait;
+    use SoftDelete;
     
 
     /**
@@ -35,6 +40,10 @@ class Certificate extends Model
         'invalid_date' => 'date|after:review_date',
         'active' => 'boolean'
     ];
+    public $customMessages = [
+        'id_num.identity' => '证件号码格式不正确',
+        'phone.phone' => '电话号码格式不正确',
+    ];
 
     public $belongsTo = [
         'user' => User::class,
@@ -58,5 +67,19 @@ class Certificate extends Model
             Train::NO => '否',
             Train::YES => '是'
         ];
+    }
+
+    public function beforeSave()
+    {
+        $models = self::where('id_num',$this->id_num)
+                    ->where('id_type',$this->id_type)
+                    ->where('category_id',$this->category_id)
+                    ->where('active',$this->active)
+                    ->whereNull('deleted_at');
+        if($this->id)
+            $models->where('id','<>',$this->id);
+        //traceLog('id: '.$this->id);
+        //traceLog($models->count());
+        throw_if($models->count(),new ApplicationException('该证书已经被添加'));
     }
 }

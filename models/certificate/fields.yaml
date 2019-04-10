@@ -1,58 +1,27 @@
 fields:
-    id_type:
-        label: 证件类型
+    num:
+        label: 编号(系统自动生成）
+        type: text
         span: storm
-        cssClass: col-md-4
-        required: 1
-        default: 1
-        type: balloon-selector
+        readOnly: true
+        cssClass: col-md-5
     id_num:
         label: 证件号码
         required: 1
         type: text
         span: storm
-        cssClass: col-md-4
-    num:
-        label: 编号
-        type: text
-        span: storm
-        readOnly: true
-        comment: 系统自动生成
-        cssClass: col-md-4
-    name:
-        label: 姓名
+        cssClass: col-md-5
+    id_type:
+        label: 证件类型
         span: storm
         cssClass: col-md-2
         required: 1
-        type: text
-    phone:
-        label: 联系电话
-        span: storm
-        cssClass: col-md-2
-        required: 1
-        type: text
-    address:
-        label: 联系地址
-        span: storm
-        cssClass: col-md-2
-        required: 1
-        type: text
-    company:
-        label: 单位名称
-        span: storm
-        cssClass: col-md-2
-        required: 1
-        type: text
-    edu_type:
-        label: 文化程度
-        span: storm
-        cssClass: col-md-4
-        type: dropDown
-        required: 1
+        default: 1
+        type: balloon-selector
     category:
         label: 培训类别
         span: storm
-        cssClass: col-md-6
+        cssClass: col-md-3
         nameFrom: name
         descriptionFrom: description
         prompt: '点击 %s 选择培训类别'
@@ -63,16 +32,47 @@ fields:
     organization:
         label: 发证机构
         span: storm
-        cssClass: col-md-6
+        cssClass: col-md-3
         nameFrom: name
         descriptionFrom: description
         prompt: '点击 %s 选择发证机构'
         list: $/samubra/training/models/organization/columns.yaml
         required: 1
         type: recordfinder
+    name:
+        label: 姓名
+        span: storm
+        cssClass: col-md-3
+        required: 1
+        type: text
+    phone:
+        label: 联系电话
+        span: storm
+        cssClass: col-md-3
+        required: 1
+        type: text
+    address:
+        label: 联系地址
+        span: storm
+        cssClass: col-md-4
+        required: 1
+        type: text
+    company:
+        label: 单位名称
+        span: storm
+        cssClass: col-md-4
+        required: 1
+        type: text
+    edu_type:
+        label: 文化程度
+        span: storm
+        cssClass: col-md-4
+        type: dropDown
+        required: 1
     first_get_date:
         label: 初领证日期
         span: storm
+        format: Y-m-d
         cssClass: col-md-3
         mode: date
         type: datepicker
@@ -80,6 +80,7 @@ fields:
         label: 发证日期
         span: storm
         cssClass: col-md-3
+        format: Y-m-d
         mode: date
         type: datepicker
     review_date:
@@ -87,12 +88,14 @@ fields:
         span: storm
         cssClass: col-md-3
         mode: date
+        format: Y-m-d
         type: datepicker
     invalid_date:
         label: 有效期期
         span: storm
         cssClass: col-md-3
         mode: date
+        format: Y-m-d
         type: datepicker
     active:
         label: 是否有效

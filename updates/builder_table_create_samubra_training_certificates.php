@@ -29,6 +29,8 @@ class BuilderTableCreateSamubraTrainingCertificates extends Migration
             $table->integer('user_id')->nullable()->unsigned();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
+
+            $table->softDeletes();
         });
     }
     

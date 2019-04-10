@@ -20,6 +20,11 @@ columns:
         type: text
         searchable: true
         sortable: true
+    name:
+        label: 姓名
+        type: text
+        searchable: true
+        sortable: true
     category_id:
         label: 培训类别
         type: number
@@ -27,11 +32,6 @@ columns:
         sortable: true
         select: name
         relation: category
-    name:
-        label: 姓名
-        type: text
-        searchable: true
-        sortable: true
     phone:
         label: 联系电话
         type: number
@@ -79,7 +79,8 @@ columns:
         invisible: true
     active:
         label: 是否有效
-        type: switch
+        type: partial
+        path: $/samubra/training/controllers/certificates/lists/_active.htm
     user_id:
         label: 账户
         type: number

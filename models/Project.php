@@ -25,7 +25,7 @@ class Project extends Model
      */
     public $rules = [
         'slug' => 'required',
-        'title' => 'required|min3',
+        'title' => 'required|min:3',
         'training_begin_date' => 'date',
         'training_end_date' => 'date|after:training_begin_date',
         'plan_exam_date' => 'date|after:training_end_date',

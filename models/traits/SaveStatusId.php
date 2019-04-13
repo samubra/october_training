@@ -32,14 +32,13 @@ trait SaveStatusId
                     $statusModel = false;
                     break;
             }
-            $ids = $statusModel->orderBy('sort','DESC')->pluck('id');
+            $ids = $statusModel->orderBy('sort','ASC')->pluck('id');
             throw_if(!$ids,new \Exception('无法设置初始值'));
             //traceLog($ids);
             $status_id = $ids[0];
         }else{
             $status_id = $lastStatus->last();
         }
-
         //trace_log($status_id);
         $this->attributes[$this->status_filed] = $status_id;
         //trace_log($lastStatus->first()->id);

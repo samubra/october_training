@@ -27,6 +27,12 @@ class ProjectCourse extends Model
      * @var array Validation rules
      */
     public $rules = [
+        'plan_course_id' => 'required',
+        'project_id' => 'required',
+        'teacher_id' => 'required',
+        'course_time_start' => 'required|date_format:Y-m-d H:i:s',
+        'course_time_end' => 'required|date_format:Y-m-d H:i:s',
+        'hours' => 'required|numeric'
     ];
 
     public $belongsTo = [
@@ -56,7 +62,7 @@ class ProjectCourse extends Model
         if($this->hours && $this->course_time_start)
         {
             $days = intval($this->hours / 8); //舍去小数
-            traceLog($this->course_time_start);
+            //raceLog($this->course_time_start);
             $fields->course_time_end->value = Carbon::createFromFormat('Y-m-d H:i:s',$this->course_time_start)->addDays($days)->toDateString();
 
         }

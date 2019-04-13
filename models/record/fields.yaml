@@ -15,54 +15,85 @@ fields:
         prompt: 点击%s选择培训项目
         list: $/samubra/training/models/project/columns.yaml
         type: recordfinder
+    record_id_type:
+        label: 证件类型
+        span: storm
+        cssClass: col-md-2
+        required: 1
+        default: 1
+        dependsOn: certificate
+        type: balloon-selector
+    record_id_num:
+        label: 证件号码
+        required: 1
+        type: text
+        span: storm
+        cssClass: col-md-4
+        stretch: true
+        dependsOn: certificate
     record_name:
         label: 姓名
-        span: auto
+        span: storm
+        cssClass: col-md-3
         required: 1
         type: text
         dependsOn: certificate
     record_phone:
         label: 联系电话
-        span: auto
+        span: storm
+        cssClass: col-md-3
         required: 1
         type: text
         dependsOn: certificate
     record_address:
         label: 联系地址
-        span: auto
+        span: storm
+        cssClass: col-md-3
         required: 1
         type: text
         dependsOn: certificate
     record_company:
         label: 单位名称
-        span: auto
+        span: storm
+        cssClass: col-md-3
         default: 个体
         required: 1
         type: text
         dependsOn: certificate
     record_edu_type:
         label: 文化程度
-        span: auto
+        span: storm
+        cssClass: col-md-3
         required: 1
         type: dropdown
         dependsOn: certificate
     health_type:
         label: 健康状况
-        span: auto
+        span: storm
+        cssClass: col-md-3
         type: dropdown
-    theory_score:
-        label: 理论成绩
-        span: auto
-        type: number
-    operate_score:
-        label: 操作成绩
-        span: auto
-        type: number
-    is_eligible:
-        label: 是否合格
-        span: auto
-        default: '0'
-        type: balloon-selector
-    status_change:
-        type: partial
-        path: $/samubra/training/controllers/records/lists/_status_list.htm
+tabs:
+    fields:
+        status_change:
+            type: partial
+            path: $/samubra/training/controllers/records/lists/_status_list.htm
+            tab: 状态信息
+        theory_score:
+            label: 理论成绩
+            span: storm
+            cssClass: col-md-2
+            type: number
+            tab: 成绩管理
+        operate_score:
+            label: 操作成绩
+            span: storm
+            cssClass: col-md-2
+            type: number
+            tab: 成绩管理
+        is_eligible:
+            label: 是否合格
+            span: storm
+            cssClass: col-md-2
+            default: '0'
+            type: balloon-selector
+            tab: 成绩管理

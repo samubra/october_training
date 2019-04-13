@@ -93,6 +93,9 @@ fields:
         size: ''
         span: full
         type: textarea
-    status_change:
-        type: partial
-        path: status
+tabs:
+    fields:
+        status_change:
+            type: partial
+            path: status
+            tab: 培训状态

@@ -57,7 +57,7 @@ class Project extends Model
             'pivot' => [
                 'num','record_status_id','record_edu_type','health_type','theory_score','operate_score','is_eligible'
             ]
-        ]
+        ],
     ];
 
     public $morphToMany = [

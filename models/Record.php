@@ -1,5 +1,6 @@
 <?php namespace Samubra\Training\Models;
 
+use Illuminate\Validation\Rule;
 use Model;
 use Samubra\Training\Models\Traits\CreateNumTrait;
 use Samubra\Training\Models\Traits\SaveStatusId;
@@ -25,6 +26,23 @@ class Record extends Model
      * @var array Validation rules
      */
     public $rules = [
+        'record_edu_type' => 'required' ,
+        'is_eligible' => 'boolean' ,
+        'record_name' => 'required' ,
+        'record_phone' => 'required' ,
+        'record_address' => 'required' ,
+        'record_company' => 'required'
+    ];
+    public $attributeNames = [
+        'certificate_id' => '培训证书',
+        'project_id' => '培训项目'
+    ];
+
+    public $customMessages = [
+        'project_id.unique' => '当前培训项目已存在该培训记录'
+    ];
+    protected $casts = [
+        'is_eligible' => 'boolean',
     ];
 
     public $belongsTo = [
@@ -46,12 +64,40 @@ class Record extends Model
     ];
 
 
+
+    public function beforeValidate()
+    {
+        $plan = $this->project->plan;
+        if($plan->is_certificate)
+        {
+            $this->rules['certificate_id'] = ['required'];
+        }
+        $projectRule[] = 'required';
+        $unique = Rule::unique($this->table);
+        if($this->id)
+            $unique->ignore($this->id);
+        if($certificate_id = $this->certificate_id) {
+            $projectRule[] = $unique->where(function ($query) use ($certificate_id) {
+                return $query->where('certificate_id', $certificate_id);
+            });
+        }else{
+            $record_id_num = $this->record_id_num;
+            $record_id_type = $this->record_id_type;
+
+            $projectRule[] = $unique->where(function ($query) use ($record_id_num,$record_id_type) {
+                return $query->where('record_id_num', $record_id_num)->where('record_id_type',$record_id_type);
+            });
+        }
+        $this->rules['project_id'] = $projectRule;
+    }
     public function getDropdownOptions($fieldName, $value, $formData)
     {
         if($fieldName == 'record_edu_type')
             return Train::$eduTypeMap;
         if($fieldName == 'health_type')
             return Train::$healthTypeMap;
+        if($fieldName == 'record_id_type')
+            return Train::$idTypeMap;
 
         if($fieldName == 'is_eligible')
             return [
@@ -70,11 +116,16 @@ class Record extends Model
       // trace_log($this->certificate);
        $certificate = $this->certificate;
        if($certificate){
+           $fields->record_id_num->value = $certificate->id_num;
+           $fields->record_id_type->value = $certificate->id_type;
            $fields->record_name->value = $certificate->name;
            $fields->record_phone->value = $certificate->phone;
            $fields->record_address->value = $certificate->address;
            $fields->record_company->value = $certificate->company;
            $fields->record_edu_type->value = $certificate->edu_type;
+           $fields->record_id_num->readOnly = true;
+           $fields->record_id_type->readOnly = true;
+
        }
     }
 }

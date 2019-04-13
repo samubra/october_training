@@ -18,8 +18,8 @@ trait SaveStatusId
     public function beforeSave()
     {
         //此处在新建记录时应设置默认值
-        $lastStatus = $this->status_change->sortByDesc('updated_at');
-        $status_id = '';
+        $lastStatus = $this->status_change->sortByDesc('updated_at')->pluck('id');
+        //traceLog($lastStatus->toArray());
         if(!count($lastStatus->toArray())) {
             switch (self::class) {
                 case 'Samubra\Training\Models\Record':
@@ -32,13 +32,15 @@ trait SaveStatusId
                     $statusModel = false;
                     break;
             }
-            throw_if(!$statusModel,new \Exception('无法设置初始值'));
-            $ids = $statusModel->orderBy('id')->pluck('id');
-            traceLog($ids);
+            $ids = $statusModel->orderBy('sort','DESC')->pluck('id');
+            throw_if(!$ids,new \Exception('无法设置初始值'));
+            //traceLog($ids);
             $status_id = $ids[0];
         }else{
-            $status_id = $lastStatus->first()->id;
+            $status_id = $lastStatus->last();
         }
+
+        //trace_log($status_id);
         $this->attributes[$this->status_filed] = $status_id;
         //trace_log($lastStatus->first()->id);
     }

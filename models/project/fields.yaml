@@ -24,6 +24,7 @@ fields:
         label: 培训开始日期
         span: storm
         cssClass: col-md-4
+        format: Y-m-d
         mode: date
         required: 1
         type: datepicker
@@ -31,13 +32,15 @@ fields:
         label: 培训结束日期
         span: storm
         cssClass: col-md-4
+        format: Y-m-d
         mode: date
         required: 1
         type: datepicker
     plan_exam_date:
-        label: 受理截止日期
+        label: 计划考试日期
         span: storm
         cssClass: col-md-4
+        format: Y-m-d
         mode: date
         required: 1
         type: datepicker
@@ -70,12 +73,14 @@ fields:
                     mode: date
                     span: storm
                     cssClass: col-md-4
+                    format: Y-m-d
                     type: datepicker
                 print_date_end:
                     label: 发证日期截止
                     mode: date
                     span: storm
                     cssClass: col-md-4
+                    format: Y-m-d
                     type: datepicker
                 is_valid:
                     label: 是否有效
@@ -86,7 +91,7 @@ fields:
     remark:
         label: 其他内容
         size: ''
-        span: auto
+        span: full
         type: textarea
     status_change:
         type: partial

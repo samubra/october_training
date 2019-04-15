@@ -1,6 +1,7 @@
 list: $/samubra/training/models/course/columns.yaml
 modelClass: Samubra\Training\Models\Course
-title: Courses
+title: 课程列表
+filter: config_filter.yaml
 noRecordsMessage: 'backend::lang.list.no_records'
 showSetup: true
 showCheckboxes: true

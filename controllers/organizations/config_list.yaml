@@ -1,5 +1,6 @@
-title: Organizations
+title: 发证机构列表
 modelClass: Samubra\Training\Models\Organization
+filter: config_filter.yaml
 list: $/samubra/training/models/organization/columns.yaml
 recordUrl: 'samubra/training/organizations/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'

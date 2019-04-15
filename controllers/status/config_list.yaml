@@ -1,5 +1,6 @@
-title: Status
+title: 状态列表
 modelClass: Samubra\Training\Models\Status
+filter: config_filter.yaml
 list: $/samubra/training/models/status/columns.yaml
 recordUrl: 'samubra/training/status/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'

@@ -1,6 +1,7 @@
 list: $/samubra/training/models/teacher/columns.yaml
 modelClass: Samubra\Training\Models\Teacher
-title: Teachers
+title: 授课教师列表
+filter: config_filter.yaml
 noRecordsMessage: 'backend::lang.list.no_records'
 showSetup: true
 showCheckboxes: true

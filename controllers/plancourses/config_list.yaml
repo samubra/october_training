@@ -1,5 +1,6 @@
 title: 授课计划
 modelClass: Samubra\Training\Models\PlanCourse
+filter: config_filter.yaml
 list: $/samubra/training/models/plancourse/columns.yaml
 recordUrl: 'samubra/training/plancourses/preview/:id'
 noRecordsMessage: 'backend::lang.list.no_records'

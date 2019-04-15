@@ -1,5 +1,6 @@
-title: ProjectCourses
+title: 日程安排列表
 modelClass: Samubra\Training\Models\ProjectCourse
+filter: config_filter.yaml
 list: $/samubra/training/models/projectcourse/columns.yaml
 recordUrl: 'samubra/training/projectcourses/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'

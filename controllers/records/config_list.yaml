@@ -1,5 +1,6 @@
-title: Records
+title: 申请记录
 modelClass: Samubra\Training\Models\Record
+filter: config_filter.yaml
 list: $/samubra/training/models/record/columns.yaml
 recordUrl: 'samubra/training/records/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'

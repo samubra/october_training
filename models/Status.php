@@ -25,6 +25,8 @@ class Status extends Model
      * @var array Validation rules
      */
     public $rules = [
+        'name' => 'required|min:3',
+        'color' => 'required',
     ];
 
     const STATUS_RECORD = 1;

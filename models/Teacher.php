@@ -25,8 +25,10 @@ class Teacher extends Model
      * @var array Validation rules
      */
     public $rules = [
-        'name' => 'required',
-        'identity'  => 'identity|required'
+        'name' => 'required|min:2',
+        'identity'  => 'identity|required',
+        'phone' => 'phone:CN',
+        'company' => 'required',
     ];
 
     public $attachOne = [

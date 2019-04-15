@@ -1,0 +1,11 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+scopes:
+    active:
+        label: 已启用
+        type: switch
+        default: true
+        conditions:
+          - active <> true
+          - active = true

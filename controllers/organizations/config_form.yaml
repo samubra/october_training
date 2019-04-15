@@ -6,9 +6,12 @@ create:
     title: 添加新的发证机构
     redirect: 'samubra/training/organizations/update/:id'
     redirectClose: samubra/training/organizations
+    flashSave: 发证机构添加成功！
 update:
-    title: 修改发证机构
-    redirect: samubra/training/organizations
+    title: 修改发证机构信息
+    redirect: 'samubra/training/organizations/:id'
     redirectClose: samubra/training/organizations
+    flashSave: 发证机构信息修改成功！
+    flashDelete: 发证机构已成功删除！
 preview:
-    title: 查看详情
+    title: 查看发证机构详情

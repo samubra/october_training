@@ -5,6 +5,13 @@ defaultRedirect: samubra/training/courses
 create:
     redirect: 'samubra/training/courses/update/:id'
     redirectClose: samubra/training/courses
+    flashSave: 课程创建成功！
+    title: 创建课程
 update:
-    redirect: samubra/training/courses
+    redirect: 'samubra/training/courses/:id'
     redirectClose: samubra/training/courses
+    title: 修改课程信息
+    flashSave: 课程信息修改成功！
+    flashDelete: 课程信息已成功删除！
+preview:
+    title: 查看课程详细信息

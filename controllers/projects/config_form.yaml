@@ -5,6 +5,13 @@ defaultRedirect: samubra/training/projects
 create:
     redirect: 'samubra/training/projects/update/:id'
     redirectClose: samubra/training/projects
+    title: 创建培训项目
+    flashSave: 培训项目创建成功！
 update:
-    redirect: samubra/training/projects
+    redirect: 'samubra/training/projects/update/:id'
     redirectClose: samubra/training/projects
+    title: 修改培训项目信息
+    flashSave: 创建培训项目修改成功！
+    flashDelete: 培训项目已成功删除！
+preview:
+    title: 查看培训项目详情

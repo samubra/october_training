@@ -2,4 +2,5 @@ name: 课程计划
 modelClass: Samubra\Training\Models\PlanCourse
 form: $/samubra/training/models/plancourse/fields.yaml
 defaultRedirect: samubra/training/planscourses
-preview: {  }
+preview:
+    title: 查看课程计划详细信息

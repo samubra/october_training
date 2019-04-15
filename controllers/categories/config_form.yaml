@@ -3,8 +3,15 @@ form: $/samubra/training/models/category/fields.yaml
 modelClass: Samubra\Training\Models\Category
 defaultRedirect: samubra/training/categories
 create:
+    title: 添加培训类别
     redirect: 'samubra/training/categories/update/:id'
     redirectClose: samubra/training/categories
+    flashSave: 培训类别添加成功！
 update:
-    redirect: samubra/training/categories
+    redirect: 'samubra/training/categories/:id'
     redirectClose: samubra/training/categories
+    title: 修改培训类别
+    flashSave: 培训类别修改成功！
+    flashDelete: 培训类别已成功删除！
+preview:
+    title: 查看培训类别详细信息

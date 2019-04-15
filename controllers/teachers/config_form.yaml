@@ -5,6 +5,13 @@ defaultRedirect: samubra/training/teachers
 create:
     redirect: 'samubra/training/teachers/update/:id'
     redirectClose: samubra/training/teachers
+    title: 添加授课教师
+    flashSave: 授课教师添加成功！
 update:
-    redirect: samubra/training/teachers
+    redirect: 'samubra/training/teachers/update/:id'
     redirectClose: samubra/training/teachers
+    title: 修改授课教师信息
+    flashSave: 授课教师修改成功！
+    flashDelete: 授课教师已成功删除！
+preview:
+    title: 查看授课教师详情

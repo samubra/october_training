@@ -5,7 +5,13 @@ defaultRedirect: samubra/training/status
 create:
     redirect: 'samubra/training/status/update/:id'
     redirectClose: samubra/training/status
+    title: 添加状态
+    flashSave: 状态添加成功！
 update:
-    redirect: samubra/training/status
+    redirect: 'samubra/training/status/update/:id'
     redirectClose: samubra/training/status
-preview: {  }
+    title: 修改状态信息
+    flashSave: 状态修改成功！
+    flashDelete: 状态已成功删除！
+preview:
+    title: 查看状态详情

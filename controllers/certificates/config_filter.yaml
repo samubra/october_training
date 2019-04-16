@@ -1,0 +1,59 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+scopes:
+  active:
+    label: 有效
+    type: switch
+    default: true
+    conditions:
+      - active <> true
+      - active = true
+  category:
+    label: 培训类别
+    modelClass: Samubra\Training\Models\Category
+    conditions: category_id in (:filtered)
+    nameFrom: name
+  organization:
+    label: 发证机构
+    modelClass: Samubra\Training\Models\Organization
+    conditions: organization_id in (:filtered)
+    nameFrom: name
+  id_type:
+    label: 证件类型
+    type: group
+    conditions: id_type in (:filtered)
+    default:
+      1: 身份证
+    options:
+      1: 身份证
+      2: 军官证
+      3: 港澳台证
+  first_get_date:
+    label: 初领证日期
+    type: daterange
+    minDate: '2001-01-23'
+    maxDate: '2030-10-13'
+    yearRange: 10
+    conditions: first_get_date >= ':after' AND first_get_date <= ':before'
+  print_date:
+    label: 发证日期
+    type: daterange
+    minDate: '2001-01-23'
+    maxDate: '2030-10-13'
+    yearRange: 10
+    conditions: print_date >= ':after' AND print_date <= ':before'
+  review_date:
+    label: 复审日期
+    type: daterange
+    minDate: '2001-01-23'
+    maxDate: '2030-10-13'
+    yearRange: 10
+    conditions: review_date >= ':after' AND review_date <= ':before'
+  invalid_date:
+    label: 失效日期
+    type: daterange
+    minDate: '2001-01-23'
+    maxDate: '2030-10-13'
+    yearRange: 10
+    conditions: invalid_date >= ':after' AND invalid_date <= ':before'

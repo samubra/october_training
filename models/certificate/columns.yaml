@@ -9,6 +9,7 @@ columns:
         type: text
         searchable: true
         sortable: true
+        invisible: true
     id_type:
         label: 证件类型
         type: partial
@@ -64,19 +65,19 @@ columns:
         sortable: true
     first_get_date:
         label: 初领证日期
-        type: text
+        type: date
         invisible: true
     print_date:
         label: 发证日期
-        type: text
+        type: date
     review_date:
         label: 复审日期
-        type: text
+        type: date
         invisible: true
     invalid_date:
         label: 失效日期
-        type: switch
-        invisible: true
+        type: date
+        invisible: false
     active:
         label: 是否有效
         type: partial

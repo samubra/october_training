@@ -80,4 +80,9 @@ class Certificate extends Model
         //traceLog($models->count());
         throw_if($models->count(),new ApplicationException('该证书已经被添加'));
     }
+
+    public function listIdTypes()
+    {
+        return Train::$idTypeMap;
+    }
 }

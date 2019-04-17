@@ -17,3 +17,7 @@ columns:
     hours:
         label: 课时
         type: number
+    teaching_form:
+        label: 授课方式
+        type: partial
+        path: $/samubra/training/controllers/plancourses/_teaching_form.htm

@@ -19,4 +19,9 @@ fields:
         cssClass: col-md-3
         type: number
         defaultFrom: default_hours
-
+    'pivot[teaching_form]':
+        label: 授课方式
+        span: auto
+        required: 1
+        default: 1
+        type: checkboxlist

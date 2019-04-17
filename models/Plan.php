@@ -51,7 +51,8 @@ class Plan extends Model
             'table' => 'samubra_training_plan_courses' ,
             'key' => 'plan_id',
             'otherKey' => 'course_id',
-            'pivot' => ['hours']
+            'pivot' => ['hours','teaching_form'],
+            'pivotModel' => PlanCoursePivot::class
         ],
     ];
     public $hasMany = [

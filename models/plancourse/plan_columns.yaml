@@ -18,3 +18,7 @@ columns:
         sortable: true
         select: name
         relation: teacher
+    pivot[teaching_form]:
+        label: 授课方式
+        type: partial
+        path: $/samubra/training/controllers/plancourses/_teaching_form_for_pivot.htm

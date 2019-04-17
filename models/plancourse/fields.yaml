@@ -23,3 +23,9 @@ fields:
         defaultFrom: default_hours
         type: number
         dependsOn: course
+    teaching_form:
+        label: 授课方式
+        span: auto
+        required: 1
+        default: 1
+        type: checkboxlist

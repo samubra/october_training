@@ -45,3 +45,6 @@
 1.0.18:
     - 'Updated table samubra_training_records'
     - builder_table_update_samubra_training_records2.php
+1.0.19:
+    - 'Updated table samubra_training_plan_courses'
+    - builder_table_update_samubra_training_plan_courses.php

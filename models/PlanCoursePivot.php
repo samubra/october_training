@@ -1,15 +1,13 @@
 <?php namespace Samubra\Training\Models;
 
-use Model;
+use October\Rain\Database\Pivot;
 use Samubra\Training\Models\Traits\PlanCourseTraits;
-
 /**
  * Model
  */
-class PlanCourse extends Model
+class PlanCoursePivot extends Pivot
 {
     use \October\Rain\Database\Traits\Validation;
-
     use PlanCourseTraits;
 
     public $with = ['course','course'];

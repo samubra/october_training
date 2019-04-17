@@ -23,6 +23,9 @@
                     <tr><td class="text-right">课程类型：</td><td><?php echo $formModel->course->getCourseTypeText();?></td></tr>
                     <tr><td class="text-right">授课教师：</td><td><?php echo $formModel->course->teacher->name;?></td></tr>
                     <tr><td class="text-right">授课学时：</td><td><?php echo $formModel->hours;?>学时</td></tr>
+                    <tr><td class="text-right">授课方式：</td><td>
+                        <?php echo $this->makePartial('plugins/samubra/training/controllers/plancourses/teaching_form',
+                        ['value'=> $formModel->teaching_form]) ?></tr>
                 </tbody>
             </table>
         </div>
@@ -44,7 +47,6 @@
                         <td><?php echo $course->course_time_start;?> 至 <?php echo $course->course_time_end;?></td>
                         <td><?php echo $course->teacher_id;?></td>
                         <td><?php echo $course->hours;?></td>
-
                     </tr>
                 <?php }?>
                 </tbody>

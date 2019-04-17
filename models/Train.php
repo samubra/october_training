@@ -113,6 +113,26 @@ class Train extends Model
         self::HEALTH_TYPE_NOT_INDICATED => '无意见性结论',
     ];
 
+    const TEACHING_FORM_TEACHING = 1;
+    const TEACHING_FORM_DISCUSS = 2;
+    const TEACHING_FORM_EXPERIMENT = 3;
+    const TEACHING_FORM_DEMONSTRATION = 4;
+    const TEACHING_FORM_EXERCISE = 5;
+    const TEACHING_FORM_CLASS_TEACHING = 6;
+    const TEACHING_FORM_GROUP_TEACHING = 7;
+    const TEACHING_FORM_INDIVIDUAL_TEACHING = 8;
+
+    static $teachingFormMap = [
+        self::TEACHING_FORM_TEACHING => '讲授法',
+        self::TEACHING_FORM_DISCUSS => '讨论法',
+        self::TEACHING_FORM_EXPERIMENT => '实验法',
+        self::TEACHING_FORM_DEMONSTRATION => '演示法',
+        self::TEACHING_FORM_EXERCISE => '练习法',
+        self::TEACHING_FORM_CLASS_TEACHING => '班级教学法',
+        self::TEACHING_FORM_GROUP_TEACHING => '分组教学法',
+        self::TEACHING_FORM_INDIVIDUAL_TEACHING => '个别教学法',
+    ];
+
 
     /**
      * Convert object to Array

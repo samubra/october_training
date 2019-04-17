@@ -1,0 +1,14 @@
+<?php
+if(!empty($value = $record->pivot->teaching_form)){
+?>
+<div class="control-balloon-selector">
+    <ul>
+   <?php foreach($value as $teaching_form){
+        echo '<li class="active">'.
+            \Samubra\Training\Models\Train::$teachingFormMap[$teaching_form].
+            '</li> ';
+    }?>
+    </ul>
+</div>
+<?php } ?>
+

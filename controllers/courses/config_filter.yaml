@@ -1,0 +1,21 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+scopes:
+  course_type:
+    label: 课程类型
+    type: group
+    conditions: course_type in (:filtered)
+    options:
+      1: 理论课
+      2: 操作课
+      3: 自学
+  teacher:
+    label: 授课教师
+    modelClass: Samubra\Training\Models\Teacher
+    conditions: teacher_id in (:filtered)
+    nameFrom: name
+  default_hours:
+    label: 默认授课学时
+    type: numberrange
+    conditions: default_hours >= ':min' and default_hours <= ':max'

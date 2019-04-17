@@ -1,0 +1,9 @@
+scopes:
+  complete_type:
+    label: 发证类型
+    type: group
+    conditions: complete_type in (:filtered)
+    options:
+      1: 培训结业证
+      2: 培训合格证
+      3: 特种作业操作证

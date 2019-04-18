@@ -2,7 +2,7 @@ title: 授课计划
 modelClass: Samubra\Training\Models\PlanCourse
 filter: config_filter.yaml
 list: $/samubra/training/models/plancourse/columns.yaml
-recordUrl: 'samubra/training/plancourses/preview/:id'
+recordUrl: 'samubra/training/plancourses/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true
@@ -11,3 +11,4 @@ toolbar:
     buttons: list_toolbar
     search:
         prompt: 'backend::lang.list.search_prompt'
+customViewPath: $/samubra/training/controllers/baseview/list_row

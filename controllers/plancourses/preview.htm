@@ -45,7 +45,7 @@
                 <?php foreach($formModel->projectCourses as $course){?>
                     <tr>
                         <td><?php echo $course->course_time_start;?> 至 <?php echo $course->course_time_end;?></td>
-                        <td><?php echo $course->teacher_id;?></td>
+                        <td><?php echo $course->teacher->name;?>(<?php echo $course->teacher->qualification_num;?>)</td>
                         <td><?php echo $course->hours;?></td>
                     </tr>
                 <?php }?>

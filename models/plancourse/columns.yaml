@@ -16,13 +16,8 @@ columns:
         relation: plan
     hours:
         label: 课时
-        type: loveit
+        type: number
     teaching_form:
         label: 授课方式
         type: partial
         path: $/samubra/training/controllers/plancourses/_teaching_form.htm
-    action:
-        label: 操作
-        type: partial
-        sortable: false
-        path: $/samubra/training/controllers/baseview/list/_action.htm

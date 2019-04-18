@@ -1,3 +1,15 @@
+<?php if($showPreviewButton){ ?>
 <a href="<?= Backend::url('samubra/training/'.$controller.'/preview/'.$record->id)?>" class="btn btn-primary btn-sm oc-icon-eye">
     查看
 </a>
+<?php }?>
+<?php if($showUpdateButton){ ?>
+<a href="<?= Backend::url('samubra/training/'.$controller.'/update/'.$record->id)?>" class="btn btn-primary btn-sm oc-icon-pencil">
+    修改
+</a>
+<?php }?>
+<?php if($showPrintButton){ ?>
+<a href="<?= Backend::url('samubra/training/'.$controller.'/update/'.$record->id)?>" class="btn btn-primary btn-sm oc-icon-print">
+    打印
+</a>
+<?php }?>

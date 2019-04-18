@@ -28,6 +28,10 @@ class TrainingController extends Controller
     public $controllerName = '';
     public $controllerTitle = '';
 
+    public $showUpdateButton = false;
+    public $showPreviewButton = false;
+    public $showPrintButton = false;
+
     public function __construct()
     {
         parent::__construct();
@@ -37,6 +41,10 @@ class TrainingController extends Controller
 
         $this->vars['controller'] = $this->controllerName;
         $this->vars['controller_title'] = $this->controllerTitle;
+
+        $this->vars['showUpdateButton'] = $this->showUpdateButton;
+        $this->vars['showPreviewButton'] = $this->showPreviewButton;
+        $this->vars['showPrintButton'] = $this->showPrintButton;
     }
 
     public function index()
@@ -62,6 +70,4 @@ class TrainingController extends Controller
         $this->pageTitle = '查看' . $this->controllerTitle;
         return $this->asExtension('FormController')->preview($recordId);
     }
-
-
 }

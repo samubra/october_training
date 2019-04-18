@@ -15,6 +15,10 @@ class Plancourses extends TrainingController
 
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
+
+    public $showPreviewButton = true;
+
+    use ShowActionTraits;
     
     public function __construct()
     {

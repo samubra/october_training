@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d7fa904-a413-4640-93f6-b3ad3d3668f0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/Certificates.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Certificates.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/Plans.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Plans.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/Projects.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Projects.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/Records.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Records.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ShowActionTraits.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ShowActionTraits.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/Teachers.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Teachers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/categories/config_filter.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/categories/config_filter.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,11 +78,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/ProjectCourses.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
               <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/categories/config_filter.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -132,6 +135,7 @@
         <option value="$PROJECT_DIR$/controllers/Records.php" />
         <option value="$PROJECT_DIR$/controllers/Teachers.php" />
         <option value="$PROJECT_DIR$/controllers/ProjectCourses.php" />
+        <option value="$PROJECT_DIR$/controllers/categories/config_filter.yaml" />
       </list>
     </option>
   </component>
@@ -160,19 +164,13 @@
             <path>
               <item name="training" type="b2602c69:ProjectViewProjectNode" />
               <item name="training" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="categories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="training" type="b2602c69:ProjectViewProjectNode" />
               <item name="training" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="category" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="training" type="b2602c69:ProjectViewProjectNode" />
-              <item name="training" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="certificate" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="training" type="b2602c69:ProjectViewProjectNode" />
@@ -223,12 +221,12 @@
       <updated>1554980489267</updated>
       <workItem from="1554980490766" duration="14000" />
       <workItem from="1555549319054" duration="12607000" />
-      <workItem from="1555582308991" duration="2318000" />
+      <workItem from="1555582308991" duration="2428000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14939000" />
+    <option name="totallyTimeSpent" value="15049000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -259,13 +257,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models/plan/columns.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="19" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/plans/config_filter.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -575,6 +566,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/categories/config_filter.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
         </state>
       </provider>
     </entry>

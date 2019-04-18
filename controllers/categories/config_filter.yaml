@@ -5,7 +5,7 @@ scopes:
     active:
         label: 已启用
         type: switch
-        default: true
+        default: 2
         conditions:
           - active <> true
           - active = true

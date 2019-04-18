@@ -34,8 +34,8 @@ class Status extends Model
 
 
     public static $statusTypeMap = [
-        self::STATUS_RECORD => '申请记录',
-        self::STATUS_PROJECT => '培训项目',
+        self::STATUS_RECORD => '申请受理状态',
+        self::STATUS_PROJECT => '培训过程状态',
     ];
 
     public function getDropdownOptions($fieldName, $value, $formData)

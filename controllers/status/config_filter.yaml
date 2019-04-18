@@ -1,0 +1,8 @@
+scopes:
+  type:
+    label: 状态类型
+    type: group
+    conditions: type in (:filtered)
+    options:
+      1: 申请受理状态
+      2: 培训过程状态

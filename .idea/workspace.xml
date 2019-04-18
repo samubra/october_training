@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d7fa904-a413-4640-93f6-b3ad3d3668f0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/ShowActionTraits.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/Plancourses.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Plancourses.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/TrainingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/TrainingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/baseview/list/_action.htm" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/baseview/list/_action.htm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/plancourse/columns.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/models/plancourse/columns.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/Certificates.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Certificates.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/Plans.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Plans.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/Projects.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Projects.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/Records.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Records.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ShowActionTraits.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ShowActionTraits.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/Teachers.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Teachers.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,42 +22,73 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/plancourses/_list_toolbar.htm">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/plancourse/columns.yaml">
+        <entry file="file://$PROJECT_DIR$/controllers/Certificates.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="22" column="75" selection-start-line="22" selection-start-column="75" selection-end-line="22" selection-end-column="75" />
+            <state relative-caret-position="242">
+              <caret line="11" column="37" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="11" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/baseview/list/_action.htm">
+        <entry file="file://$PROJECT_DIR$/controllers/Plans.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="6" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+            <state relative-caret-position="418">
+              <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/ShowActionTraits.php">
+        <entry file="file://$PROJECT_DIR$/controllers/Projects.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="440">
-              <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+              <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/Records.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/Teachers.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/Courses.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/Plancourses.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controllers/Plancourses.php">
+        <entry file="file://$PROJECT_DIR$/controllers/ProjectCourses.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="25" column="72" selection-start-line="25" selection-start-column="72" selection-end-line="25" selection-end-column="72" />
+            <state relative-caret-position="374">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -92,8 +124,14 @@
         <option value="$PROJECT_DIR$/controllers/baseview/list/_action.htm" />
         <option value="$PROJECT_DIR$/models/plancourse/columns.yaml" />
         <option value="$PROJECT_DIR$/controllers/TrainingController.php" />
-        <option value="$PROJECT_DIR$/controllers/ShowActionTraits.php" />
         <option value="$PROJECT_DIR$/controllers/Plancourses.php" />
+        <option value="$PROJECT_DIR$/controllers/Certificates.php" />
+        <option value="$PROJECT_DIR$/controllers/ShowActionTraits.php" />
+        <option value="$PROJECT_DIR$/controllers/Plans.php" />
+        <option value="$PROJECT_DIR$/controllers/Projects.php" />
+        <option value="$PROJECT_DIR$/controllers/Records.php" />
+        <option value="$PROJECT_DIR$/controllers/Teachers.php" />
+        <option value="$PROJECT_DIR$/controllers/ProjectCourses.php" />
       </list>
     </option>
   </component>
@@ -122,19 +160,6 @@
             <path>
               <item name="training" type="b2602c69:ProjectViewProjectNode" />
               <item name="training" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="baseview" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="training" type="b2602c69:ProjectViewProjectNode" />
-              <item name="training" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="baseview" type="462c0819:PsiDirectoryNode" />
-              <item name="list" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="training" type="b2602c69:ProjectViewProjectNode" />
-              <item name="training" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -142,6 +167,12 @@
               <item name="training" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
               <item name="category" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="training" type="b2602c69:ProjectViewProjectNode" />
+              <item name="training" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="certificate" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="training" type="b2602c69:ProjectViewProjectNode" />
@@ -192,12 +223,12 @@
       <updated>1554980489267</updated>
       <workItem from="1554980490766" duration="14000" />
       <workItem from="1555549319054" duration="12607000" />
-      <workItem from="1555582308991" duration="1982000" />
+      <workItem from="1555582308991" duration="2318000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14603000" />
+    <option name="totallyTimeSpent" value="14939000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -228,26 +259,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models/Plan.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/plan/fields.yaml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/plancourses/config_filter.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/certificates/config_filter.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="3" selection-start-line="3" selection-end-line="15" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/plan/columns.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -470,16 +481,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/plancourses/_list_toolbar.htm">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/plancourse/columns.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="75" selection-start-line="22" selection-start-column="75" selection-end-line="22" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/TrainingController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
@@ -494,17 +495,86 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/plancourse/columns.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="22" column="75" selection-start-line="22" selection-start-column="75" selection-end-line="22" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/plancourses/_list_toolbar.htm">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/projectcourse/columns.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/certificate/columns.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="8" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/ShowActionTraits.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/Certificates.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="37" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="11" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/Plans.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/Projects.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
-          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/Records.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/Teachers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/Courses.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/Plancourses.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="25" column="72" selection-start-line="25" selection-start-column="72" selection-end-line="25" selection-end-column="72" />
+        <state relative-caret-position="374">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/ProjectCourses.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>

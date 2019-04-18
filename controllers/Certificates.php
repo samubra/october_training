@@ -8,6 +8,9 @@ class Certificates extends TrainingController
     public $controllerName = 'certificates';
     public $controllerTitle = '培训证书';
 
+    use ShowActionTraits;
+    public $showPreviewButton = true;
+
     public $implement = [
         'Backend\Behaviors\ListController',
         'Backend\Behaviors\FormController',
@@ -15,6 +18,8 @@ class Certificates extends TrainingController
     
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
+
+
 
     public function __construct()
     {

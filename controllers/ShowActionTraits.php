@@ -18,6 +18,7 @@ trait ShowActionTraits
                 'action' => [
                     'label' => '操作',
                     'type' => 'partial',
+                    'invisible' => false,
                     'sortable' => false,
                     'path' => '$/samubra/training/controllers/baseview/list/_action.htm'
                 ]

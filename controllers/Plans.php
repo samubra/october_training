@@ -16,7 +16,8 @@ class Plans extends TrainingController
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
     public $relationConfig = 'config_relation.yaml';
-
+    use ShowActionTraits;
+    public $showPreviewButton = true;
     public function __construct()
     {
         parent::__construct();

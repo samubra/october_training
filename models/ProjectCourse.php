@@ -23,6 +23,7 @@ class ProjectCourse extends Model
      */
     public $table = 'samubra_training_project_courses';
 
+
     /**
      * @var array Validation rules
      */

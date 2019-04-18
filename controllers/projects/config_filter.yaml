@@ -1,0 +1,25 @@
+scopes:
+  active:
+    label: 启用
+    type: checkbox
+    default: 1
+    conditions: active = true
+  status:
+    label: 培训状态
+    modelClass: Samubra\Training\Models\Status
+    conditions: training_status_id in (:filtered)
+    nameFrom: name
+  training_begin_date:
+    label: 培训日期
+    type: daterange
+    yearRange: 10
+    conditions: training_begin_date >= ':after' AND training_begin_date <= ':before'
+  plan:
+    label: 培训方案
+    modelClass: Samubra\Training\Models\Plan
+    conditions: plan_id in (:filtered)
+    nameFrom: title
+  cost:
+    label: 费用
+    type: numberrange
+    conditions: cost >= ':min' and cost <= ':max'

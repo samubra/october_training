@@ -1,0 +1,6 @@
+scopes:
+  plan:
+    label: 培训方案
+    modelClass: Samubra\Training\Models\Plan
+    conditions: plan_id in (:filtered)
+    nameFrom: title

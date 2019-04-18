@@ -101,8 +101,19 @@
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
 <?php endif ?>
 
-<p>
-    <a href="<?= Backend::url('samubra/training/plancourses') ?>" class="btn btn-default oc-icon-chevron-left">
-        <?= e(trans('backend::lang.form.return_to_list')) ?>
-    </a>
-</p>
+<div class="form-buttons">
+    <div class="loading-indicator-container">
+        <a href="<?= Backend::url('samubra/training/plancourses') ?>" class="btn btn-default oc-icon-chevron-left">
+            <?= e(trans('backend::lang.form.return_to_list')) ?>
+        </a>
+        <a href="<?= Backend::url('samubra/training/plancourses/update/'.$formModel->id) ?>" class="btn btn-primary oc-icon-pencil-left">
+            修改
+        </a>
+        <span class="btn-text">
+            <?php echo e(trans('backend::lang.form.or')) ?>
+            <a href="<?php echo Backend::url('samubra/training/'.$controller) ?>">
+                <?php echo e(trans('backend::lang.form.cancel')) ?>
+            </a>
+        </span>
+    </div>
+</div>

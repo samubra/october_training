@@ -1,6 +1,7 @@
 <?php namespace Samubra\Training\Models;
 
 use Model;
+use Samubra\Training\Models\Traits\CustomValidateMessage;
 
 /**
  * Model
@@ -8,12 +9,15 @@ use Model;
 class Teacher extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use CustomValidateMessage;
     
     /*
      * Disable timestamps by default.
      * Remove this line if timestamps are defined in the database table.
      */
     public $timestamps = false;
+
+    //protected $with = ['courses','project_courses','courses_count','project_courses_count'];
 
 
     /**
@@ -33,6 +37,27 @@ class Teacher extends Model
 
     public $attachOne = [
         'image' => 'System\Models\File'
+    ];
+
+    public $hasMany = [
+        'courses' => [
+            Course::class,
+            'key' => 'teacher_id'
+        ],
+        'project_courses' => [
+            ProjectCourse::class,
+            'key' => 'teacher_id'
+        ],
+        'courses_count' => [
+            Course::class,
+            'key' => 'teacher_id',
+            'count' => true
+        ],
+        'project_courses_count' => [
+            ProjectCourse::class,
+            'key' => 'teacher_id',
+            'count' => true
+        ],
     ];
 
     public function getJobTitleOptions()

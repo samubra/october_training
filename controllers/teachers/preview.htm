@@ -1,1 +1,114 @@
-<?php echo $this->makePartial('plugins/samubra/training/controllers/baseview/preview') ?>
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li><a href="<?= Backend::url('samubra/training/teachers') ?>">授课教师列表</a></li>
+    <li><?= e($this->pageTitle) ?></li>
+</ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+<div class="row">
+    <div class="form-preview col-md-4">
+        <div class="control-list">
+            <h3>教师信息</h3>
+            <table class="table data">
+                <thead>
+                <tr>
+                    <th style="width: 150px"><span>名称</span></th>
+                    <th><span>值</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td class="text-center" colspan="2"><img src="<?php echo $formModel->image->getThumb(100, 100, ['mode' => 'crop']);?>"></td></tr>
+                <tr><td class="text-right">ID：</td><td><?php echo $formModel->id;?></td></tr>
+                <tr><td class="text-right">姓名：</td><td><?php echo $formModel->name;?></td></tr>
+                <tr><td class="text-right">身份证号：</td><td><?php echo $formModel->identity;?></td></tr>
+                <tr><td class="text-right">资格证号：</td><td><?php echo $formModel->qualification_num;?></td></tr>
+                <tr><td class="text-right">职称：</td><td><?php echo $formModel->getJobTitleText();?></td></tr>
+                <tr><td class="text-right">联系电话：</td><td><?php echo $formModel->phone;?></td></tr>
+                <tr><td class="text-right">工作单位：</td><td><?php echo $formModel->company;?></td></tr>
+                <tr><td class="text-right">学历：</td><td><?php echo $formModel->getEduTypeText();?></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <?php if($formModel->courses_count){?>
+        <div class="control-list">
+            <h3>所受课程</h3>
+            <table class="table data">
+                <thead>
+                <tr>
+                    <th><span>#</span></th>
+                    <th><span>课程名称</span></th>
+                    <th><span>授课学时</span></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <?php foreach($formModel->courses as $key => $course){ ?>
+                <tr>
+                    <td><?= $key+1 ?></td>
+                    <td><?php echo $course->title;?></td>
+                    <td><?php echo $course->default_hours;?></td>
+                </tr>
+                <?php }?>
+
+                </tbody>
+            </table>
+        </div>
+        <?php }?>
+    </div>
+    <div class="form-preview col-md-8">
+
+        <div class="control-list">
+            <h3>授课记录</h3>
+            <table class="table data">
+                <thead>
+                <tr>
+                    <th><span>#</span></th>
+                    <th><span>课程名称</span></th>
+                    <th><span>授课时间</span></th>
+                    <th><span>学时</span></th>
+                    <th><span>培训项目</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php if($formModel->project_courses_count){?>
+                <?php $count_hours = 0;?>
+                <?php foreach($formModel->project_courses as $key => $project_course){
+                    $count_hours = $count_hours + $project_course->hours;
+                ?>
+                <tr>
+                    <td><?= $key+1 ?></td>
+                    <td><?php echo $project_course->plan_course->course->title;?></td>
+                    <td><?php echo $project_course->course_time_start;?> 至 <?php echo $project_course->course_time_end;?></td>
+                    <td><?php echo $project_course->hours;?></td>
+                    <td><?php echo $project_course->project->title;?></td>
+                </tr>
+                <?php }?>
+                <tr><td class="text-right" colspan="3">总学时:</td><td  class="text-left" colspan="2"><?= $count_hours?>学时</td></tr>
+                <?php }?>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+<?php else: ?>
+<p class="flash-message static error"><?= e($this->fatalError) ?></p>
+<?php endif ?>
+
+<div class="form-buttons">
+    <div class="loading-indicator-container">
+        <a href="<?= Backend::url('samubra/training/teachers') ?>" class="btn btn-default oc-icon-chevron-left">
+            <?= e(trans('backend::lang.form.return_to_list')) ?>
+        </a>
+        <a href="<?= Backend::url('samubra/training/teachers/update/'.$formModel->id) ?>" class="btn btn-primary oc-icon-pencil-left">
+            修改
+        </a>
+        <span class="btn-text">
+            <?php echo e(trans('backend::lang.form.or')) ?>
+            <a href="<?php echo Backend::url('samubra/training/'.$controller) ?>">
+                <?php echo e(trans('backend::lang.form.cancel')) ?>
+            </a>
+        </span>
+    </div>
+</div>

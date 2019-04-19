@@ -17,6 +17,10 @@ class Course extends Model
 
     public $with = ['teacher'];
 
+    protected $appends = [
+        'course_type_text'
+    ];
+
 
     /**
      * @var string The database table used by the model.
@@ -48,6 +52,10 @@ class Course extends Model
         if(is_null($type))
             $type = $this->course_type;
         return Train::$courseTypeMap[$type];
+    }
 
+    public function getCourseTypeTextAttribute()
+    {
+        return Train::$courseTypeMap[$this->course_type];
     }
 }

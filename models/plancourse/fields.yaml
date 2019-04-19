@@ -2,7 +2,7 @@ fields:
     course:
         label: 课程
         nameFrom: title
-        descriptionFrom: course_type
+        descriptionFrom: course_type_text
         prompt: '点击 %s 选择课程'
         list: $/samubra/training/models/course/columns.yaml
         span: auto

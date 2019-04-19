@@ -1,13 +1,12 @@
 <?php
-if(!empty($record->document)){
-    foreach($record->document as $document){
+if(!empty($value)){
+    foreach($value as $document){
             $isRequired = $document['is_required'] ? ',必须':'';
             echo '<p><span class="oc-icon-circle text-success">';
             echo '《' . $document['title'] . '》(' . $document['num'].'份,'
                 . $document['provide_type']
                 . $isRequired . ')';
         echo '</span></p>';
-
     }
 }else{
     echo '<span class="strike">没有文档需求</span>';

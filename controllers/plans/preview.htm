@@ -1,1 +1,105 @@
-<?php echo $this->makePartial('plugins/samubra/training/controllers/baseview/preview') ?>
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li><a href="<?= Backend::url('samubra/training/plans') ?>">培训方案</a></li>
+    <li><?= e($this->pageTitle) ?></li>
+</ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+<div class="row">
+    <div class="form-preview col-md-6">
+        <div class="control-list">
+            <h3>方案信息</h3>
+            <table class="table data">
+                <thead>
+                <tr>
+                    <th style="width: 150px"><span>名称</span></th>
+                    <th><span>值</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td class="text-right">方案标题：</td><td><?php echo $formModel->title;?></td></tr>
+                <tr><td class="text-right">培训类别：</td><td><?php echo $formModel->category->name;?><?= $formModel->is_retraining ? '复训':'新训';?>(<?php echo $formModel->category->parent->name;?>)</td></tr>
+                <?php if($formModel->is_certificate){?>
+                    <tr><td class="text-right">发证机构：</td><td><?php echo $formModel->organization->name;?></td></tr>
+                <?php }?>
+                <tr><td class="text-right">培训学时：</td><td><?php echo '理论：'.$formModel->theroy_hours.'学时,操作：'.$formModel->operate_hours.'学时';?></td></tr>
+                <tr><td class="text-right">培训地址：</td><td><?php echo $formModel->training_address;?></td></tr>
+                <tr><td class="text-right">联系人：</td><td><?php echo $formModel->contact_person;?></td></tr>
+                <tr><td class="text-right">联系电话：</td><td><?php echo $formModel->contact_phone;?></td></tr>
+                <tr><td class="text-right">培训目标：</td><td><?php echo $formModel->target;?></td></tr>
+                <tr>
+                    <td class="text-right">培训教材：</td>
+                    <td>
+                        <?php
+                            foreach($formModel->material as $material){
+                                    echo '<p><span class="oc-icon-circle text-success">';
+                            echo '《' . $material['title'] . '》(' . $material['press']. ')';
+                        echo '</span></p>';
+                        }?>
+                    </td>
+                </tr>
+                <tr><td class="text-right">创建时间：</td><td><?php echo $formModel->created_at;?></td></tr>
+                <tr><td class="text-right">最后更新时间：</td><td><?php echo $formModel->updated_at;?></td></tr>
+                <tr><td class="text-right">其他内容：</td><td><?php echo $formModel->other;?></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-preview col-md-6">
+
+        <div class="control-list">
+            <h3>培训材料</h3>
+            <?php echo $this->makePartial('plugins/samubra/training/controllers/plans/list/document',
+            ['value'=>$formModel->document]) ?>
+        </div>
+        <div class="control-list">
+            <h3>培训项目</h3>
+            <table class="table data">
+                <thead>
+                <tr>
+                    <th><span>#</span></th>
+                    <th><span>项目名称</span></th>
+                    <th><span>培训时间</span></th>
+                    <th><span>培训状态</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php if($formModel->projects){?>
+                <?php foreach($formModel->projects as $key => $project){?>
+                <tr>
+                    <td><?= $key+1 ?></td>
+                    <td><a href="<?= Backend::url('samubra/training/projects/preview/'.$project->id)?>"><?php echo $project->title;?></a></td>
+                    <td><?php echo $project->training_begin_date;?> 至 <?php echo $project->training_end_date;?></td>
+                    <td><?php echo $project->status->name;?></td>
+                </tr>
+                <?php }?>
+                <?php }else{?>
+                    <tr> 没有培训项目</tr>
+                <?php }?>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+<?php else: ?>
+<p class="flash-message static error"><?= e($this->fatalError) ?></p>
+<?php endif ?>
+
+<div class="form-buttons">
+    <div class="loading-indicator-container">
+        <a href="<?= Backend::url('samubra/training/teachers') ?>" class="btn btn-default oc-icon-chevron-left">
+            <?= e(trans('backend::lang.form.return_to_list')) ?>
+        </a>
+        <a href="<?= Backend::url('samubra/training/teachers/update/'.$formModel->id) ?>" class="btn btn-primary oc-icon-pencil-left">
+            修改
+        </a>
+        <span class="btn-text">
+            <?php echo e(trans('backend::lang.form.or')) ?>
+            <a href="<?php echo Backend::url('samubra/training/'.$controller) ?>">
+                <?php echo e(trans('backend::lang.form.cancel')) ?>
+            </a>
+        </span>
+    </div>
+</div>

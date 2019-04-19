@@ -81,7 +81,7 @@
                     <td><?php echo $project_course->plan_course->course->title;?></td>
                     <td><?php echo $project_course->course_time_start;?> 至 <?php echo $project_course->course_time_end;?></td>
                     <td><?php echo $project_course->hours;?></td>
-                    <td><?php echo $project_course->project->title;?></td>
+                    <td><a href="<?= Backend::url('samubra/training/projects/preview/'.$project_course->project->id)?>"><?php echo $project_course->project->title;?></a></td>
                 </tr>
                 <?php }?>
                 <tr><td class="text-right" colspan="3">总学时:</td><td  class="text-left" colspan="2"><?= $count_hours?>学时</td></tr>

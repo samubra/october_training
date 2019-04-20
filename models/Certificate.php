@@ -48,6 +48,10 @@ class Certificate extends Model
         'organization' => Organization::class
     ];
 
+    public $hasMany = [
+        'records' => Record::class
+    ];
+
     public function getDropdownOptions($fieldName, $value, $formData)
     {
         if($fieldName == 'edu_type')

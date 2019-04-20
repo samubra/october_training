@@ -68,7 +68,7 @@ fields:
         type: repeater
         form:
             fields:
-                print_dat_start:
+                print_date_start:
                     label: 发证日期开始
                     mode: date
                     span: storm
@@ -83,7 +83,7 @@ fields:
                     format: Y-m-d
                     type: datepicker
                 is_valid:
-                    label: 是否有效
+                    label: 是否已复审
                     span: storm
                     cssClass: col-md-3
                     default: '1'

@@ -40,7 +40,8 @@ class Project extends Model
 
     public $hasMany = [
         'courses' => ProjectCourse::class,
-        'records' => Record::class
+        'records' => Record::class,
+        'records_count' => [Record::class,'count' => true],
     ];
 
     public $belongsTo = [
@@ -74,8 +75,8 @@ class Project extends Model
     {
         if($fieldName == 'is_valid')
             return [
-                Train::YES => '有效',
-                Train::NO => '无效'
+                Train::YES => '已复审',
+                Train::NO => '未复审'
             ];
         return [
             Train::ENABLE => '启用',

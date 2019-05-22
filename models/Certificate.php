@@ -71,19 +71,6 @@ class Certificate extends Model
         ];
     }
 
-    public function beforeSave()
-    {
-        $models = self::where('id_num',$this->id_num)
-                    ->where('id_type',$this->id_type)
-                    ->where('category_id',$this->category_id)
-                    ->where('active',$this->active)
-                    ->whereNull('deleted_at');
-        if($this->id)
-            $models->where('id','<>',$this->id);
-        //traceLog('id: '.$this->id);
-        //traceLog($models->count());
-        throw_if($models->count(),new ApplicationException('该证书已经被添加'));
-    }
 
     public function listIdTypes()
     {

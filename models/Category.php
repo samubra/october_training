@@ -49,28 +49,6 @@ class Category extends Model
         ];
     }
 
-    public function beforeSave()
-    {
-        $post = post();
-
-        if(!$post['Category']['slug'])
-            $this->slug = Train::generateRandomString(10);
-    }
-    /**
-     * Save routes for category to table #_routes
-     */
-    public function afterSave()
-    {
-        $categorySaved = $this->attributes;
-        $post = post();
-        trace_log($_POST);
-        $idEdit = isset($post['id']) ? $post['id']:'0';
-        $slug = $categorySaved['slug'];
-        $entityId = $categorySaved['id'];
-        $type = Route::ROUTE_CATEGORY;
-        Route::saveRoutes($idEdit, $slug, $entityId, $type);
-        Event::fire('samubra.training.after_save_category', [$categorySaved, $post]);
-    }
 
     /**
      * Get breadcrumb for category

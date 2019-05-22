@@ -8,7 +8,7 @@ create:
     redirectClose: samubra/training/categories
     flashSave: 培训类别添加成功！
 update:
-    redirect: 'samubra/training/categories/:id'
+    redirect: 'samubra/training/categories/update/:id'
     redirectClose: samubra/training/categories
     title: 修改培训类别
     flashSave: 培训类别修改成功！

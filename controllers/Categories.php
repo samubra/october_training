@@ -1,6 +1,9 @@
 <?php namespace Samubra\Training\Controllers;
 
 use BackendMenu;
+use Samubra\Training\Models\Route;
+use Event;
+use Samubra\Training\Models\Train;
 
 class Categories extends TrainingController
 {
@@ -22,5 +25,34 @@ class Categories extends TrainingController
     {
         parent::__construct();
         //BackendMenu::setContext('Samubra.Training', 'training', 'setting');
+    }
+
+    /**
+     * Called after the creation or updating form is saved.
+     * @param Model
+     */
+    public function formAfterSave($model)
+    {
+        $categorySaved = $model->attributes;
+        $post = post();
+        //trace_log($_POST);
+        $idEdit = isset($post['id']) ? $post['id']:'0';
+        $slug = $categorySaved['slug'];
+        $entityId = $categorySaved['id'];
+        $type = Route::ROUTE_CATEGORY;
+        Route::saveRoutes($idEdit, $slug, $entityId, $type);
+        Event::fire('samubra.training.after_save_category', [$categorySaved, $post]);
+    }
+
+    /*
+     * Called before the creation or updating form is saved.
+     * @param Model
+     */
+    public function formBeforeSave($model)
+    {
+        $post = post();
+
+        if(!$post['Category']['slug'])
+            $this->slug = Train::generateRandomString(10);
     }
 }

@@ -19,7 +19,7 @@ trait SaveStatusId
     {
         //此处在新建记录时应设置默认值
         $lastStatus = $this->status_change->sortByDesc('updated_at')->pluck('id');
-        //traceLog($lastStatus->toArray());
+        traceLog($lastStatus->toArray());
         if(!count($lastStatus->toArray())) {
             switch (self::class) {
                 case 'Samubra\Training\Models\Record':

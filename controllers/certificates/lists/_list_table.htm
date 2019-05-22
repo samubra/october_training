@@ -1,0 +1,27 @@
+<table class="table data">
+        <thead>
+        <tr>
+            <th style="width: 130px"><span>名称</span></th>
+            <th><span>值</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr><td class="text-right">自动编号：</td><td><?php echo $formModel->num;?></td></tr>
+        <tr><td class="text-right">证件类型：</td><td><?php echo \Samubra\Training\Models\Train::$idTypeMap[$formModel->id_type];?></td></tr>
+        <tr><td class="text-right">证件号码：</td><td><?php echo $formModel->id_num;?></td></tr>
+        <tr><td class="text-right">发证机构：</td><td><?php echo $formModel->organization->name.'('.$formModel->organization->getCompleteTypeText().')';?></td></tr>
+        <tr><td class="text-right">培训类别：</td><td><?php echo $formModel->category->name.'('.$formModel->category->parent->name.')';?></td></tr>
+
+        <tr><td class="text-right">姓名：</td><td><?= $formModel->name; ?></td></tr>
+        <tr><td class="text-right">联系电话：</td><td><?= $formModel->phone; ?></td></tr>
+        <tr><td class="text-right">联系地址：</td><td><?= $formModel->address; ?></td></tr>
+        <tr><td class="text-right">单位名称：</td><td><?= $formModel->company;?></td></tr>
+        <tr><td class="text-right">文化程度：</td><td><?= \Samubra\Training\Models\Train::$eduTypeMap[$formModel->edu_type];?></td></tr>
+        <tr><td class="text-right">初领证日期：</td><td><?= $formModel->first_get_date;?></td></tr>
+        <tr><td class="text-right">有效期：</td><td><?php echo $formModel->print_date . ' 至 ' . $formModel->invalid_date;?></td></tr>
+        <tr><td class="text-right">应复审日期：</td><td><?php echo $formModel->review_date ;?></td></tr>
+        <tr><td class="text-right">是否有效：</td><td><?= $formModel->active ? '有效':'已失效';?></td></tr>
+        <tr><td class="text-right">创建时间：</td><td><?php echo $formModel->created_at;?></td></tr>
+        <tr><td class="text-right">最后更新时间：</td><td><?php echo $formModel->updated_at;?></td></tr>
+        </tbody>
+    </table>

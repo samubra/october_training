@@ -1,0 +1,36 @@
+<table class="table data">
+        <thead>
+        <tr>
+            <th style="width: 130px"><span>名称</span></th>
+            <th><span>值</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr><td class="text-right">项目名称：</td><td><?php echo $formModel->title;?></td></tr>
+        <tr><td class="text-right">培训时间：</td><td>
+            <?php echo $this->makePartial('plugins/samubra/training/controllers/projects/lists/start_to_end',
+            ['record'=>$formModel]) ?></td></tr>
+        <tr><td class="text-right">计划考试时间：</td><td><?php echo $formModel->plan_exam_date;?></td></tr>
+        <tr><td class="text-right">培训收费：</td><td><?php echo $formModel->cost;?>元/每人</td></tr>
+        <tr><td class="text-right">培训方案：</td><td><a href="<?= Backend::url('samubra/training/plans/preview/'.$formModel->plan_id)?>"><?php echo $formModel->plan->title;?></a></td></tr>
+
+        <?php if($formModel->condition){?>
+        <tr>
+            <td class="text-right">复审条件：</td><td>
+            <?php foreach($formModel->condition as $condition){
+                echo '<p><span class="oc-icon-circle text-success">';
+                echo '发证日期：' . $condition['print_date_start'] . '至' . $condition['print_date_end'];
+                echo '(';
+                echo $condition['is_valid']?'已复审':'未复审';
+                echo ')';
+                echo '</span></p>';
+                }?>
+            </td>
+        </tr>
+        <?php }?>
+
+        <tr><td class="text-right">创建时间：</td><td><?php echo $formModel->created_at;?></td></tr>
+        <tr><td class="text-right">最后更新：</td><td><?php echo $formModel->updated_at;?></td></tr>
+        <tr><td class="text-right">备注信息：</td><td><?php echo $formModel->	remark;?></td></tr>
+        </tbody>
+    </table>

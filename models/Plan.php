@@ -29,7 +29,7 @@ class Plan extends Model
         'organization_id' => 'required_if:is_certificate,true',
         'operate_hours' => 'numeric',
         'theroy_hours' => 'numeric',
-        'contact_phone' => 'phone:CN',
+        'contact_phone' => 'required|phone:CN',
     ];
 
     protected $appends= [

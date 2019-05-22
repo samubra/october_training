@@ -29,7 +29,7 @@ class Record extends Model
         'record_edu_type' => 'required' ,
         'is_eligible' => 'boolean' ,
         'record_name' => 'required' ,
-        'record_phone' => 'required' ,
+        'record_phone' => 'required|phone:CN' ,
         'record_address' => 'required' ,
         'record_company' => 'required'
     ];

@@ -25,6 +25,8 @@ class Teacher extends Model
      */
     public $table = 'samubra_training_teachers';
 
+    protected $filldable = ['name','identity','qualification_num','job_title','phone','company','edu_type'];
+
     /**
      * @var array Validation rules
      */

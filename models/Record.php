@@ -15,6 +15,7 @@ class Record extends Model
     use SaveStatusId;
 
     public $status_filed = 'record_status_id';
+    protected $filldable = ['num','record_status_id','record_edu_type','health_type','certificate_id','project_id','theory_score','operate_score','is_eligible','record_name','record_phone','record_address','record_company','record_id_num','record_id_type'];
     
 
     /**

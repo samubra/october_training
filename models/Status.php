@@ -29,6 +29,8 @@ class Status extends Model
         'color' => 'required',
     ];
 
+    protected $fillable = ['name','color','type','sort'];
+
     const STATUS_RECORD = 1;
     CONST STATUS_PROJECT = 2;
 

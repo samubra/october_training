@@ -51,3 +51,9 @@
 1.0.20:
     - '填充培训类别'
     - category_seeder.php
+1.0.21:
+    - '填充发证机构'
+    - organizations_seeder.php
+1.0.22:
+    - '填充状态列表'
+    - status_seeder.php

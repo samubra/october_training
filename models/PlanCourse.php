@@ -13,6 +13,8 @@ class PlanCourse extends Model
     use PlanCourseTraits;
 
     public $with = ['course','course'];
+
+    protected $filldable = ['plan_id','course_id','hours','teaching_form'];
     public $timestamps = false;
 
     public $table = 'samubra_training_plan_courses';

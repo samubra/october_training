@@ -23,6 +23,8 @@ class ProjectCourse extends Model
      */
     public $table = 'samubra_training_project_courses';
 
+    protected $filldable = ['plan_course_id','project_id','teacher_id','course_time_start','course_time_end','hours'];
+
 
     /**
      * @var array Validation rules

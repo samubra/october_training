@@ -8,7 +8,7 @@ use Model;
 class Course extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    
+    protected $filldable = ['title','course_type','teacher_id','default_hours'];
     /*
      * Disable timestamps by default.
      * Remove this line if timestamps are defined in the database table.

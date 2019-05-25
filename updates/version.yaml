@@ -48,3 +48,6 @@
 1.0.19:
     - 'Updated table samubra_training_plan_courses'
     - builder_table_update_samubra_training_plan_courses.php
+1.0.20:
+    - '填充培训类别'
+    - category_seeder.php

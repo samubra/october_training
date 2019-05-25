@@ -31,6 +31,8 @@ class Category extends Model
         'image' => 'System\Models\File'
     ];
 
+    protected $fillable = ['name','parent_id','slug','active','description','num_display'];
+
 
     /**
      * Delete routes after delete category

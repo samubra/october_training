@@ -20,7 +20,7 @@ class BuilderTableUpdateSamubraTrainingRecords extends Migration
     {
         Schema::table('samubra_training_records', function($table)
         {
-            $table->dropColumns(['record_name','record_phone','record_address','record_company']);
+            $table->dropColumn(['record_name','record_phone','record_address','record_company']);
         });
     }
 }

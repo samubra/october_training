@@ -15,8 +15,7 @@ class Organization extends Model
      * Remove this line if timestamps are defined in the database table.
      */
     public $timestamps = false;
-
-
+    protected $fillable = ['name','complete_type'];
 
     /**
      * @var string The database table used by the model.

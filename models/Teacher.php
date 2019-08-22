@@ -25,13 +25,13 @@ class Teacher extends Model
      */
     public $table = 'samubra_training_teachers';
 
-    protected $filldable = ['name','identity','qualification_num','job_title','phone','company','edu_type'];
+    //protected $filldable = ['name','identity','qualification_num','job_title','phone','company','edu_type'];
 
     /**
      * @var array Validation rules
      */
     public $rules = [
-        'name' => 'required|min:2',
+        'name' => 'required',
         'identity'  => 'identity|required',
         'phone' => 'phone:CN',
         'company' => 'required',

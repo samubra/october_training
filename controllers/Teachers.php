@@ -7,11 +7,15 @@ class Teachers extends TrainingController
 {
     public $implement = [
         'Backend\Behaviors\ListController',
-        'Backend\Behaviors\FormController'
+        'Backend\Behaviors\FormController',
+        'Backend.Behaviors.ImportExportController',
     ];
 
     public $controllerName = 'teachers';
     public $requiredPermissions = ['samubra.training.access_teacher'];
+
+    public $importExportConfig = 'config_import_export.yaml';
+
     public $controllerTitle = '教师';
     
     public $listConfig = 'config_list.yaml';
@@ -21,7 +25,7 @@ class Teachers extends TrainingController
     public function __construct()
     {
         parent::__construct();
-        //BackendMenu::setContext('Samubra.Training', 'training', 'setting');
+        BackendMenu::setContext('Samubra.Training', 'training', 'setting');
     }
 
     /**

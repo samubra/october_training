@@ -24,6 +24,6 @@ class Projects extends TrainingController
 
         parent::__construct();
         $this->addCss('/plugins/samubra/training/assets/backend.css');
-        //BackendMenu::setContext('Samubra.Training', 'training', 'project');
+        BackendMenu::setContext('Samubra.Training', 'training', 'project');
     }
 }

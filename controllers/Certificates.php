@@ -28,7 +28,7 @@ class Certificates extends TrainingController
     {
         parent::__construct();
         $this->addCss('/plugins/samubra/training/assets/backend.css');
-        //BackendMenu::setContext('Samubra.Training', 'training', 'plan');
+        BackendMenu::setContext('Samubra.Training', 'training', 'plan');
     }
         /**
      * Called before the creation or updating form is saved.

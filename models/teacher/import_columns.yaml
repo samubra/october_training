@@ -1,0 +1,23 @@
+columns:
+    name:
+        label: 姓名
+        type: text
+    identity:
+        label: 身份证号码
+        type: text
+    qualification_num:
+        label: 资格证号码
+        type: text
+    edu_type:
+        label: 学历
+        type: number
+    job_title:
+        label: 职称
+        type: number
+    company:
+        label: 单位名称
+        type: text
+    phone:
+        label: 联系电话
+        type: text
+

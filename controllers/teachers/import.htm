@@ -1,0 +1,23 @@
+<div data-control="toolbar">
+    <?php echo $this->makePartial('plugins/samubra/training/controllers/teachers/extends_toolbar') ?>
+</div>
+
+
+<?= Form::open(['class' => 'layout']) ?>
+
+<div class="layout-row">
+    <?= $this->importRender() ?>
+</div>
+
+<div class="form-buttons">
+    <button
+            type="submit"
+            data-control="popup"
+            data-handler="onImportLoadForm"
+            data-keyboard="false"
+            class="btn btn-primary">
+        开始导入
+    </button>
+</div>
+
+<?= Form::close() ?>

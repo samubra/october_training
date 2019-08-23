@@ -44,7 +44,7 @@ class Certificate extends Model
         'print_date' => 'date|after_or_equal:first_get_date',
         'review_date' => 'date|after:print_date',
         'invalid_date' => 'date|after:review_date',
-        'active' => 'boolean'
+        'active' => 'boolean|required'
     ];
     public $belongsTo = [
         'user' => User::class,

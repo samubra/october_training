@@ -26,6 +26,7 @@ fields:
         span: storm
         cssClass:  col-md-2
         type: balloon-selector
+        required: 1
     category:
         label: 培训类别
         span: storm

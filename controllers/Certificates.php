@@ -1,6 +1,7 @@
 <?php namespace Samubra\Training\Controllers;
 
 use BackendMenu;
+use Illuminate\Http\Request;
 use Samubra\Training\Repositories\Train\CertificateRepository;
 use October\Rain\Exception\ApplicationException;
 use RainLab\User\Facades\Auth;
@@ -31,20 +32,28 @@ class Certificates extends TrainingController
         BackendMenu::setContext('Samubra.Training', 'training', 'plan');
     }
         /**
-     * Called before the creation or updating form is saved.
-     * @param Model
-     */
+             * Called before the creation or updating form is saved.
+             * @param Model
+             */
     public function formBeforeSave($model)
     {
-        $certificatesModel = new CertificateRepository;
-        //trace_sql();
-        $certificatesModel->where('id_num',$model->id_num)
-                    ->where('id_type',$model->id_type)
-                    ->where('category_id',$model->category_id)
-                    ->where('active',$model->active)
-                    ->whereNull('deleted_at')
-                    ->where('id',$model->id,'<>');
-        throw_if($certificatesModel->get()->count(),new ApplicationException('该证书已经被添加'));
+            $certificatesModel = new CertificateRepository;
+            trace_sql();
+            trace_log($model->id);
+            $postData = post('Certificate');
+        if($model->id)
+            $countModel = $certificatesModel->where('id_num', $postData['id_num'])->where('id_type', $postData['id_type'])
+                ->where('category_id', $postData['category'])
+                ->where('active', $postData['active'])
+                ->where('id', $model->id,'<>')->get();
+        else
+            $countModel = $certificatesModel->where('id_num', $postData['id_num'])->where('id_type', $postData['id_type'])
+                ->where('category_id', $postData['category'])
+                ->where('active', $postData['active'])->get();
+        //trace_log($countModel->count());
+        //exit();
+        throw_if($countModel->count(),new ApplicationException('该证书已经被添加')
+        );
     }
 
 
@@ -56,14 +65,16 @@ class Certificates extends TrainingController
     {
         if(!$model->user_id){
             $userModel = new \Samubra\Training\Repositories\Train\UserRepository;
-            if($userModel->where('username',$model->id_num)->count()){
-                $model->user_id = $userModel->getByColumn('username',$model->id_num,['id'])->id;
+            $users = $userModel->where('name',$model->id_num)->get();
+            if($users->count()){
+                $model->user_id = $users->first()->id;
+                //trace_log($model->user_id);
             }else{
                 $model->user_id = Auth::register([
                     'name' => $model->id_num,
                     'email' =>$model->id_num. '@tiikoo.cn',
-                    'password' => substr($model->id_num, -6),
-                    'password_confirmation' => substr($model->id_num, -6),
+                    'password' => substr($model->id_num, -8),
+                    'password_confirmation' => substr($model->id_num, -8),
                     'username' => $model->id_num
                 ],true)->id;
             }

@@ -100,9 +100,11 @@ class ImportCertificates extends \Backend\Models\ImportModel
         unset($this->certificate['name']);
         unset($this->certificate['id_num']);
         unset($this->certificate['category_id']);
-        if(isset($certificate['id']) && $this->getRepository()->updateById($this->certificate['id'],$this->certificate)){
+        $certificateId = isset($this->certificate['id']) ? $this->certificate['id'] : false;
+        unset($this->certificate['id']);
+        if($certificateId && $this->getRepository()->updateById($certificateId,$this->certificate)){
             return ['status' => 'success','message' => '数据更新成功！'];
-        }elseif (!isset($certificate['id'])){
+        }elseif (!$certificateId){
             return ['status' => 'skip','message' => '当前数据不包含主键ID！'];
         }else{
             return ['status' => 'warning','message' => '数据更新失败！'];

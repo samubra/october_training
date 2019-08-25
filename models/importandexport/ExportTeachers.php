@@ -6,7 +6,7 @@
  * Time: 下午8:37
  */
 
-namespace Samubra\Training\Models;
+namespace Samubra\Training\Models\ImportAndExport;
 
 
 class ExportTeachers extends \Backend\Models\ExportModel

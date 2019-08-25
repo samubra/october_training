@@ -1,0 +1,7 @@
+fields:
+    create_or_update:
+        label: 创建或更新
+        span: auto
+        default: auto
+        type: balloon-selector
+        commentAbove: 创建：新添加所有数据条目；更新：只更新(除姓名、证件号码、培训类别外的字段数据)有ID字段的数据条目；自动选择：根据是否具有ID字段来选择创建

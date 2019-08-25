@@ -3,10 +3,10 @@
 # ===================================
 import:
   title: 导入授课教师
-  modelClass: Samubra\Training\Models\ImportTeachers
+  modelClass: Samubra\Training\Models\ImportAndExport\ImportTeachers
   list: $/samubra/training/models/teacher/import_columns.yaml
 
 export:
   title: 导出授课教师
-  modelClass: Samubra\Training\Models\ExportTeachers
+  modelClass: Samubra\Training\Models\ImportAndExport\ExportTeachers
   list: $/samubra/training/models/teacher/export_columns.yaml

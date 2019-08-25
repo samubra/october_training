@@ -1,0 +1,49 @@
+columns:
+    id:
+        label: ID(更新时必填)
+        type: number
+    id_num:
+        label: 证件号码
+        type: text
+    id_type:
+        label: 证件类型
+        type: text
+    name:
+        label: 姓名
+        type: text
+    phone:
+        label: 联系电话
+        type: text
+    address:
+        label: 联系地址
+        type: text
+    company:
+        label: 单位名称
+        type: text
+    edu_type:
+        label: 文化程度
+        type: text
+    category_id:
+        label: 培训类别
+        type: number
+    organization_id:
+        label: 发证机构
+        type: number
+    first_get_date:
+        label: 初领证日期
+        type: text
+    print_date:
+        label: 发证日期
+        type: text
+    review_date:
+        label: 应复审日期
+        type: text
+    invalid_date:
+        label: 失效日期
+        type: text
+    active:
+        label: 是否有效
+        type: text
+    user_id:
+        label: 所属用户
+        type: number

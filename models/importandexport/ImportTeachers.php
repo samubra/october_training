@@ -6,7 +6,7 @@
  * Time: 下午8:35
  */
 
-namespace Samubra\Training\Models;
+namespace Samubra\Training\Models\ImportAndExport;
 
 
 use Samubra\Training\Repositories\Train\TeacherRepository;

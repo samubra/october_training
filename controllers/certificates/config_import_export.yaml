@@ -1,0 +1,13 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+import:
+  title: 导入证书
+  modelClass: Samubra\Training\Models\ImportAndExport\ImportCertificates
+  list: $/samubra/training/models/certificate/import_columns.yaml
+  form: $/samubra/training/models/certificate/import_fields.yaml
+
+export:
+  title: 导出证书
+  modelClass: Samubra\Training\Models\ImportAndExport\ExportCertificates
+  list: $/samubra/training/models/certificate/import_columns.yaml

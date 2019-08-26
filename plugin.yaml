@@ -9,16 +9,62 @@ navigation:
         label: 培训管理
         url: samubra/training/setting/index
         icon: icon-archive
+    setting:
+        label: 基础信息
+        url: samubra/training/categories
+        icon: icon-life-ring
         sideMenu:
-            setting:
-                label: 基础信息设置
+            categories:
+                label: 类别管理
                 url: samubra/training/categories
-                icon: icon-wheelchair
-            plan:
-                label: 培训方案管理
+                icon: icon-cogs
+            organizations:
+                label: 发证机构
+                url: samubra/training/organizations
+                icon: icon-bank
+            teachers:
+                label: 授课教师
+                url: samubra/training/teachers
+                icon: icon-user-secret
+            courses:
+                label: 课程管理
+                url: samubra/training/courses
+                icon: icon-book
+            status:
+                label: 状态管理
+                url: samubra/training/status
+                icon: icon-sort
+    plans:
+        label: 培训方案
+        url: samubra/training/plans
+        icon: icon-tint
+        sideMenu:
+            plans:
+                label: 方案管理
                 url: samubra/training/plans
-                icon: icon-tint
-            project:
-                label: 培训项目管理
+                icon: icon-wheelchair
+            plancourses:
+                label: 授课计划
+                url: samubra/training/plancourses
+                icon: icon-tree
+            certificates:
+                label: 证书管理
+                url: samubra/training/certificates
+                icon: icon-suitcase
+    projects:
+        label: 培训项目
+        url: samubra/training/projects
+        icon: icon-database
+        sideMenu:
+            projects:
+                label: 项目管理
                 url: samubra/training/projects
-                icon: icon-simplybuilt
+                icon: icon-truck
+            records:
+                label: 申请记录
+                url: samubra/training/records
+                icon: icon-newspaper-o
+            projectcourses:
+                label: 日程安排
+                url: samubra/training/projectcourses
+                icon: icon-table

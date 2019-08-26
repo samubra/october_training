@@ -8,3 +8,9 @@ fields:
         span: auto
         required: 1
         type: balloon-selector
+    review_cycle:
+        label: 复审周期
+        span: auto
+        default: '0'
+        type: number
+        comment: 以“月”为单位，0表示不复审

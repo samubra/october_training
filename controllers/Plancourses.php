@@ -23,6 +23,6 @@ class Plancourses extends TrainingController
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Samubra.Training', 'training', 'plan');
+        BackendMenu::setContext('Samubra.Training', 'plans', 'plancourses');
     }
 }

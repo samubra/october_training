@@ -20,7 +20,7 @@ class Project extends Model
      */
     public $table = 'samubra_training_projects';
 
-    protected $filldable = ['slug','title','active','training_status_id','training_begin_date','training_end_date','plan_exam_date','cost','condition','plan_id','remark'];
+    protected $fillable = ['slug','title','active','training_status_id','training_begin_date','training_end_date','plan_exam_date','cost','condition','plan_id','remark'];
 
     /**
      * @var array Validation rules

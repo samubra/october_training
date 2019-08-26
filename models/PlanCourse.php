@@ -14,7 +14,7 @@ class PlanCourse extends Model
 
     public $with = ['course','course'];
 
-    protected $filldable = ['plan_id','course_id','hours','teaching_form'];
+    protected $fillable = ['plan_id','course_id','hours','teaching_form'];
     public $timestamps = false;
 
     public $table = 'samubra_training_plan_courses';

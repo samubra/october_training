@@ -20,7 +20,7 @@ class Plan extends Model
 
     public $with = ['category'];
 
-    protected $filldable = ['title','category_id','organization_id','is_retraining','is_certificate','operate_hours','theroy_hours','training_address','contact_phone','contact_person','target','material','document','other'];
+    protected $fillable = ['title','category_id','organization_id','is_retraining','is_certificate','operate_hours','theroy_hours','training_address','contact_phone','contact_person','target','material','document','other'];
 
     /**
      * @var array Validation rules

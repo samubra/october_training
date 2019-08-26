@@ -28,7 +28,7 @@ class ImportCertificates extends \Backend\Models\ImportModel
         'category_id' => 'required',
         'organization_id' => 'required',
         'first_get_date' => 'required|date',
-        'print_date' => 'date|after_or_equal:first_get_date',
+        'print_date' => 'required|date|after_or_equal:first_get_date',
         'review_date' => 'date|after:print_date',
         'invalid_date' => 'date|after:review_date',
         'active' => 'boolean|required'
@@ -89,7 +89,7 @@ class ImportCertificates extends \Backend\Models\ImportModel
         {
             return ['status' => 'skip','message' => '当前数据已存在'];
         }
-        if($this->getRepository()->makeModel()->setRawAttributes($this->certificate)->saveOrFail())
+        if($this->getRepository()->create($this->certificate))
             return ['status' => 'success'];
         else
             return ['status' => 'warning','message' => '数据添加失败！'];

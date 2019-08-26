@@ -25,9 +25,7 @@ class Certificate extends Model
      */
     public $table = 'samubra_training_certificates';
 
-    protected $filldable = [
-        'num','id_num','id_type','name','phone','address','company','edu_type','category_id','organization_id','first_get_date','print_date','review_date','invalid_date','active','user_id'
-    ];
+    protected $fillable = ['num','id_num','id_type','name','phone','address','company','edu_type','category_id','organization_id','first_get_date','print_date','review_date','invalid_date','active','user_id'];
 
     /**
      * @var array Validation rules

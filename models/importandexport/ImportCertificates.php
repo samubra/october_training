@@ -9,7 +9,7 @@
 namespace Samubra\Training\Models\ImportAndExport;
 
 
-use Samubra\Training\Models\Certificate;
+use RainLab\User\Facades\Auth;
 use Samubra\Training\Repositories\Train\CertificateRepository;
 
 class ImportCertificates extends \Backend\Models\ImportModel
@@ -85,6 +85,8 @@ class ImportCertificates extends \Backend\Models\ImportModel
     {
         $this->certificate['id_num'] = substr($this->certificate['id_num'] , 0 , 1) == "'" ? substr($this->certificate['id_num'] , 1 , 18) : $this->certificate['id_num'];
 
+        $this->certificate['user_id'] = $this->getUserId(['id_num' => $this->certificate['id_num'],'name' => $this->certificate['name']]);
+
         if($this->getRepository()->where('id_num',$this->certificate['id_num'])->where('id_type',$this->certificate['id_type'])->where('category_id',$this->certificate['category_id'])->get()->count())
         {
             return ['status' => 'skip','message' => '当前数据已存在'];
@@ -113,6 +115,20 @@ class ImportCertificates extends \Backend\Models\ImportModel
     protected function getRepository()
     {
         return new CertificateRepository();
+    }
+
+    protected function getUserId($userData)
+    {
+        if(!$user = Auth::findUserByLogin($userData['id_num'].'@tiikoo.cn')){
+            $user = Auth::register([
+                'name' => $userData['name'],
+                'email' => $userData['id_num'].'@tiikoo.cn',
+                'password' => substr($userData['id_num'], -8),
+                'password_confirmation' => substr($userData['id_num'], -8),
+            ],true);
+        }
+        return $user->id;
+
     }
 
     public function getCreateOrUpdateOptions()

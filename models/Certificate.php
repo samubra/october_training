@@ -78,4 +78,51 @@ class Certificate extends Model
     {
         return Train::$idTypeMap;
     }
+
+    public function scopeFirstGetDate($query,$date)
+    {
+        if(is_array($date))
+        {
+            if(isset($date['start']))
+                $query->where('first_get_date','>=',$date['start']);
+            if(isset($date['end']))
+                $query->where('first_get_date','<=',$date['end']);
+        }else{
+            $query->where('first_get_date',$date);
+        }
+        return $query;
+    }
+    public function scopePrintDate($query,$date)
+    {
+        if(is_array($date))
+        {
+            if(isset($date['start']))
+                $query->where('print_date','>=',$date['start']);
+            if(isset($date['end']))
+                $query->where('print_date','<=',$date['end']);
+        }else{
+            $query->where('print_date',$date);
+        }
+        return $query;
+    }
+    public function scopeCategory($query,$category)
+    {
+        return $query->where('category_id',$category);
+    }
+    public function scopeActive($query,$active)
+    {
+        return $query->where('active',$active);
+    }
+    public function scopeCompany($query,$company)
+    {
+        return $query->where('company','like',$company);
+    }
+    public function scopeExport($query,$conditions)
+    {
+        foreach ($conditions as $key=>$condition)
+        {
+            $query->$key($condition);
+        }
+        return $query;
+    }
 }

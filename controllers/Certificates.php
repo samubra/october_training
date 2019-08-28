@@ -74,6 +74,7 @@ class Certificates extends TrainingController
             }else{
                 $model->user_id = Auth::register([
                     'name' => $model->id_num,
+                    'surname' => $model->name,
                     'email' =>$model->id_num. '@tiikoo.cn',
                     'password' => substr($model->id_num, -8),
                     'password_confirmation' => substr($model->id_num, -8),

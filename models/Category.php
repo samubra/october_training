@@ -62,4 +62,5 @@ class Category extends Model
         return $parents->toArray();
     }
 
+
 }

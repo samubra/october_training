@@ -19,18 +19,8 @@ class CategoryRepository extends BaseRepository
         return Category::class;
     }
 
-    public function getTree (){
-        $categories = $this->makeModel()->orderBy('_lft')->get()->toTree();
-        return $this->traverse($categories);
+    public function getTree ($column, $key=null, $indent = '&nbsp;&nbsp;&nbsp;'){
+        return $this->makeModel()->listsNested($column, $key,$indent);
     }
 
-    protected function traverse($categories = null, $prefix = '|--'){
-        $list = [];
-        foreach ($categories as $category) {
-            $list[$category->id] = PHP_EOL.$prefix.' '.$category->name;
-            if($category->children)
-                $list = array_merge($list , $this->traverse($category->children, $prefix.'--'));
-        }
-        return $list;
-    }
 }

@@ -15,9 +15,14 @@ use Samubra\Training\Repositories\Train\CertificateRepository;
 
 class ExportCertificates extends \Backend\Models\ExportModel
 {
+    protected $appends = ['export_type','export_by_category','export_by_first_get_date_start','export_by_first_get_date_end','export_by_print_date_start','export_by_print_date_end','export_by_company','export_by_is_valid'];
+    protected $fillable = [
+        'export_type','export_by_category','export_by_first_get_date_start','export_by_first_get_date_end','export_by_print_date_start','export_by_print_date_end','export_by_company','export_by_is_valid'
+    ];
     public function exportData($columns, $sessionKey = null)
     {
-        $certificates = $this->getRepository()->with(['category','organization','user'])->all();
+        $certificates = $this->getRepository()->makeModel();
+        $certificates = $certificates->export($this->setConditions())->with(['category','organization','user'])->get();
         $certificates->each(function($certificate) use ($columns) {
             $certificate->id_num = '\''.$certificate->id_num;
             $certificate->id_type = Train::$idTypeMap[$certificate->id_type];
@@ -34,6 +39,30 @@ class ExportCertificates extends \Backend\Models\ExportModel
         return $certificates->toArray();
     }
 
+    protected function setConditions()
+    {
+        $condition = [];
+        $export_type = $this->export_type;
+        if(in_array($export_type,['auto','by_category']) && $this->export_by_category)
+            $condition['category'] = $this->export_by_category;
+
+        if(in_array($export_type,['auto','by_first_get_date']) && $this->export_by_first_get_date_start)
+            $condition['firstGetDate']['start'] = $this->export_by_first_get_date_start;
+        if(in_array($export_type,['auto','by_first_get_date']) && $this->export_by_first_get_date_end)
+            $condition['firstGetDate']['end'] = $this->export_by_first_get_date_end;
+
+        if(in_array($export_type,['auto','by_print_date']) && $this->export_by_print_date_start)
+            $condition['printDate']['start'] = $this->export_by_print_date_start;
+        if(in_array($export_type,['auto','by_print_date']) && $this->export_by_print_date_end)
+            $condition['printDate']['end'] = $this->export_by_print_date_end;
+
+        if(in_array($export_type,['auto','by_is_valid']))
+            $condition['active'] = $this->export_by_is_valid ? '1' : '0';
+
+        if(in_array($export_type,['auto','by_company']) && $this->export_by_company)
+            $condition['company'] = '%'.$this->export_by_company.'%';
+        return $condition;
+    }
     protected function getRepository()
     {
         return new CertificateRepository();
@@ -53,7 +82,7 @@ class ExportCertificates extends \Backend\Models\ExportModel
     }
     public function getExportByCategoryOptions()
     {
-        $category = new CategoryRepository;
-        return $category->listsNested(['id','name'])->pluck('name','id')->toArray();
+        $category = new CategoryRepository();
+        return $category->getTree('name','id','---');
     }
 }

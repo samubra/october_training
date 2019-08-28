@@ -121,7 +121,9 @@ class ImportCertificates extends \Backend\Models\ImportModel
     {
         if(!$user = Auth::findUserByLogin($userData['id_num'].'@tiikoo.cn')){
             $user = Auth::register([
-                'name' => $userData['name'],
+                'name' => $userData['id_num'],
+                'username' => $userData['id_num'],
+                'surname' => $userData['name'],
                 'email' => $userData['id_num'].'@tiikoo.cn',
                 'password' => substr($userData['id_num'], -8),
                 'password_confirmation' => substr($userData['id_num'], -8),

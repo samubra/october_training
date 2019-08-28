@@ -10,4 +10,5 @@ import:
 export:
   title: 导出证书
   modelClass: Samubra\Training\Models\ImportAndExport\ExportCertificates
-  list: $/samubra/training/models/certificate/import_columns.yaml
+  list: $/samubra/training/models/certificate/export_columns.yaml
+  form: $/samubra/training/models/certificate/export_fields.yaml

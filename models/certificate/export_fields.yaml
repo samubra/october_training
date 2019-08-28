@@ -1,0 +1,82 @@
+fields:
+    export_type:
+        label: 导出方式
+        span: auto
+        type: dropdown
+        emptyOption: -- 选择导出方式 --
+        options:
+            by_auto: 自动识别 [推荐]
+            by_category: 仅按培训类别
+            by_first_get_date: 仅按初领证日期范围
+            by_print_date: 仅按发证证日期范围
+            by_company: 仅按工作单位名称
+            by_is_valid: 仅按是否有效
+    export_by_category:
+        label: 操作类别
+        emptyOption: '---选择需要导出培训证书的培训类别---'
+        span: auto
+        type: dropdown
+        trigger:
+            action: enable
+            field: export_type
+            condition: value[by_category] && value[by_auto]
+    export_by_first_get_date_start:
+        label: 初领证日期（该日期之后）
+        span: auto
+        type: datepicker
+        placeholder: 选择一个初领证日期范围的起始日期
+        mode: date
+        trigger:
+            action: enable
+            field: export_type
+            condition: value[by_first_get_date] && value[by_auto]
+    export_by_first_get_date_end:
+        label: 初领证日期（该日期之前）
+        span: auto
+        type: datepicker
+        placeholder: 选择一个初领证日期范围的截止日期
+        mode: date
+        trigger:
+            action: enable
+            field: export_type
+            condition: value[by_first_get_date] && value[by_auto]
+    export_by_print_date_start:
+        label: 发证日期（该日期之后）
+        span: auto
+        type: datepicker
+        placeholder: 选择一个发证日期范围的起始日期
+        mode: date
+        trigger:
+            action: enable
+            field: export_type
+            condition: value[by_print_date] && value[by_auto]
+    export_by_print_date_end:
+        label: 发证日期（该日期之前）
+        span: auto
+        type: datepicker
+        placeholder: 选择一个发证日期范围的截止日期
+        mode: date
+        trigger:
+            action: enable
+            field: export_type
+            condition: value[by_print_date] && value[by_auto]
+    export_by_company:
+        label: 单位名称
+        span: auto
+        type: text
+        placeholder: 输入单位名称
+        trigger:
+            action: enable
+            field: export_type
+            condition: value[by_company] && value[by_auto]
+    export_by_is_valid:
+        label: 是否有效
+        span: auto
+        default: true
+        type: switch
+        on: 有效
+        off: 无效
+        trigger:
+            action: enable
+            field: export_type
+            condition: value[by_is_valid] && value[by_auto]

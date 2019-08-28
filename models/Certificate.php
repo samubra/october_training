@@ -117,12 +117,15 @@ class Certificate extends Model
     {
         return $query->where('company','like',$company);
     }
-    public function scopeExport($query,$conditions)
+    public function scopeExport($query,$conditions = [])
     {
-        foreach ($conditions as $key=>$condition)
-        {
-            $query->$key($condition);
+        if($conditions){
+            foreach ($conditions as $key=>$condition)
+            {
+                $query->$key($condition);
+            }
         }
+
         return $query;
     }
 }

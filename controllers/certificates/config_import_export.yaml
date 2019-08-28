@@ -12,3 +12,4 @@ export:
   modelClass: Samubra\Training\Models\ImportAndExport\ExportCertificates
   list: $/samubra/training/models/certificate/export_columns.yaml
   form: $/samubra/training/models/certificate/export_fields.yaml
+  fileName: 培训证书导出.csv

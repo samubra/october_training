@@ -1,0 +1,18 @@
+columns:
+    id:
+        label: ID
+        type: number
+    title:
+        label: 课程标题
+        type: text
+    course_type:
+        label: 课程类型ID
+        type: number
+    teacher_id:
+        label: 授课教师ID
+        type: text
+        select: name
+        relation: teacher
+    default_hours:
+        label: 默认课时
+        type: number

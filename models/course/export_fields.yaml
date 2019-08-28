@@ -1,0 +1,30 @@
+fields:
+    export_type:
+        label: 导出方式
+        span: auto
+        type: dropdown
+        default: auto
+        emptyOption: -- 选择导出方式 --
+        options:
+            by_auto: 自动识别 [推荐]
+            by_course_type: 仅按课程类型
+            by_teacher: 仅按授课教师
+    export_by_course_type:
+        label: 课程类型
+        emptyOption: '---选择需要导出课程的类型---'
+        span: auto
+        type: dropdown
+        trigger:
+            action: enable
+            field: export_type
+            condition: value[by_course_type] && value[by_auto]
+    export_by_teacher:
+        label: 初领证日期（该日期之后）
+        span: auto
+        type: dropdown
+        placeholder: '--选择需要导出课程的授课教师--'
+        mode: date
+        trigger:
+            action: enable
+            field: export_type
+            condition: value[by_teacher] && value[by_auto]

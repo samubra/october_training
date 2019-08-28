@@ -1,0 +1,16 @@
+columns:
+    id:
+        label: ID
+        type: number
+    title:
+        label: 课程标题
+        type: text
+    course_type:
+        label: 课程类型
+        type: number
+    teacher_id:
+        label: 授课教师
+        type: number
+    default_hours:
+        label: 默认课时
+        type: number

@@ -9,14 +9,16 @@
 namespace Samubra\Training\Models\ImportAndExport;
 
 
+use Samubra\Training\Models\Teacher;
+
 class ExportTeachers extends \Backend\Models\ExportModel
 {
     public function exportData($columns, $sessionKey = null)
     {
-        $subscribers = Subscriber::all();
-        $subscribers->each(function($subscriber) use ($columns) {
-            $subscriber->addVisible($columns);
+        $teachers = Teacher::all();
+        $teachers->each(function($teacher) use ($columns) {
+            $teacher->addVisible($columns);
         });
-        return $subscribers->toArray();
+        return $teachers->toArray();
     }
 }

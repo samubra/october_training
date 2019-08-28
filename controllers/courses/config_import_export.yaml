@@ -1,0 +1,14 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+import:
+  title: 导入课程
+  modelClass: Samubra\Training\Models\ImportAndExport\ImportCourses
+  list: $/samubra/training/models/course/import_columns.yaml
+
+export:
+  title: 导出课程
+  modelClass: Samubra\Training\Models\ImportAndExport\ExportCourses
+  list: $/samubra/training/models/course/export_columns.yaml
+  form: $/samubra/training/models/course/export_fields.yaml
+  fileName: 课程导出列表.csv

@@ -19,7 +19,7 @@ fields:
             field: export_type
             condition: value[by_course_type] && value[by_auto]
     export_by_teacher:
-        label: 初领证日期（该日期之后）
+        label: 按授课教师导出
         span: auto
         type: dropdown
         placeholder: '--选择需要导出课程的授课教师--'

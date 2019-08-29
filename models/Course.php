@@ -58,4 +58,24 @@ class Course extends Model
     {
         return Train::$courseTypeMap[$this->course_type];
     }
+
+    public function scopeCourseType($query,$type)
+    {
+        return $query->where('course_type',$type);
+    }
+    public function scopeTeacher($query,$teacher)
+    {
+        return $query->where('teacher_id',$teacher);
+    }
+    public function scopeExport($query,$conditions = [])
+    {
+        if($conditions){
+            foreach ($conditions as $key=>$condition)
+            {
+                $query->$key($condition);
+            }
+        }
+
+        return $query;
+    }
 }

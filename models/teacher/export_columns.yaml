@@ -18,24 +18,15 @@ columns:
         searchable: true
         sortable: true
     edu_type:
-        label: 学历
-        type: partial
-        path: ~/plugins/samubra/training/controllers/teachers/list/_edu_type.htm
-        searchable: true
-        sortable: true
+        label: 学历ID
+        type: number
     job_title:
-        label: 职称
-        type: partial
-        path: ~/plugins/samubra/training/controllers/teachers/list/_job_title.htm
-        sortable: true
+        label: 职称ID
+        type: number
     company:
         label: 单位名称
         type: text
-        searchable: true
-        sortable: true
     phone:
         label: 联系电话
         type: number
-        searchable: true
-        sortable: true
 

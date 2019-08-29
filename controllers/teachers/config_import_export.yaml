@@ -10,3 +10,4 @@ export:
   title: 导出授课教师
   modelClass: Samubra\Training\Models\ImportAndExport\ExportTeachers
   list: $/samubra/training/models/teacher/export_columns.yaml
+  fileName: 授课教师列表.csv

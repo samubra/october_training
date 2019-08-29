@@ -43,23 +43,23 @@ class ExportCertificates extends \Backend\Models\ExportModel
     {
         $condition = [];
         $export_type = $this->export_type;
-        if(in_array($export_type,['auto','by_category']) && $this->export_by_category)
+        if(in_array($export_type,['by_auto','by_category']) && $this->export_by_category)
             $condition['category'] = $this->export_by_category;
 
-        if(in_array($export_type,['auto','by_first_get_date']) && $this->export_by_first_get_date_start)
+        if(in_array($export_type,['by_auto','by_first_get_date']) && $this->export_by_first_get_date_start)
             $condition['firstGetDate']['start'] = $this->export_by_first_get_date_start;
-        if(in_array($export_type,['auto','by_first_get_date']) && $this->export_by_first_get_date_end)
+        if(in_array($export_type,['by_auto','by_first_get_date']) && $this->export_by_first_get_date_end)
             $condition['firstGetDate']['end'] = $this->export_by_first_get_date_end;
 
-        if(in_array($export_type,['auto','by_print_date']) && $this->export_by_print_date_start)
+        if(in_array($export_type,['by_auto','by_print_date']) && $this->export_by_print_date_start)
             $condition['printDate']['start'] = $this->export_by_print_date_start;
-        if(in_array($export_type,['auto','by_print_date']) && $this->export_by_print_date_end)
+        if(in_array($export_type,['by_auto','by_print_date']) && $this->export_by_print_date_end)
             $condition['printDate']['end'] = $this->export_by_print_date_end;
 
-        if(in_array($export_type,['auto','by_is_valid']))
+        if(in_array($export_type,['by_auto','by_is_valid']))
             $condition['active'] = $this->export_by_is_valid ? '1' : '0';
 
-        if(in_array($export_type,['auto','by_company']) && $this->export_by_company)
+        if(in_array($export_type,['by_auto','by_company']) && $this->export_by_company)
             $condition['company'] = '%'.$this->export_by_company.'%';
         return $condition;
     }

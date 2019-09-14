@@ -36,6 +36,7 @@ fields:
         span: storm
         cssClass: col-md-3
         required: 1
+        stretch: true
         type: text
         dependsOn: certificate
     record_phone:
@@ -83,17 +84,19 @@ tabs:
             span: storm
             cssClass: col-md-2
             type: number
+            default: 0
             tab: 成绩管理
         operate_score:
             label: 操作成绩
             span: storm
             cssClass: col-md-2
             type: number
+            default: 0
             tab: 成绩管理
         is_eligible:
             label: 是否合格
             span: storm
             cssClass: col-md-2
-            default: '0'
+            default: 0
             type: balloon-selector
             tab: 成绩管理

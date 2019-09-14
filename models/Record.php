@@ -115,16 +115,16 @@ class Record extends Model
    public function filterFields($fields)
    {
        //race_log($fields);
-      // trace_log($this->certificate);
+       //trace_log($this->id);
        $certificate = $this->certificate;
        if($certificate){
            $fields->record_id_num->value = $certificate->id_num;
            $fields->record_id_type->value = $certificate->id_type;
-           $fields->record_name->value = $certificate->name;
-           $fields->record_phone->value = $certificate->phone;
-           $fields->record_address->value = $certificate->address;
-           $fields->record_company->value = $certificate->company;
-           $fields->record_edu_type->value = $certificate->edu_type;
+           $fields->record_name->value = ($certificate->id_num == $this->record_id_num && $this->record_name) ? $this->record_name :  $certificate->name;
+           $fields->record_phone->value = ($certificate->id_num == $this->record_id_num && $this->record_phone) ? $this->record_phone : $certificate->phone;
+           $fields->record_address->value = ($certificate->id_num == $this->record_id_num && $this->record_address) ? $this->record_address : $certificate->address;
+           $fields->record_company->value = ($certificate->id_num == $this->record_id_num && $this->record_company) ? $this->record_company : $certificate->company;
+           $fields->record_edu_type->value = ($certificate->id_num == $this->record_id_num && $this->record_edu_type) ? $this->record_edu_type : $certificate->edu_type;
            $fields->record_id_num->readOnly = true;
            $fields->record_id_type->readOnly = true;
 

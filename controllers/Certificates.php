@@ -54,8 +54,7 @@ class Certificates extends TrainingController
                 ->where('active', $postData['active'])->get();
         //trace_log($countModel->count());
         //exit();
-        throw_if($countModel->count(),new ApplicationException('该证书已经被添加')
-        );
+        throw_if($countModel->count(),new ApplicationException('该证书已经被添加'));
     }
 
 

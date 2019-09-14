@@ -49,15 +49,15 @@ class Records extends TrainingController
         $record = $repository->with('certificate','certificate.user','certificate.category','certificate.category.parent','project','project.plan')->getById($recordId);
         $data['user_sex'] = (int)substr($record->record_id_num,-2,1)% 2 === 0 ? '女' : '男';
 
-        $data['date_now'] = Carbon::now(new \DateTimeZone('Asia/Chongqing'))->format('Y年m月d日');
+        $data['date_now'] = Carbon::now(new \DateTimeZone('Asia/Chongqing'))->format('Y年n月j日');
 
         if($record->project->plan->is_retraining){
             $printDate = Carbon::createFromFormat('Y-m-d',$record->certificate->print_date);
             $data['print_date'] = $printDate->format('Y年m月d日');
-            $data['print_end'] = $printDate->addYears(6)->format('Y年m月d日');
+            $data['print_end'] = $printDate->addYears(6)->format('Y年n月j日');
         }
-        $data['start_date'] = Carbon::createFromFormat('Y-m-d',$record->project->training_begin_date)->format('Y年m月d日');
-        $data['end_date'] = Carbon::createFromFormat('Y-m-d',$record->project->training_end_date)->format('Y年m月d日');
+        $data['start_date'] = Carbon::createFromFormat('Y-m-d',$record->project->training_begin_date)->format('Y年n月j日');
+        $data['end_date'] = Carbon::createFromFormat('Y-m-d',$record->project->training_end_date)->format('Y年n月j日');
         $data['hours'] = $record->project->plan->theroy_hours + $record->project->plan->operate_hours;
         $data['edu_type'] = Train::$eduTypeMap[$record->record_edu_type];
 

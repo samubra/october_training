@@ -1,0 +1,242 @@
+<div class="control-tabs primary-tabs" data-control="tab">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#print-wts">打印《个人授权委托书》</a></li>
+        <li><a href="#print-jkcns">打印《个人健康承诺书》</a></li>
+        <li><a href="#print-kssq">打印《考试申请表》</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <div class="row" id="print-wts">
+                <div class="col-md-8">
+                    <div class="order-product-title">
+                        <div class="text-bold text-center p-order-product-title"><h1>个人授权委托书</h1></div>
+                    </div>
+                    <div class="control-list" >
+                        <br/><br/>
+                        <h3>
+                            <p>委托方：<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ record.record_name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> &nbsp;&nbsp;身份证号码：<u>{{ record.record_id_num }}</u></p>
+                            <p>联系电话：<u>&nbsp; {{ record.record_phone }}&nbsp;</u> &nbsp;&nbsp;家 庭 地 址：<u>&nbsp;{{ record.record_address }}&nbsp;</u></p>
+                            <p>工作单位：<u>{{ record.record_company }}</u></p>
+                            <br/>
+                            <p>受托方：<u>重庆市巫溪县职业教育中心</u></p>
+                            <p>联系电话：<u>02351515366    </u>&nbsp;&nbsp;组织机构代码：<u>&nbsp;12500238451907912Q&nbsp;</u></p>
+                            <p>经营场所地址：<u>巫溪县凤凰镇双凤村文化街1号</u></p>
+                            <br/>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;按照有关规定和要求，本人现将申请（<u>&nbsp; {{ record.certificate.category.name }} &nbsp;</u>）考试和办理证件等事项特委托重庆市巫溪县职业教育中心作为我的全权代理人，代表我办理相关事项，对受托方在办理上述事项过程中所签署的有关文件，以及由我本人提供的所有材料实质内容的真实性负责，如有欺骗、虚假，本人承担相应的法律责任。</p>
+                            <br/>
+                            <p>委托期限：从<u>&nbsp;&nbsp;{{ date_now }}&nbsp;&nbsp;</u>起至领到相关证件之日止。</p>
+                            <br/>
+                            <p class="text-right">委 托 人（签字）：_______________________</p>
+                            <br/>
+                            <p class="text-right">________年_____月_____日</p>
+
+                        </h3>
+
+                    </div>
+                </div>
+                <div class="col-md-4 hidden-print"><input type="button"  class="btn btn-primary" onclick=" print('print-wts')" value="打印"></div>
+            </div>
+
+        </div>
+        <div class="tab-pane">
+            <div class="row" id="print-jkcns">
+                <div class="col-md-8">
+                    <div class="order-product-title">
+                        <div class="text-bold text-center p-order-product-title"><h1>个人健康承诺书</h1></div>
+                    </div>
+
+                    <div class="control-list" >
+                        <br/><br/>
+                        <h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本人姓名<u>&nbsp;&nbsp;&nbsp;&nbsp;{{ record.record_name }}&nbsp;&nbsp;&nbsp;&nbsp;</u>，身份证号码<u>&nbsp;&nbsp;{{ record.record_id_num }}&nbsp;&nbsp;</u>，现申请（作业类别<u>&nbsp;&nbsp;{{ record.certificate.category.parent.name }}&nbsp;&nbsp;</u>，操作项目<u>&nbsp;&nbsp;{{ record.certificate.category.name }}&nbsp;&nbsp;</u>）特种作业操作资格证。本人身体健康，无妨碍从事相应特种作业的器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹症、精神病、痴呆症以及其他疾病和生理缺陷。本人对以上信息的真实性负责，如有隐瞒，相关责任全部由本人承担。</p>
+                            <br/>
+                            <p class="text-right">委 托 人（签字）：_______________________</p>
+                            <br/>
+                            <p class="text-right">________年_____月_____日</p>
+
+                        </h3>
+
+                    </div>
+                </div>
+                <div class="col-md-4 hidden-print"><input type="button"  class="btn btn-primary" onclick=" print('print-jkcns')" value="打印"></div>
+            </div>
+
+        </div>
+        <div class="tab-pane">
+            {% if record.project.plan.is_retraining %}
+            <div class="row" id="print-kssq-review">
+                <div class="col-md-8">
+                    <div class="order-product-title">
+                        <div class="text-bold text-center p-order-product-title"><h2>重庆市特种作业操作证复审（延期）<br/>考试和颁证申请表</h2></div>
+                    </div>
+
+                    <div class="control-list" >
+                        <p class="text-right">申请日期：<u>&nbsp;&nbsp;{{ date_now }}&nbsp;&nbsp;</u></p>
+                        <table id="kssq-review" class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <td width='150px'>姓    名</td><td width='250px'>{{ record.record_name }}</td>
+                                <td width='150px' >性	别</td><td width='250px'>{{ user_sex }}</td>
+                                <td width='200px' rowspan="5" >贴照片处</td>
+                            </tr>
+                            <tr>
+                                <td width='150px'>文化程度</td><td width='250px'>{{ edu_type }}</td>
+                                <td width='150px'>联系电话</td><td width='250px'>{{ record.record_phone }}</td>
+                            </tr>
+                            <tr>
+                                <td width='150px'>身份证号码</td><td width='250px' colspan="3">{{ record.record_id_num }}</td>
+                            </tr>
+                            <tr>
+                                <td width='150px'>作业类别</td><td width='250px'>{{ record.certificate.category.parent.name }}</td>
+                                <td width='150px'>操作项目</td><td width='250px'>{{ record.certificate.category.name }}</td>
+                            </tr>
+                            <tr>
+                                <td width='150px'>证件有效期</td><td width='250px' colspan="3">{{ print_date }} 至 {{ print_end }}</td>
+                            </tr>
+
+                            <tr>
+                                <td width='150px'>工作单位</td><td width='250px' colspan="4">{{ record.record_company }}</td>
+                            </tr>
+                            <tr>
+                                <td width='150px'>培训时间</td><td width='250px' colspan="4">{{ start_date }} 至 {{ end_date }}，共 {{ hours }} 学时</td>
+                            </tr>
+                            <tr>
+                                <td width='150px' valign="middle" class="rowspan">近三年从事特种作业的情况</td>
+                                <td width='250px' class="sannian" style="line-height: 60%" colspan="4">
+                                    <p class="col-md-12"><span class="pull-left">1.是否有违章操作造成严重后果的行为。 </span>          <span class="pull-right">（是□&nbsp;&nbsp;否□）</span></p>
+                                    <p class="col-md-12"><span class="pull-left">2.是否有2次以上违章行为。</span>               <span class="pull-right">（是□&nbsp;&nbsp;否□）</span></p>
+                                    <p class="col-md-12"><span class="pull-left">3.是否有安全生产违法行为并给予行政处罚的。</span>     <span class="pull-right">（是□&nbsp;&nbsp;否□）</span></p>
+                                    <p class="col-md-12"><span class="pull-left">4. 是否离开特种作业岗位6个月以上。</span>            <span class="pull-right">（是□&nbsp;&nbsp;否□）</span></p>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width='150px'>诚信声明</td>
+                                <td width='250px' style="text-align: left;line-height: 60%" colspan="4">
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本人符合（<u>{{ record.certificate.category.name }}</u>）特种作业人员资格复审（延期）条件，在表中填写的个人信息和提供的毕业证书、身份证明、体检表等材料内容是真实的，并对材料真实性负责。本人无器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹症、精神病、痴呆症。</p>
+                                    <p></p>
+                                    <p class="text-right">申请人签名：_______________________</p>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='150px'>考试机构意见</td>
+                                <td width='250px' colspan="4">
+                                    <p class="text-left">区县分中心（盖章）：</p>
+                                    <p></p>
+                                    <p class="text-right">经办人签字：_______________________</p>
+                                    <p class="text-right">________年_____月_____日</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='250px' style="line-height: 60%;font-size: 14px" colspan="5">
+                                    <p class="text-left">备注：此表仅用于特种作业人员复训（延期）申请考试和颁证。此表格纸质件一式2份，扫描电子件1份，培训机构、分中心各存1份纸质件，扫描电子件由分中心上传市考试中心考试管理系统。</p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4 hidden-print"><input type="button"  class="btn btn-primary" onclick=" print('print-kssq-review')" value="打印"></div>
+            </div>
+            {% else %}
+            <div class="row" id="print-kssq-new">
+                <div class="col-md-8">
+                    <div class="order-product-title">
+                        <div class="text-bold text-center p-order-product-title"><h2>重庆市特种作业人员考试和颁证申请表</h2></div>
+                    </div>
+
+                    <div class="control-list" >
+                        <p class="text-right">申请日期：<u>&nbsp;&nbsp;{{ date_now }}&nbsp;&nbsp;</u></p>
+                        <table class="table table-bordered" id="kssq-new" >
+                            <tbody>
+                            <tr>
+                                <td width='150px'>姓    名</td><td width='250px'>{{ record.record_name }}</td>
+                                <td width='150px' >性	别</td><td width='250px'>{{ user_sex }}</td>
+                                <td width='200px' rowspan="5" >贴照片处</td>
+                            </tr>
+                            <tr>
+                                <td width='150px'>文化程度</td><td width='250px'>{{ edu_type }}</td>
+                                <td width='150px'>联系电话</td><td width='250px'>{{ record.record_phone }}</td>
+                            </tr>
+                            <tr>
+                                <td width='150px'>身份证号码</td><td width='250px' colspan="3">{{ record.record_id_num }}</td>
+                            </tr>
+                            <tr>
+                                <td width='150px'>作业类别</td><td width='250px'>{{ record.certificate.category.parent.name }}</td>
+                                <td width='150px'>操作项目</td><td width='250px'>{{ record.certificate.category.name }}</td>
+                            </tr>
+
+                            <tr>
+                                <td width='150px'>工作单位</td><td width='250px' colspan="3">{{ record.record_company }}</td>
+                            </tr>
+                            <tr>
+                                <td width='150px'>培训时间</td><td width='250px' colspan="4">{{ start_date }} 至 {{ end_date }}，共 {{ hours }} 学时</td>
+                            </tr>
+                            <tr>
+                                <td width='150px' valign="middle" class="rowspan">个人简历</td>
+                                <td width='250px' class="sannian"  colspan="4">
+                                    <br/><br/><br/><br/>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width='150px'>诚信声明</td>
+                                <td width='250px' style="text-align: left;" colspan="4">
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本人符合（<u>{{ record.certificate.category.name }}</u>）特种作业人员资格条件，在表中填写的个人信息和提供的毕业证书、身份证明、体检表等材料内容是真实的，并对材料真实性负责。本人无器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹症、精神病、痴呆症。</p>
+                                    <p></p>
+                                    <p class="text-right">申请人签名：_______________________</p>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='150px'>考试机构意见</td>
+                                <td width='250px' colspan="4">
+                                    <p class="text-left">区县分中心（盖章）：</p>
+                                    <p></p>
+                                    <p class="text-right">经办人签字：_______________________</p>
+                                    <p class="text-right">________年_____月_____日</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width='250px'  colspan="5">
+                                    <p class="text-left">备注：此表仅用于特种作业人员复训（延期）申请考试和颁证。此表格纸质件一式2份，扫描电子件1份，培训机构、分中心各存1份纸质件，扫描电子件由分中心上传市考试中心考试管理系统。</p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4 hidden-print"><input type="button"  class="btn btn-primary" onclick=" print('print-kssq-new')" value="打印"></div>
+            </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+
+<span class="btn-text">
+    <a href="{{ url }}">
+        {{ 'backend::lang.form.cancel' | trans }}
+    </a>
+</span>
+
+
+<script language="javascript">
+function print(select){
+    $("#"+select).jqprint({
+        debug: false,
+        importCSS: true,
+        printContainer: true,
+        operaSupport: false
+    });
+}
+</script>

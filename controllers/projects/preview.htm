@@ -40,8 +40,12 @@
                             <tr>
                                 <td><?= $key+1 ?></td>
                                 <td><?php echo $record->record_name;?></td>
-                                <td><?php echo $record->record_id_num;?>(<?php echo $this->makePartial('plugins/samubra/training/controllers/certificates/lists/id_type',
-                                    ['value'=>$record->record_id_type]) ?>)</td>
+                                <td>
+                                    <a href="<?= Backend::url('samubra/training/records/preview/'.$record->id) ?>">
+                                        <?php echo $record->record_id_num;?>(<?php echo $this->makePartial('plugins/samubra/training/controllers/certificates/lists/id_type',
+                                    ['value'=>$record->record_id_type]) ?>)
+                                    </a>
+                                </td>
                                 <td><?php echo $this->makePartial('plugins/samubra/training/controllers/records/lists/is_eligible',
                                     ['record'=>$record,'value'=>$record->is_eligible]) ?></td>
                                 <td><?php echo $this->makePartial('plugins/samubra/training/controllers/status/list/name',

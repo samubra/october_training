@@ -1,0 +1,16 @@
+#print-table{
+    background-color: #0b3f5a;
+    border-color: red;
+    color: red;
+    font-size:140px;
+}
+/*隐藏不打印的元素*/
+.control-list p{
+    line-height:35px;
+    font-size:20px;
+}
+.control-list table tr td{
+    border-color:#000000;
+    text-align: center;
+    vertical-align: middle;
+}

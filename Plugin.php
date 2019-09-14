@@ -41,6 +41,10 @@ class Plugin extends PluginBase
 
     public function registerComponents()
     {
+        return [
+            'Samubra\Training\Components\RecordForm' => 'recordform',
+            'Samubra\Training\Components\ProjectList' => 'projectlist',
+        ];
     }
 
     public function registerSettings()

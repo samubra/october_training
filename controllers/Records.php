@@ -43,6 +43,7 @@ class Records extends TrainingController
 
 
         $this->vars['controller'] = $this->controllerName;
+        $this->pageTitle = '打印申请表格';
         $data['url'] = Backend::url('samubra/training/'.$this->controllerName);
 
         $repository = new RecordRepository();

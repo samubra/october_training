@@ -34,7 +34,10 @@
 
                     </div>
                 </div>
-                <div class="col-md-4 hidden-print"><input type="button"  class="btn btn-primary" onclick=" print('print-wts')" value="打印"></div>
+                <div class="col-md-4 hidden-print">
+                    <a  href="#" class="btn btn-primary oc-icon-print" onclick=" print('print-wts')" >开始打印</a>
+                    <a class="btn btn-default oc-icon-reply" href="{{ url }}" role="button">{{ 'backend::lang.form.cancel' | trans }}</a>
+                </div>
             </div>
 
         </div>
@@ -58,7 +61,10 @@
 
                     </div>
                 </div>
-                <div class="col-md-4 hidden-print"><input type="button"  class="btn btn-primary" onclick=" print('print-jkcns')" value="打印"></div>
+                <div class="col-md-4 hidden-print">
+                    <a  href="#" class="btn btn-primary oc-icon-print" onclick=" print('print-jkcns')" >开始打印</a>
+                    <a class="btn btn-default oc-icon-reply" href="{{ url }}" role="button">{{ 'backend::lang.form.cancel' | trans }}</a>
+                </div>
             </div>
 
         </div>
@@ -140,7 +146,10 @@
                     </div>
 
                 </div>
-                <div class="col-md-4 hidden-print"><input type="button"  class="btn btn-primary" onclick=" print('print-kssq-review')" value="打印"></div>
+                <div class="col-md-4 hidden-print">
+                    <a  href="#" class="btn btn-primary oc-icon-print" onclick=" print('print-kssq-review')" >开始打印</a>
+                    <a class="btn btn-default oc-icon-reply" href="{{ url }}" role="button">{{ 'backend::lang.form.cancel' | trans }}</a>
+                </div>
             </div>
             {% else %}
             <div class="row" id="print-kssq-new">
@@ -213,7 +222,10 @@
                     </div>
 
                 </div>
-                <div class="col-md-4 hidden-print"><input type="button"  class="btn btn-primary" onclick=" print('print-kssq-new')" value="打印"></div>
+                <div class="col-md-4 hidden-print">
+                    <a  href="#" class="btn btn-primary oc-icon-print" onclick=" print('print-kssq-new')" >开始打印</a>
+                    <a class="btn btn-default oc-icon-reply" href="{{ url }}" role="button">{{ 'backend::lang.form.cancel' | trans }}</a>
+                </div>
             </div>
 
             {% endif %}
@@ -223,11 +235,7 @@
 </div>
 
 
-<span class="btn-text">
-    <a href="{{ url }}">
-        {{ 'backend::lang.form.cancel' | trans }}
-    </a>
-</span>
+
 
 
 <script language="javascript">

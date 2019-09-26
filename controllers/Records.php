@@ -43,13 +43,14 @@ class Records extends TrainingController
 
 
         $this->vars['controller'] = $this->controllerName;
-        $data['url'] = Backend::url('samubra/training/'.$this->controllerName);
+        $data['back_url'] = Backend::url('samubra/training/'.$this->controllerName);
+        $this->pageTitle = '打印申请资料';
 
         $repository = new RecordRepository();
         $record = $repository->with('certificate','certificate.user','certificate.category','certificate.category.parent','project','project.plan')->getById($recordId);
         $data['user_sex'] = (int)substr($record->record_id_num,-2,1)% 2 === 0 ? '女' : '男';
 
-        $data['date_now'] = Carbon::now(new \DateTimeZone('Asia/Chongqing'))->format('Y年n月j日');
+        $data['apply_date'] = Carbon::createFromFormat('Y-m-d H:i:s',$record->created_at)->format('Y年n月j日');
 
         if($record->project->plan->is_retraining){
             $printDate = Carbon::createFromFormat('Y-m-d',$record->certificate->print_date);

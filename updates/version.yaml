@@ -60,3 +60,6 @@
 1.0.23:
     - 'Updated table samubra_training_organizations'
     - builder_table_update_samubra_training_organizations.php
+1.0.24:
+    - 添加user的identity和phone字段
+    - add_user_identity_column.php

@@ -3,15 +3,14 @@
 use System\Classes\PluginBase;
 
 use Illuminate\Support\Facades\Validator;
-use App;
 use Illuminate\Foundation\AliasLoader;
-use RainLab\User\Models\User as UserModel;
-use RainLab\User\Controllers\Users as UsersController;
+use Lovata\Buddies\Models\User as UserModel;
+use Lovata\Buddies\Controllers\Users as UsersController;
 
 
 class Plugin extends PluginBase
 {
-    //public $require = ['RainLab.User'];
+    public $require = ['RainLab.User'];
 
     public function boot()
     {
@@ -33,7 +32,7 @@ class Plugin extends PluginBase
             return preg_match('/^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$/',$value);
         });
          * /*/
-    //$this->extendUser();
+        $this->extendUser();
 
 
 
@@ -41,6 +40,9 @@ class Plugin extends PluginBase
 
     public function registerComponents()
     {
+        return [
+            'Samubra\Training\Components\RelateCertificate' => 'relateCertificate'
+        ];
     }
 
     public function registerSettings()
@@ -85,10 +87,15 @@ class Plugin extends PluginBase
             $model->addFillable([
                 'identity'
             ]);
+            $model->addJsonable(
+                'identity'
+            );
 
-            $model->rules['identity'] = ['identity','unique:users'];
+            $model->rules['identity'] = ['identity','unique:lovata_buddies_users'];
+           // $model->rules['phone'] = ['phone:CN'];
 
             $model->attributeNames['identity'] = '身份证号码';
+           // $model->attributeNames['phone'] = '联系电话';
         });
 
         UsersController::extendListColumns(function($list,$model){

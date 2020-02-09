@@ -47,6 +47,10 @@ class Record extends Model
         'is_eligible' => 'boolean',
     ];
 
+    protected $appends = [
+        'edu_type_text'
+    ];
+
     public $belongsTo = [
         'project' => Project::class,
         'certificate' => Certificate::class,
@@ -65,7 +69,10 @@ class Record extends Model
         ],
     ];
 
-
+    public function getEduTypeTextAttribute()
+    {
+        return Train::$eduTypeMap[$this->record_edu_type];
+    }
 
     public function beforeValidate()
     {

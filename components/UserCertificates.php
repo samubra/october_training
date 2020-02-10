@@ -75,17 +75,15 @@ class UserCertificates extends ComponentBase
         }
     }
 
-    protected function renderResult($result,$partial = null,$select = null)
+
+    public function onLoadUserData()
     {
-        if(!is_null($partial) && !is_null($select)){
-            return [
-                $select => $this->renderPartial($partial,$result)
-            ];
-        }else{
-            foreach ($result as $key => $item) {
-                $this->page[$key] = $item;
-            }
-        }
+        $userModel = User::find($this->loginUser->id);
+        $partial = post('partial','pages-auth/edit-user-form');
+        $select = post('select','#account');
+        return [
+            $select => $this->renderPartial($partial,['userModel' => $userModel])
+        ];
     }
 
     /**

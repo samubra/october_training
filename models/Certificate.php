@@ -51,7 +51,8 @@ class Certificate extends Model
     ];
 
     public $hasMany = [
-        'records' => Record::class
+        'records' => Record::class,
+        'records_count' => [Record::class,'count'=>true]
     ];
 
     public function getDropdownOptions($fieldName, $value, $formData)

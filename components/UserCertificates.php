@@ -86,6 +86,8 @@ class UserCertificates extends ComponentBase
         ];
     }
 
+
+
     /**
      * Auth user
      * @return \Illuminate\Http\RedirectResponse|null

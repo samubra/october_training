@@ -1,11 +1,13 @@
 <?php namespace Samubra\Training;
 
+use Samubra\Training\Repositories\Train\CertificateRepository;
 use System\Classes\PluginBase;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\AliasLoader;
 use Lovata\Buddies\Models\User as UserModel;
 use Lovata\Buddies\Controllers\Users as UsersController;
+use Event;
 
 
 class Plugin extends PluginBase
@@ -26,12 +28,6 @@ class Plugin extends PluginBase
            $idValidator = new \Jxlwqq\IdValidator\IdValidator();
            return $idValidator->isValid($value);
         });
-        /**
-        Validator::extend('phone', function($attribute, $value, $parameters, $validator) {
-            //return preg_match('/^13[\d]{9}$|^14[5,7]{1}\d{8}$|^15[^4]{1}\d{8}$|^17[0,6,7,8]{1}\d{8}$|^18[\d]{9}$/',$value);
-            return preg_match('/^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$/',$value);
-        });
-         * /*/
         $this->extendUser();
 
 
@@ -88,15 +84,32 @@ class Plugin extends PluginBase
             $model->addFillable([
                 'identity'
             ]);
-            $model->addJsonable(
-                'identity'
-            );
 
             $model->rules['identity'] = ['identity','unique:lovata_buddies_users'];
            // $model->rules['phone'] = ['phone:CN'];
 
             $model->attributeNames['identity'] = '身份证号码';
            // $model->attributeNames['phone'] = '联系电话';
+
+            $model->addDynamicMethod('scopeExtendLoginQuery', function ($query, $credential, $value) use ($model) {
+                if ($credential == 'email') {
+                    $query = $query->orWhere('identity', $value);
+                }
+                return $query;
+            });
+
+            $model->bindEvent('model.afterCreate', function () use ($model) {
+                $certificateRepository = new CertificateRepository();
+                $certificateModels = $certificateRepository->with('category')->where('id_num',$model->identity)
+                    ->whereNull('user_id')->get();
+                $certificateModels->each(function($item) use($model){
+                    $item->user_id = $model->id;
+                    $item->save();
+                    trace_log($model->identity . '已关联证书'.$item->category->name);
+                });
+
+            });
+
         });
 
         UsersController::extendListColumns(function($list,$model){

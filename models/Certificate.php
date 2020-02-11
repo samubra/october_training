@@ -5,7 +5,6 @@ use October\Rain\Database\Traits\SoftDelete;
 use October\Rain\Exception\AjaxException;
 use October\Rain\Exception\ApplicationException;
 use October\Rain\Support\Facades\Flash;
-use RainLab\User\Models\User;
 use Samubra\Training\Models\Traits\CreateNumTrait;
 use Samubra\Training\Models\Traits\CustomValidateMessage;
 
@@ -45,7 +44,7 @@ class Certificate extends Model
         'active' => 'boolean|required'
     ];
     public $belongsTo = [
-        'user' => User::class,
+        'user' => \Lovata\Buddies\Models\User::class,
         'category' => Category::class,
         'organization' => Organization::class
     ];

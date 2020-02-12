@@ -12,7 +12,7 @@ use Event;
 
 class Plugin extends PluginBase
 {
-    public $require = ['RainLab.User'];
+    public $require = ['Lovata.Buddies','RainLab.Pages'];
 
     public function boot()
     {
@@ -98,16 +98,10 @@ class Plugin extends PluginBase
                 return $query;
             });
 
+
             $model->bindEvent('model.afterCreate', function () use ($model) {
                 $certificateRepository = new CertificateRepository();
-                $certificateModels = $certificateRepository->with('category')->where('id_num',$model->identity)
-                    ->whereNull('user_id')->get();
-                $certificateModels->each(function($item) use($model){
-                    $item->user_id = $model->id;
-                    $item->save();
-                    trace_log($model->identity . '已关联证书'.$item->category->name);
-                });
-
+                $certificateRepository->relateCertificates($model);
             });
 
         });

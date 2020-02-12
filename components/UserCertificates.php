@@ -2,6 +2,7 @@
 
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
+use Flash;
 use Lang;
 use Input;
 use Redirect;
@@ -35,21 +36,26 @@ class UserCertificates extends ComponentBase
     public function onLoadCertificates()
     {
         $certificates = false;
+        $userModel = false;
         if(AuthHelper::check()){
             $userModel = User::with('certificates','certificates.category')->find($this->loginUser->id);
 
             if($userModel->certificates->count())
                 $certificates = $userModel->certificates;
+        }else{
+            return redirect('/login');
         }
 
         if(request()->has(['partial','select'])){
             $partial = post('partial','pages-training/certificates_list');
             $select = post('select','#account');
             return [
-                $select => $this->renderPartial($partial,['certificates'=> $certificates])
+                $select => $this->renderPartial($partial,['certificates'=> $certificates,'userModel' => $userModel])
             ];
         }else{
             $this->page['certificates'] = $certificates;
+            $this->page['userModel'] = $userModel;
+
         }
 
     }
@@ -87,41 +93,25 @@ class UserCertificates extends ComponentBase
     }
 
 
+    public function onRelateCertificates()
+    {
+        if(AuthHelper::check() && request()->has('identity')) {
+            $userModel = User::with('certificates', 'certificates.category')->find($this->loginUser->id);
+            $userModel->identity = post('identity');
+            $userModel->save();
+            $this->certificateRepository->relateCertificates($userModel);
+            return redirect('/account');
+        }
 
-    /**
-     * Auth user
-     * @return \Illuminate\Http\RedirectResponse|null
-     */
+    }
+
     public function onRun()
     {
         if(!request()->has(['partial','select']))
             $this->onLoadCertificates();
-
-        $inputData = Input::get(['identity']);
-        if (empty($arUserData)) {
-            return null;
-        }
-        var_dump($inputData);
-
-        $certificateRepository = new CertificateRepository();
-        $certificateModels = $certificateRepository->getByColumn($inputData , 'identity');
-
-        if($certificateModels->count()){
-            foreach ($certificateModels as $certificate){
-                $certificate->user_id = $this->loginUser->id;
-                $certificate->save();
-            }
-        }
-
-        $sRedirectPage = $this->property('redirectPage');
-        if (empty($sRedirectPage)) {
-            return Redirect::to('/');
-        }
-
-        $sRedirectURL = Page::url($sRedirectPage);
-
-        return Redirect::to($sRedirectURL);
     }
+
+
 
 }
 

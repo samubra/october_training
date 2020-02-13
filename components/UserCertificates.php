@@ -3,11 +3,11 @@
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use Flash;
+use Auth;
 use Lang;
 use Input;
 use Redirect;
-use Lovata\Buddies\Facades\AuthHelper;
-use Lovata\Buddies\Models\User;
+use RainLab\User\Models\User;
 use Samubra\Training\Repositories\Train\CertificateRepository;
 use Samubra\Training\Repositories\Train\RecordRepository;
 
@@ -18,7 +18,7 @@ class UserCertificates extends ComponentBase
     protected $recordRepository;
     public function init()
     {
-        $this->loginUser = AuthHelper::getUser();
+        $this->loginUser = Auth::getUser();
         $this->certificateRepository = new CertificateRepository();
         $this->recordRepository = new RecordRepository();
     }
@@ -37,7 +37,7 @@ class UserCertificates extends ComponentBase
     {
         $certificates = false;
         $userModel = false;
-        if(AuthHelper::check()){
+        if(Auth::check()){
             $userModel = User::with('certificates','certificates.category')->find($this->loginUser->id);
 
             if($userModel->certificates->count())

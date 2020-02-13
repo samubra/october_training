@@ -5,14 +5,14 @@ use System\Classes\PluginBase;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\AliasLoader;
-use Lovata\Buddies\Models\User as UserModel;
-use Lovata\Buddies\Controllers\Users as UsersController;
+use RainLab\User\Models\User as UserModel;
+use RainLab\User\Controllers\Users as UsersController;
 use Event;
 
 
 class Plugin extends PluginBase
 {
-    public $require = ['Lovata.Buddies','RainLab.Pages'];
+    public $require = ['RainLab.User','RainLab.Pages'];
 
     public function boot()
     {
@@ -37,7 +37,6 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Samubra\Training\Components\RelateCertificate' => 'relateCertificate',
             'Samubra\Training\Components\UserCertificates' => 'userCertificates'
         ];
     }
@@ -82,14 +81,18 @@ class Plugin extends PluginBase
             $model->hasMany['certificates'] = [\Samubra\Training\Models\Certificate::class,'key'=>'user_id'];
             $model->hasMany['certificates_count'] = [\Samubra\Training\Models\Certificate::class,'key'=>'user_id','count'=>true];
             $model->addFillable([
-                'identity'
+                'identity',
+                'phone',
+                'company',
+                'introduce'
             ]);
 
-            $model->rules['identity'] = ['identity','unique:lovata_buddies_users'];
-           // $model->rules['phone'] = ['phone:CN'];
+            $model->rules['identity'] = ['identity','unique:users'];
+            $model->rules['phone'] = ['phone:CN'];
 
             $model->attributeNames['identity'] = '身份证号码';
-           // $model->attributeNames['phone'] = '联系电话';
+            $model->attributeNames['phone'] = '联系电话';
+            $model->attributeNames['company'] = '工作单位';
 
             $model->addDynamicMethod('scopeExtendLoginQuery', function ($query, $credential, $value) use ($model) {
                 if ($credential == 'email') {
@@ -115,6 +118,21 @@ class Plugin extends PluginBase
                     'label' => '身份证号码',
                     'type' => 'text',
                     'searchable' => true,
+                ],
+                'phone' =>[
+                    'label' => '联系电话',
+                    'type' => 'text',
+                    'searchable' => true,
+                ],
+                'company' =>[
+                    'label' => '单位名称',
+                    'type' => 'text',
+                    'searchable' => true,
+                ],
+                'introduce' =>[
+                    'label' => '个人介绍',
+                    'type' => 'text',
+                    'searchable' => true,
                 ]
             ]);
         });
@@ -126,6 +144,20 @@ class Plugin extends PluginBase
             $form->addTabFields([
                 'identity' => [
                     'label' => '身份证号码',
+                    'tab'   => '培训信息',
+                    'span' => 'auto',
+                    'required' => '1',
+                    'type' => 'text',
+                ],
+                'phone' => [
+                    'label' => '联系电话',
+                    'tab'   => '培训信息',
+                    'span' => 'auto',
+                    'required' => '1',
+                    'type' => 'text',
+                ],
+                'company' => [
+                    'label' => '工作单位',
                     'tab'   => '培训信息',
                     'span' => 'auto',
                     'required' => '1',

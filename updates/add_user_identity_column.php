@@ -7,19 +7,23 @@ class AddUserIdentityColumn extends Migration
 {
     public function up()
     {
-        Schema::table('lovata_buddies_users', function($table)
+        Schema::table('users', function($table)
         {
-            $table->string('identity',20)->nullable;
-            //$table->string('phone',12)->nullable;
+            $table->string('identity',20)->nullable();
+            $table->string('phone',12)->nullable();
+            $table->string('company',60)->nullable();
+            $table->text('introduce')->nullable();
         });
     }
-    
+
     public function down()
     {
-        Schema::table('lovata_buddies_users', function($table)
+        Schema::table('users', function($table)
         {
             $table->dropColumn('identity');
-           // $table->dropColumn('phone');
+            $table->dropColumn('phone');
+            $table->dropColumn('company');
+            $table->dropColumn('introduce');
         });
     }
 }

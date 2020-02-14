@@ -87,19 +87,13 @@ class Plugin extends PluginBase
                 'introduce'
             ]);
 
-            $model->rules['identity'] = ['identity','unique:users'];
-            $model->rules['phone'] = ['phone:CN'];
+            $model->rules['identity'] = ['nullable','identity','unique:users'];
+            $model->rules['avatar'] = ['nullable','mimes:jpeg','dimensions:min_width=100,min_height=200'];
+            $model->rules['phone'] = ['nullable'];//,'phone:CN,mobile'];
 
             $model->attributeNames['identity'] = '身份证号码';
             $model->attributeNames['phone'] = '联系电话';
             $model->attributeNames['company'] = '工作单位';
-
-            $model->addDynamicMethod('scopeExtendLoginQuery', function ($query, $credential, $value) use ($model) {
-                if ($credential == 'email') {
-                    $query = $query->orWhere('identity', $value);
-                }
-                return $query;
-            });
 
 
             $model->bindEvent('model.afterCreate', function () use ($model) {

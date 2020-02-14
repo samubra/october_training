@@ -65,7 +65,7 @@ class UserCertificates extends ComponentBase
         $certificate_id = post('certificate_id');
         $result = [];
 
-        $result['certificateModel'] = $this->certificateRepository->with('category','records','records.project','records.status')->getById($certificate_id);
+        $result['certificateModel'] = $this->certificateRepository->with('category','records','records_count','records.project','records.status')->getById($certificate_id);
         $result['records'] = $result['certificateModel']->records->count() ? $result['certificateModel']->records:false;
 
         if(request()->has(['partial','select'])){
@@ -84,18 +84,27 @@ class UserCertificates extends ComponentBase
 
     public function onLoadUserData()
     {
-        $userModel = User::find($this->loginUser->id);
-        $partial = post('partial','pages-auth/edit-user-form');
+        //$userModel = User::find($this->loginUser->id);
+        $partial = post('partial','pages-auth/update_user');
         $select = post('select','#account');
         return [
-            $select => $this->renderPartial($partial,['userModel' => $userModel])
+            $select => $this->renderPartial($partial,['userModel' => $this->loginUser])
+        ];
+    }
+    public function onLoadUserDataForChangePass()
+    {
+        //$userModel = User::find($this->loginUser->id);
+        $partial = post('partial','pages-auth/change_password');
+        $select = post('select','#account');
+        return [
+            $select => $this->renderPartial($partial,['userModel' => $this->loginUser])
         ];
     }
 
 
     public function onRelateCertificates()
     {
-        if(AuthHelper::check() && request()->has('identity')) {
+        if(Auth::check() && request()->has('identity')) {
             $userModel = User::with('certificates', 'certificates.category')->find($this->loginUser->id);
             $userModel->identity = post('identity');
             $userModel->save();

@@ -89,7 +89,7 @@ class Plugin extends PluginBase
 
             $model->rules['identity'] = ['nullable','identity','unique:users'];
             $model->rules['avatar'] = ['nullable','mimes:jpeg','dimensions:min_width=100,min_height=200'];
-            $model->rules['phone'] = ['nullable'];//,'phone:CN,mobile'];
+            $model->rules['phone'] = ['nullable','phone:CN,mobile'];
 
             $model->attributeNames['identity'] = '身份证号码';
             $model->attributeNames['phone'] = '联系电话';

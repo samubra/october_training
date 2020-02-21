@@ -1,6 +1,7 @@
 <?php namespace Samubra\Training\Models;
 
 use Model;
+use RainLab\Blog\Models\Post;
 use Samubra\Training\Models\Traits\SaveStatusId;
 
 /**
@@ -13,7 +14,7 @@ class Project extends Model
     use SaveStatusId;
 
     public $status_filed = 'training_status_id';
-    
+
 
     /**
      * @var string The database table used by the model.
@@ -61,6 +62,21 @@ class Project extends Model
                 'num','record_status_id','record_edu_type','health_type','theory_score','operate_score','is_eligible'
             ]
         ],
+        'posts' => [
+            Post::class,
+            'table' => 'samubra_training_project_posts',
+            'order' => 'created_at'
+        ],
+        'certificates_count' => [
+            Certificate::class,
+            'table' => 'samubra_training_records',
+            'key' => 'certificate_id',
+            'other_key' => 'project_id',
+            'pivot' => [
+                'num','record_status_id','record_edu_type','health_type','theory_score','operate_score','is_eligible'
+            ],
+            'count' => true
+        ],
     ];
 
     public $morphToMany = [
@@ -72,6 +88,11 @@ class Project extends Model
         ],
     ];
 
+
+    public function scopeActive($query)
+    {
+        return $query->where('active',true);
+    }
 
     public function getDropdownOptions($fieldName, $value, $formData)
     {

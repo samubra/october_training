@@ -7,3 +7,11 @@ status_change:
     form: $/samubra/training/models/status/fields.yaml
     recordsPerPage: 10
     scope: project
+posts:
+  label: 文章
+  view:
+    list: $/rainlab/blog/models/post/columns.yaml
+    toolbarButtons: add|remove
+  manage:
+    recordsPerPage: 10
+    scope: isPublished

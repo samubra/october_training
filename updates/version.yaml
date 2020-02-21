@@ -63,3 +63,6 @@
 1.0.24:
     - 添加user的identity和phone字段
     - add_user_identity_column.php
+1.0.25:
+    - 添加扩展posts与projects关系表
+    - builder_table_create_samubra_training_project_posts.php

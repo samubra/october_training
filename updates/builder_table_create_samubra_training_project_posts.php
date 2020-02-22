@@ -14,10 +14,18 @@ class BuilderTableCreateSamubraTrainingProjectPosts extends Migration
             $table->integer('project_id')->unsigned();
             $table->primary(['project_id', 'post_id']);
         });
+
+        Schema::table('rainlab_blog_posts', function($table)
+        {
+            $table->boolean('pinned')->default(false);
+        });
     }
 
     public function down()
     {
         Schema::dropIfExists('samubra_training_project_posts');
+        Schema::table('rainlab_blog_posts', function($table){
+            $table->dropColumn('pinned');
+        });
     }
 }

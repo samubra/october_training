@@ -43,8 +43,8 @@ class Project extends Model
 
     public $hasMany = [
         'courses' => ProjectCourse::class,
-        'records' => Record::class,
-        'records_count' => [Record::class,'count' => true],
+        'records' => [Record::class, 'scope' => 'isAccept'],
+        'records_count' => [Record::class, 'scope' => 'isAccept','count' => true],
     ];
 
     public $belongsTo = [

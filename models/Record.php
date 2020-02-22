@@ -16,7 +16,7 @@ class Record extends Model
 
     public $status_filed = 'record_status_id';
     protected $fillable = ['num','record_status_id','record_edu_type','health_type','certificate_id','project_id','theory_score','operate_score','is_eligible','record_name','record_phone','record_address','record_company','record_id_num','record_id_type'];
-    
+
 
     /**
      * @var string The database table used by the model.
@@ -136,5 +136,12 @@ class Record extends Model
            $fields->record_id_type->readOnly = true;
 
        }
+    }
+
+    public function scopeIsAccept($query , $status_id = null)
+    {
+        $status_id = $status_id ? $status_id:6;
+
+        return $query->where('record_status_id',$status_id);
     }
 }

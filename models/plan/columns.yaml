@@ -9,11 +9,16 @@ columns:
         label: 培训类别
         type: partial
         path: ~/plugins/samubra/training/controllers/plans/list/_category.htm
-    is_training:
+    is_retraining:
         label: 是否复训
-        type: partial
-        path: ~/plugins/samubra/training/controllers/plans/list/_is_retraining.htm
-        invisible: true
+        ##type: partial
+        ##path: ~/plugins/samubra/training/controllers/plans/list/_is_retraining.htm
+        type: inetis-list-switch
+        icon: true
+        sortable: true
+        titleTrue: '该培训方案改为复训'
+        titleFalse: '该培训方案改为新训'
+        ##invisible: true
     organization_id:
         label: 发证机构
         type: partial

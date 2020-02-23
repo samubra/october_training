@@ -11,7 +11,12 @@ columns:
         type: text
     active:
         label: 启用
-        type: switch
+        #type: switch
+        type: inetis-list-switch
+        icon: true
+        sortable: true
+        titleTrue: '启用该培训项目'
+        titleFalse: '禁用该培训项目'
     training_status_id:
         label: 状态
         type: partial
@@ -27,7 +32,7 @@ columns:
         type: text
         invisible: true
     cost:
-        label: 费用
+        label: 收费
         type: text
         invisible: true
     plan_id:

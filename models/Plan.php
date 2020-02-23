@@ -11,7 +11,7 @@ class Plan extends Model
     use \October\Rain\Database\Traits\Validation;
 
     use CustomValidateMessage;
-    
+
 
     /**
      * @var string The database table used by the model.
@@ -92,7 +92,7 @@ class Plan extends Model
 
     }
 
-    public function getIsRetrainingTxt()
+    public function getIsRetrainingTextAttribute()
     {
         $list = $this->getDropdownOptions('is_retraining','','');
 

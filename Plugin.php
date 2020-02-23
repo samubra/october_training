@@ -41,7 +41,8 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Samubra\Training\Components\UserCertificates' => 'userCertificates'
+            'Samubra\Training\Components\UserCertificates' => 'userCertificates',
+            'Samubra\Training\Components\ProjectDetails' => 'projectDetails'
         ];
     }
 

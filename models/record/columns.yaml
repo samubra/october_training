@@ -29,7 +29,6 @@ columns:
         type: text
         searchable: true
         sortable: true
-
     theory_score:
         label: 理论成绩
         type: number
@@ -41,11 +40,14 @@ columns:
         invisible: true
         sortable: true
     is_eligible:
-        label: 是否通过
-        type: partial
-        path: $/samubra/training/controllers/records/lists/_is_eligible.htm
-        searchable: true
+        label: 考试通过
+        #type: partial
+        #path: $/samubra/training/controllers/records/lists/_is_eligible.htm
+        type: inetis-list-switch
+        icon: true
         sortable: true
+        titleTrue: '设置该申请记录已考试通过'
+        titleFalse: '设置该申请记录未考试通过'
     record_status_id:
         label: 受理状态
         type: partial

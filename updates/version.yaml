@@ -66,3 +66,6 @@
 1.0.25:
     - 添加扩展posts与projects关系表
     - builder_table_create_samubra_training_project_posts.php
+1.0.26:
+    - 添加project_courses的course_id字段
+    - add_project_courses_course_id_column.php

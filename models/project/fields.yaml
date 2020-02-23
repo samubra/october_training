@@ -18,7 +18,7 @@ fields:
         label: 是否启用
         span: storm
         cssClass: col-md-3
-        default: '1'
+        default: 0
         type: balloon-selector
     training_begin_date:
         label: 培训开始日期

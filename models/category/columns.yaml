@@ -42,10 +42,14 @@ columns:
         invisible: true
         sortable: true
     active:
-        label: 是否启用
-        type: switch
-        searchable: true
+        label: 启用
+        type: inetis-list-switch
+        icon: true
         sortable: true
+        titleTrue: '禁用该培训类别'
+        titleFalse: '启用该培训类别'
+        textTrue: '启用'
+        textFalse: '禁用'
     description:
         label: 分类描述
         type: text

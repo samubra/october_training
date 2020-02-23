@@ -79,9 +79,14 @@ columns:
         type: date
         invisible: false
     active:
-        label: 是否有效
-        type: partial
-        path: $/samubra/training/controllers/certificates/lists/_active.htm
+        label: 有效
+        ##type: partial
+        ##path: $/samubra/training/controllers/certificates/lists/_active.htm
+        type: inetis-list-switch
+        icon: true
+        sortable: true
+        titleTrue: '设置该证书为有效'
+        titleFalse: '设置该证书为已失效'
     user_id:
         label: 账户
         type: number

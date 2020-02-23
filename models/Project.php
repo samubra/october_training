@@ -27,7 +27,7 @@ class Project extends Model
      * @var array Validation rules
      */
     public $rules = [
-        'slug' => 'required',
+        'slug' => 'required|unique:samubra_training_projects,slug',
         'title' => 'required|min:3',
         'training_begin_date' => 'date',
         'training_end_date' => 'date|after:training_begin_date',

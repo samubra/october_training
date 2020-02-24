@@ -20,7 +20,7 @@ class Certificates extends TrainingController
         'Backend\Behaviors\FormController',
         'Backend.Behaviors.ImportExportController',
         ];
-    
+
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
     public $importExportConfig = 'config_import_export.yaml';
@@ -31,7 +31,7 @@ class Certificates extends TrainingController
     {
         parent::__construct();
         $this->addCss('/plugins/samubra/training/assets/backend.css');
-        BackendMenu::setContext('Samubra.Training', 'plans', 'certificates');
+        BackendMenu::setContext('Samubra.Training', 'projects', 'certificates');
     }
         /**
              * Called before the creation or updating form is saved.

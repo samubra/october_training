@@ -62,16 +62,16 @@ class Train extends Model
     const EDU_TYPE_DOCTOR = 10;
 
     public static $eduTypeMap = [
-        self::EDU_TYPE_DOCTOR    => '博士',
-        self::EDU_TYPE_MASTER    => '硕士',
-        self::EDU_TYPE_BACHELOR    => '学士',
-        self::EDU_TYPE_POSTGRADUATE => '研究生',
-        self::EDU_TYPE_UNDERGRADUATE    => '本科',
-        self::EDU_TYPE_JUNIOR_SCHOOL    => '大学专科',
-        self::EDU_TYPE_TECHNICAL_SECONDARY_SCHOOL    => '中等专业学校',
-        self::EDU_TYPE_SENIOR_HIGH_SCHOOL    => '高中',
-        self::EDU_TYPE_JUNIOR_HIGH_SCHOOL    => '初中',
         self::EDU_TYPE_ELEMENTAR_SCHOOL    => '小学',
+        self::EDU_TYPE_JUNIOR_HIGH_SCHOOL    => '初中',
+        self::EDU_TYPE_SENIOR_HIGH_SCHOOL    => '高中',
+        self::EDU_TYPE_TECHNICAL_SECONDARY_SCHOOL    => '中等专业学校',
+        self::EDU_TYPE_JUNIOR_SCHOOL    => '大学专科',
+        self::EDU_TYPE_UNDERGRADUATE    => '本科',
+        self::EDU_TYPE_POSTGRADUATE => '研究生',
+        self::EDU_TYPE_BACHELOR    => '学士',
+        self::EDU_TYPE_MASTER    => '硕士',
+        self::EDU_TYPE_DOCTOR    => '博士',
     ];
 
     const COMPLETE_TYPE_GRADUATION = 1;
@@ -200,7 +200,7 @@ class Train extends Model
     {
 
         $prefix = date('YmdHis');
-        
+
         $no = $prefix.str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
 
         return $no;

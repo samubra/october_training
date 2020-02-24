@@ -5,7 +5,14 @@ namespace Samubra\Training\Components;
 
 
 use Cms\Classes\ComponentBase;
+use Samubra\Training\Repositories\Train\CertificateRepository;
 use Samubra\Training\Repositories\Train\ProjectRepository;
+use Flash;
+use Validator;
+use ValidationException;
+use ApplicationException;
+use Cart;
+use Auth;
 
 class ProjectDetails extends ComponentBase
 {
@@ -47,7 +54,7 @@ class ProjectDetails extends ComponentBase
 
     public function loadProject()
     {
-        $slug = $this->property('slug');
+        $slug = post('slug',$this->property('slug'));
         try {
             $projectModel = $this->projectRepository->with('plan','plan.category','status','records_count','courses','courses.course','courses.teacher')->getByColumn($slug,'slug' );
         } catch (ModelNotFoundException $ex) {
@@ -57,4 +64,5 @@ class ProjectDetails extends ComponentBase
 
         return $projectModel;
     }
+
 }

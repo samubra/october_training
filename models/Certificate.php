@@ -5,6 +5,7 @@ use October\Rain\Database\Traits\SoftDelete;
 use October\Rain\Exception\AjaxException;
 use October\Rain\Exception\ApplicationException;
 use October\Rain\Support\Facades\Flash;
+use RainLab\User\Models\User;
 use Samubra\Training\Models\Traits\CreateNumTrait;
 use Samubra\Training\Models\Traits\CustomValidateMessage;
 
@@ -17,7 +18,7 @@ class Certificate extends Model
     use CreateNumTrait;
     use SoftDelete;
     use CustomValidateMessage;
-    
+
 
     /**
      * @var string The database table used by the model.
@@ -44,7 +45,7 @@ class Certificate extends Model
         'active' => 'boolean|required'
     ];
     public $belongsTo = [
-        'user' => \Lovata\Buddies\Models\User::class,
+        'user' => User::class,
         'category' => Category::class,
         'organization' => Organization::class
     ];

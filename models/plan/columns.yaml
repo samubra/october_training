@@ -50,6 +50,7 @@ columns:
     document:
         label: 文档需求
         type: partial
+        invisible: true
         path: $/samubra/training/controllers/plans/list/_document.htm
     updated_at:
         label: 最后修改

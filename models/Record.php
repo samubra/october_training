@@ -41,7 +41,7 @@ class Record extends Model
     ];
 
     public $customMessages = [
-        'project_id.unique' => '当前培训项目已存在该培训记录'
+        'record_id_num.unique' => '当前培训项目已存在该培训记录'
     ];
     protected $casts = [
         'is_eligible' => 'boolean',
@@ -81,23 +81,14 @@ class Record extends Model
         {
             $this->rules['certificate_id'] = ['required'];
         }
-        $projectRule[] = 'required';
-        $unique = Rule::unique($this->table);
-        if($this->id)
-            $unique->ignore($this->id);
-        if($certificate_id = $this->certificate_id) {
-            $projectRule[] = $unique->where(function ($query) use ($certificate_id) {
-                return $query->where('certificate_id', $certificate_id);
-            });
-        }else{
-            $record_id_num = $this->record_id_num;
-            $record_id_type = $this->record_id_type;
+        $recordIdNum = ['required','identity'];
 
-            $projectRule[] = $unique->where(function ($query) use ($record_id_num,$record_id_type) {
-                return $query->where('record_id_num', $record_id_num)->where('record_id_type',$record_id_type);
-            });
-        }
-        $this->rules['project_id'] = $projectRule;
+        $unique = Rule::unique($this->table,'record_id_num')->where('project_id', $this->project_id);
+
+
+        $recordIdNum[] = $unique;
+
+        $this->rules['record_id_num'] = $recordIdNum;
     }
     public function getDropdownOptions($fieldName, $value, $formData)
     {

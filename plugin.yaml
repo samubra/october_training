@@ -47,10 +47,6 @@ navigation:
                 label: 授课计划
                 url: samubra/training/plancourses
                 icon: icon-tree
-            certificates:
-                label: 证书管理
-                url: samubra/training/certificates
-                icon: icon-suitcase
     projects:
         label: 培训项目
         url: samubra/training/projects
@@ -68,3 +64,7 @@ navigation:
                 label: 日程安排
                 url: samubra/training/projectcourses
                 icon: icon-table
+            certificates:
+                label: 证书管理
+                url: samubra/training/certificates
+                icon: icon-suitcase

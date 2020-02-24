@@ -30,9 +30,8 @@ class Record extends Model
         'record_edu_type' => 'required' ,
         'is_eligible' => 'boolean' ,
         'record_name' => 'required' ,
-        'record_id_num' => 'required|identity' ,
         'record_phone' => 'required|phone:CN' ,
-        'record_address' => 'required' ,
+        'record_address' => 'required',
         'record_company' => 'required'
     ];
     public $attributeNames = [
@@ -41,7 +40,8 @@ class Record extends Model
     ];
 
     public $customMessages = [
-        'record_id_num.unique' => '当前培训项目已存在该培训记录'
+        'record_id_num.unique' => '当前培训项目已存在该培训记录',
+        //'record_id_num.identity' => '身份证号码格式错误'
     ];
     protected $casts = [
         'is_eligible' => 'boolean',
@@ -76,17 +76,13 @@ class Record extends Model
 
     public function beforeValidate()
     {
-        $plan = $this->project->plan;
-        if($plan->is_certificate)
+        if($this->project->plan->is_certificate)
         {
             $this->rules['certificate_id'] = ['required'];
         }
         $recordIdNum = ['required','identity'];
 
-        $unique = Rule::unique($this->table,'record_id_num')->where('project_id', $this->project_id);
-
-
-        $recordIdNum[] = $unique;
+        $recordIdNum[] = Rule::unique($this->table,'record_id_num')->where('project_id', $this->project_id);
 
         $this->rules['record_id_num'] = $recordIdNum;
     }

@@ -1,5 +1,6 @@
 <?php namespace Samubra\Training;
 
+use Samubra\Training\Classes\CheckAddRecord;
 use Samubra\Training\Classes\ExtendsPost;
 use Samubra\Training\Classes\ExtendsUser;
 use Samubra\Training\Repositories\Train\CertificateRepository;
@@ -31,6 +32,10 @@ class Plugin extends PluginBase
             //return preg_match('/(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}$)/', $value);
            $idValidator = new \Jxlwqq\IdValidator\IdValidator();
            return $idValidator->isValid($value);
+        });
+        Validator::extend('record', function($attribute, $value, $parameters, $validator) {
+            $check = new CheckAddRecord();
+            return $check->setCertificateModel($value)->setProjectModel($parameters['0'])->check();
         });
 
         //扩展user的model和controller

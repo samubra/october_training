@@ -7,6 +7,7 @@ namespace Samubra\Training\Components;
 use Cms\Classes\ComponentBase;
 use Illuminate\Support\Str;
 
+use Samubra\Training\Classes\CheckRecord;
 use Samubra\Training\Models\Train;
 use Samubra\Training\Repositories\Train\CertificateRepository;
 use Samubra\Training\Repositories\Train\ProjectRepository;
@@ -82,20 +83,28 @@ class AddRecord extends ComponentBase
     public function onAddRecord()
     {
 
-        trace_sql();
-       //trace_log(post('certificate_id'));
         $this->loadCertificate();
+        $this->loadProject();
+
+
         $recordData = [
              'record_edu_type' => post('edu_type'),
-             'certificate_id' => post('certificate_id'),
              'project_id' => post('project_id'),
-             'record_name' => $this->certificateModel->name,
              'record_phone' => post('phone'),
              'record_address' => post('address'),
              'record_company' => post('company','个体'),
-             'record_id_type' => $this->certificateModel->id_type,
-             'record_id_num' => $this->certificateModel->id_num
         ];
+
+        if ($this->certificateModel){
+            $recordData['certificate_id'] = post('certificate_id');
+            $recordData['record_name'] = $this->certificateModel->name;
+            $recordData['record_id_type'] = $this->certificateModel->id_type;
+            $recordData['record_id_num'] = $this->certificateModel->id_num;
+        }else{
+            $recordData['record_name'] = post('name');
+            $recordData['record_id_type'] = Train::ID_TYPE_IDENTITY;
+            $recordData['record_id_num'] = post('identity');
+        }
         $this->saveRecord($recordData);
 
         Cart::add([
@@ -104,7 +113,7 @@ class AddRecord extends ComponentBase
             'qty' => 1,
             'price' => $this->projectModel->cost
         ]);
-        trace_log(Cart::total());
+        //trace_log(Cart::total());
 
         return [];
     }
@@ -169,40 +178,35 @@ class AddRecord extends ComponentBase
 
     protected function saveRecord($data)
     {
-        $this->loadProject();
+
         $recordModel = $this->recordRepository->makeModel();
+        if($this->certificateModel){
             $rules = [
-            'record_edu_type' => 'required',
-            'record_phone' => 'required|phone:CN' ,
-            'record_address' => 'required',
-            'record_company' => 'required',
-            'certificate_id' => ['required']
-        ];
-        $messages = [
-            'record_edu_type.required' => '文化程度必须选择！',
-            'record_phone.required' => '电话号码必须选择！',
-            'record_address.required' => '联系地址必须填写！',
-            'record_company.required' => '单位名称必须填写！',
-            'phone' => '电话号码格式不正确！',
-        ];
+                'certificate_id' => ['required','record:'.$this->projectModel->id],
+                ];
+            $messages = [
+                'record' => '当前证书不符合该培训项目的申请条件！',
+            ];
 
         $validation = Validator::make($data, $rules,$messages);
-        if ($validation->fails()) {
-            throw new ValidationException($validation);
+            if ($validation->fails()) {
+                throw new ValidationException($validation);
+            }
         }
         $this->recordModel = $recordModel->create($data);
-
     }
     protected function loadCertificate($certificate_id = null)
     {
         $certificate_id = is_null($certificate_id) ? post('certificate_id'):$certificate_id;
-        try {
-            $certificateModel = $this->certificateRepository->with('user','category')->getById($certificate_id);
-        } catch (ModelNotFoundException $ex) {
-            $this->setStatusCode(404);
-            return $this->controller->run('404');
+        if($certificate_id){
+            try {
+                $certificateModel = $this->certificateRepository->with('category')->getById($certificate_id);
+            } catch (ModelNotFoundException $ex) {
+                $this->setStatusCode(404);
+                return $this->controller->run('404');
+            }
+            return $this->certificateModel = $certificateModel;
         }
-        return $this->certificateModel = $certificateModel;
     }
 
     protected function loadProject($project_slug = null,$project_id = null)

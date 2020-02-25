@@ -39,10 +39,32 @@ class ExtendsPost
                 'pinned' =>[
                     'label' => '置顶',
                     'type' => 'switch',
-                ],
+                ]
             ]);
         });
-        PostsController::extendFormFields(function($form,$model,$context){
+        PostsController::extend(function($controller) {
+
+            $controller->addCss('/plugins/samubra/training/assets/backend.css');
+            // Implement behavior if not already implemented
+            if (!$controller->isClassExtendedWith('Backend.Behaviors.RelationController')) {
+                $controller->implement[] = 'Backend.Behaviors.RelationController';
+            }
+
+            // Define property if not already defined
+            if (!isset($controller->relationConfig)) {
+                $controller->addDynamicProperty('relationConfig');
+            }
+
+            // Splice in configuration safely
+            $myConfigPath = '$/samubra/training/controllers/projects/post_config_relation.yaml';
+
+            $controller->relationConfig = $controller->mergeConfig(
+                $controller->relationConfig,
+                $myConfigPath
+            );
+        });
+
+            PostsController::extendFormFields(function($form,$model,$context){
             if(!$model instanceof Post)
                 return ;
             $form->addSecondaryTabFields([
@@ -50,8 +72,14 @@ class ExtendsPost
                     'label' => '置顶',
                     'tab'   => 'rainlab.blog::lang.post.tab_manage',
                     'type' => 'switch',
+                ],
+                'projects' =>[
+                    'tab'   => '培训项目',
+                    'type' => 'partial',
+                    'path' => '$/samubra/training/controllers/projects/list/_projects.htm'
                 ]
-                ]);
+            ]);
+
         });
     }
 

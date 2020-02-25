@@ -113,7 +113,7 @@ class AddRecord extends ComponentBase
             'qty' => 1,
             'price' => $this->projectModel->cost
         ]);
-        //trace_log(Cart::total());
+        trace_log(Cart::total());
 
         return [];
     }

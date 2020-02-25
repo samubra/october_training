@@ -1,0 +1,9 @@
+projects:
+  label: 培训项目
+  view:
+    list: $/samubra/training/models/project/post_relate_columns.yaml
+    toolbarButtons: add|remove
+  manage:
+    list: $/samubra/training/models/project/post_relate_columns.yaml
+    recordsPerPage: 10
+    scope: active

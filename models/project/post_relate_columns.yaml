@@ -1,0 +1,31 @@
+columns:
+    id:
+        label: ID
+        type: number
+    title:
+        label: 项目名称
+        type: text
+    training_status_id:
+        label: 状态
+        type: partial
+        path: $/samubra/training/controllers/records/lists/_status_name.htm
+        searchable: true
+        sortable: true
+    training_begin_date:
+        label: 培训时间
+        type: partial
+        path: $/samubra/training/controllers/projects/lists/_start_to_end.htm
+    plan_exam_date:
+        label: 计划考试时间
+        type: text
+    cost:
+        label: 收费
+        type: text
+    plan_id:
+        label: 培训方案
+        type: text
+        select: title
+        relation: plan
+    created_at:
+        label: 创建时间
+        type: datetime

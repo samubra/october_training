@@ -98,8 +98,8 @@ class Project extends Model
     {
         if($fieldName == 'is_valid')
             return [
-                Train::YES => '已复审',
-                Train::NO => '未复审'
+                Train::YES => '有效',
+                Train::NO => '失效'
             ];
         return [
             Train::ENABLE => '启用',

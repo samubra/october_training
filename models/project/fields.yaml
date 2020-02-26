@@ -83,7 +83,7 @@ fields:
                     format: Y-m-d
                     type: datepicker
                 is_valid:
-                    label: 是否已复审
+                    label: 是否有效
                     span: storm
                     cssClass: col-md-3
                     default: '1'

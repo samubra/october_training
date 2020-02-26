@@ -8,6 +8,7 @@ use Cms\Classes\ComponentBase;
 use Illuminate\Support\Str;
 
 use Samubra\Training\Classes\CheckRecord;
+use Samubra\Training\Models\Record;
 use Samubra\Training\Models\Train;
 use Samubra\Training\Repositories\Train\CertificateRepository;
 use Samubra\Training\Repositories\Train\ProjectRepository;
@@ -17,9 +18,9 @@ use Validator;
 use ValidationException;
 use SystemException;
 use ApplicationException;
-use Cart;
 use Auth;
 use Log;
+use ShoppingCart;
 
 class AddRecord extends ComponentBase
 {
@@ -106,17 +107,33 @@ class AddRecord extends ComponentBase
             $recordData['record_id_num'] = post('identity');
         }
         $this->saveRecord($recordData);
-
-        Cart::add([
-            'id' => $this->recordModel->id,
-            'name' => $this->recordModel->record_name . '申请' . $this->projectModel->title.'培训',
-            'qty' => 1,
-            'price' => $this->projectModel->cost
-        ]);
-        trace_log(Cart::total());
-
-        return [];
+        $this->addCart();
+        return [
+            '#result' =>$this->renderPartial('pages-training/add_record_result')
+        ];
     }
+    /**
+     * 添加到购物车
+     */
+    protected function addCart()
+    {
+        ShoppingCart::associate(Record::class);
+
+        ShoppingCart::add(
+            $this->recordModel->id,
+            $this->projectModel->title,
+            1,
+            $this->projectModel->cost,
+            [
+                'record_name' => $this->recordModel->record_name,
+                'record_id_type' => $this->recordModel->record_id_type,
+                'record_id_num' => $this->recordModel->record_id_num,
+                'project_id' => $this->projectModel->id,
+                'category_id' => $this->projectModel->plan->category_id,
+            ]
+        );
+    }
+
     public function onLoadCertificatesList()
     {
         //trace_sql();

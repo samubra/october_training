@@ -25,15 +25,20 @@ class CheckAddRecord
 
     protected $filter = [];
 
-    public function __construct()
+    public function __construct($project_id= null,$certificate_id=null)
     {
        $this->certificateRepository = new CertificateRepository();
        $this->projectRepository = new ProjectRepository();
+       if($project_id)
+           $this->setProjectModel($project_id);
+       if($certificate_id)
+           $this->setCertificateModel($certificate_id);
     }
 
     public function setProjectModel($project_id)
     {
-        $this->projectRepository->with('plan')->getById($project_id);
+        $this->projectModel = $this->projectRepository->with('plan')->getById($project_id);
+
         return $this;
     }
     public function setCertificateModel($certificate_id)

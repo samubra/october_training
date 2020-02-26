@@ -82,10 +82,10 @@ columns:
     created_at:
         label: 申请时间
         type: datetime
-        invisible: true
         sortable: true
     updated_at:
         label: 最后更新
         type: datetime
         sortable: true
+        invisible: true
 

@@ -78,3 +78,6 @@
 1.0.29:
     - 'Created table samubra_training_order_items'
     - builder_table_create_samubra_training_order_items.php
+1.0.30:
+    - create_shoppingcart_table
+    - create_shoppingcart_table.php

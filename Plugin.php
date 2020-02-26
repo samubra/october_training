@@ -20,13 +20,13 @@ class Plugin extends PluginBase
     public function boot()
     {
         \App::register(\Propaganistas\LaravelPhone\PhoneServiceProvider::class);
-        \App::register(\Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class);
+        \App::register(\Overtrue\LaravelShoppingCart\ServiceProvider::class);
         \App::register('\Maatwebsite\Excel\ExcelServiceProvider');
 
         // Register aliases
         $alias = AliasLoader::getInstance();
         $alias->alias('Excel', 'Maatwebsite\Excel\Facades\Excel');
-        $alias->alias('Cart',  \Gloudemans\Shoppingcart\Facades\Cart::class);
+        $alias->alias('ShoppingCart', \Overtrue\LaravelShoppingCart\Facade::class);
 
         Validator::extend('identity', function($attribute, $value, $parameters, $validator) {
             //return preg_match('/(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}$)/', $value);
@@ -52,6 +52,7 @@ class Plugin extends PluginBase
             'Samubra\Training\Components\ProjectDetails' => 'projectDetails',
             'Samubra\Training\Components\AddRecord' => 'addRecord',
             'Samubra\Training\Components\UserAddresses' => 'userAddresses',
+            'Samubra\Training\Components\Cart' => 'cart',
         ];
     }
 

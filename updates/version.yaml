@@ -72,3 +72,9 @@
 1.0.27:
     - 'Created table samubra_training_user_addresses'
     - builder_table_create_samubra_training_user_addresses.php
+1.0.28:
+    - 'Created table samubra_training_orders'
+    - builder_table_create_samubra_training_orders.php
+1.0.29:
+    - 'Created table samubra_training_order_items'
+    - builder_table_create_samubra_training_order_items.php

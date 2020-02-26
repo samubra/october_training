@@ -50,7 +50,8 @@ class Plugin extends PluginBase
         return [
             'Samubra\Training\Components\UserCertificates' => 'userCertificates',
             'Samubra\Training\Components\ProjectDetails' => 'projectDetails',
-            'Samubra\Training\Components\AddRecord' => 'addRecord'
+            'Samubra\Training\Components\AddRecord' => 'addRecord',
+            'Samubra\Training\Components\UserAddresses' => 'userAddresses',
         ];
     }
 

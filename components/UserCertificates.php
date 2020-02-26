@@ -10,6 +10,10 @@ use Redirect;
 use RainLab\User\Models\User;
 use Samubra\Training\Repositories\Train\CertificateRepository;
 use Samubra\Training\Repositories\Train\RecordRepository;
+use Validator;
+use ValidationException;
+use SystemException;
+use ApplicationException;
 
 class UserCertificates extends ComponentBase
 {
@@ -32,6 +36,8 @@ class UserCertificates extends ComponentBase
             'description' => '用户证书相关操作',
         ];
     }
+
+
 
     public function onLoadCertificates()
     {
@@ -101,7 +107,6 @@ class UserCertificates extends ComponentBase
         ];
     }
 
-
     public function onRelateCertificates()
     {
         if(Auth::check() && request()->has('identity')) {
@@ -111,15 +116,14 @@ class UserCertificates extends ComponentBase
             $this->certificateRepository->relateCertificates($userModel);
             return redirect('/account');
         }
-
     }
 
     public function onRun()
     {
         if(!request()->has(['partial','select']))
             $this->onLoadCertificates();
-    }
 
+    }
 
 
 }

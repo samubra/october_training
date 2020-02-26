@@ -20,6 +20,7 @@ class ExtendsUser
         UserModel::extend(function($model){
             $model->hasMany['certificates'] = [\Samubra\Training\Models\Certificate::class,'key'=>'user_id'];
             $model->hasMany['certificates_count'] = [\Samubra\Training\Models\Certificate::class,'key'=>'user_id','count'=>true];
+            $model->hasMany['addresses'] = [\Samubra\Training\Models\UserAddress::class];
             $model->addFillable([
                 'identity',
                 'phone',

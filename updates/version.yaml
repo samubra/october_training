@@ -69,3 +69,6 @@
 1.0.26:
     - 添加project_courses的course_id字段
     - add_project_courses_course_id_column.php
+1.0.27:
+    - 'Created table samubra_training_user_addresses'
+    - builder_table_create_samubra_training_user_addresses.php

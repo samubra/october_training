@@ -1,6 +1,6 @@
 plugin:
     name: 培训管理报名系统
-    description: 'samubra.training::lang.plugin.description'
+    description: 'composer require propaganistas/laravel-phone,composer require maatwebsite/excel,composer require "overtrue/laravel-shopping-cart:~2.0",composer require "jxlwqq/id-validator",composer require intervention/image'
     author: samubra
     icon: oc-icon-coffee
     homepage: ''

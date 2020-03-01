@@ -5,6 +5,10 @@ namespace Samubra\Training\Components;
 
 
 use Cms\Classes\ComponentBase;
+use Samubra\Training\Models\Order;
+use Samubra\Training\Models\UserAddress;
+use Samubra\Training\Repositories\Train\OrderRepository;
+use Samubra\Training\Repositories\Train\UserAddressesRepository;
 use ShoppingCart;
 use Samubra\Training\Classes\CheckRecord;
 use Samubra\Training\Models\Record;
@@ -19,9 +23,13 @@ use SystemException;
 use ApplicationException;
 use Auth;
 use Log;
+use DB;
+use Carbon\Carbon;
 
 class Cart extends ComponentBase
 {
+
+    protected $carts;
     /**
      * @return array
      */
@@ -35,14 +43,24 @@ class Cart extends ComponentBase
 
     public function onRun()
     {
-        $this->page['cartList'] = ShoppingCart::all();
+       $this->carts = $this->page['cartList'] = ShoppingCart::all();
         $this->page['total'] = ShoppingCart::total();
+        //trace_log($this->page['cartList']);
+
     }
 
     public function onLoadCartList()
     {
         return ;
     }
+
+    public function onAddToOrder()
+    {
+        $order = new \Samubra\Training\Classes\Order();
+        return $order->setAddressId(post('address_id'))->onAddRecordToOrder();
+    }
+
+
 
 
 }

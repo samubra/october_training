@@ -24,7 +24,10 @@ class UserAddresses extends ComponentBase
     {
         $this->loginUser = Auth::getUser();
         $this->userAddressesRepository = new UserAddressesRepository();
+
     }
+
+
     /**
      * @return array
      */
@@ -35,6 +38,7 @@ class UserAddresses extends ComponentBase
             'description' => '用户收货地址管理',
         ];
     }
+
 
 
     public function onLoadAddressForm()
@@ -107,17 +111,27 @@ class UserAddresses extends ComponentBase
         $this->addJs('assets/city-picker-master/dist/js/city-picker.data.min.js');
         $this->addJs('assets/city-picker-master/dist/js/city-picker.min.js');
        // $this->addJs('assets/coustom.js');
+        $this->page['addresses'] = $this->onLoadAddresses();
+        $this->page['last_use_address'] = $this->onLoadLastUseAddress();
     }
 
     protected function loadUserAddressModel($address_id=null)
     {
         if($address_id){
-            trace_log(post('address_id'));
-            return $this->userAddressModel = $this->userAddressesRepository->where('id',$address_id)->where('user_id',$this->loginUser->id)->first();
-
+            return $this->userAddressModel = $this->userAddressesRepository->where('id',$address_id)->where('user_id',$this->loginUser->id)->orderBy('last_used_at',' DESC')->first();
         }
 
         return $this->userAddressModel = $this->userAddressesRepository->makeModel();
+    }
+
+    protected function onLoadAddresses()
+    {
+        return $this->userAddressesRepository->where('user_id',$this->loginUser->id)->orderBy('last_used_at',' DESC')->get();
+    }
+
+    protected function onLoadLastUseAddress()
+    {
+        return $this->userAddressesRepository->where('user_id',$this->loginUser->id)->first();
     }
 
 

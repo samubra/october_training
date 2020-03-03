@@ -104,8 +104,10 @@ class AddRecord extends ComponentBase
             $recordData['record_name'] = $this->certificateModel->name;
             $recordData['record_id_type'] = $this->certificateModel->id_type;
             $recordData['record_id_num'] = $this->certificateModel->id_num;
+
         $recordModel = $this->saveRecord($recordData);
         $this->addCart();
+        trace_log($this->auth->id);
         if(!$this->auth->addresses->count()){
             $addressRepository = new UserAddressesRepository();
             $addressModel = $addressRepository->makeModel();
@@ -116,7 +118,7 @@ class AddRecord extends ComponentBase
             $addressModel->zip = '405800';
             $addressModel->contact_name = $this->certificateModel->name;
             $addressModel->contact_phone = post('phone');
-            $addressModel->user_id = $this->auth->id;
+            $addressModel->user_id = Auth::getUser()->id;
             $addressModel->save();
         }
 
@@ -174,7 +176,9 @@ class AddRecord extends ComponentBase
             throw new ValidationException($validation);
         }
 
-        $this->loadUser();
+        $this->loadUser([
+            'identity' => post('identity')
+        ]);
 
         $certificates = $this->certificateRepository->where('id_num',$postData['identity'])->where('category_id',$this->projectModel->plan->category_id)->get();
 
@@ -221,6 +225,7 @@ class AddRecord extends ComponentBase
                 throw new ValidationException($validation);
             }
         }
+
         $this->recordModel = $recordModel->create($data);
 
     }
@@ -232,6 +237,13 @@ class AddRecord extends ComponentBase
                 if($certificate_id){
                 $certificateModel = $this->certificateRepository->with('category')->getById($certificate_id);
                 }else {
+                    $this->loadUser([
+                        'identity' => post('identity'),
+                        'name' => post('name'),
+                        'phone' => post('phone'),
+                        'address' => post('address'),
+                        'company' => post('company'),
+                    ]);
                     $certificateModel = $this->certificateRepository->create([
                         'id_num' => post('identity'),
                         'id_type' => Train::ID_TYPE_IDENTITY,
@@ -242,7 +254,7 @@ class AddRecord extends ComponentBase
                         'company' => post('company', '个体'),
                         'category_id' => $this->projectModel->plan->category_id,
                         'organization_id' => $this->projectModel->plan->organization_id,
-                        'user_id' => $this->loadUser()->id,
+                        'user_id' => $this->auth->id,
                     ]);
                 }
             } catch (ModelNotFoundException $ex) {
@@ -271,14 +283,14 @@ class AddRecord extends ComponentBase
     }
 
 
-    protected function loadUser()
+    protected function loadUser($data)
     {
-        $identity = Str::snake(trim(post('identity')));
+        $identity = Str::snake(trim($data['identity']));
         if(Auth::check()){
             $this->auth = Auth::getUser();
         }elseif(request()->has('password') && $this->projectModel->plan->is_retraining){
             $this->auth = Auth::authenticate([
-                'login' => post('identity'),
+                'login' => $identity,
                 'password' => post('password')
             ]);
         }elseif(!$this->projectModel->plan->is_retraining && request()->has('name')){
@@ -286,11 +298,11 @@ class AddRecord extends ComponentBase
                 'email' => $identity . '@tiikoo.cn',
                 'password' => substr($identity,-8),
                 'password_confirmation' => substr($identity,-8),
-                'name' => post('name') ,
+                'name' => $data['name'] ,
                 'username' => $identity ,
                 'identity' => $identity ,
-                'phone' => post('phone') ,
-                'company' => post('company'),
+                'phone' => $data['phone'],
+                'company' => $data['company'],
             ],true);
         }else{
             //注册guest账户

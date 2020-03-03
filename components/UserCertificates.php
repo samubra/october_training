@@ -49,7 +49,7 @@ class UserCertificates extends ComponentBase
             if($userModel->certificates->count())
                 $certificates = $userModel->certificates;
         }else{
-            return redirect('/login');
+            return redirect('/user/auth');
         }
 
         if(request()->has(['partial','select'])){

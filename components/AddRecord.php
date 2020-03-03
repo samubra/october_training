@@ -107,7 +107,7 @@ class AddRecord extends ComponentBase
 
         $recordModel = $this->saveRecord($recordData);
         $this->addCart();
-        trace_log($this->auth->id);
+        //trace_log($this->auth->id);
         if(!$this->auth->addresses->count()){
             $addressRepository = new UserAddressesRepository();
             $addressModel = $addressRepository->makeModel();

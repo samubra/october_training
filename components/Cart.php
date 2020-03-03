@@ -57,7 +57,9 @@ class Cart extends ComponentBase
     public function onAddToOrder()
     {
         $order = new \Samubra\Training\Classes\Order();
-        return $order->setAddressId(post('address_id'))->onAddRecordToOrder();
+        return [
+            '#cart_list' => $this->renderPartial('pages-cart/order_result',['order' => $order->setAddressId(post('address_id'))->onAddRecordToOrder()])
+        ];
     }
 
 

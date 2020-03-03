@@ -32,15 +32,22 @@ class Record extends Model
         'record_name' => 'required' ,
         'record_phone' => 'required|phone:CN' ,
         'record_address' => 'required',
-        'record_company' => 'required'
+        'record_company' => 'required',
     ];
+    /**
+     * @var array  'photo' => 'image|max:1000|dimensions:min_width=100,min_height=100',
+    'id_card_front' => 'image|max:1000|dimensions:min_width=100,min_height=100',
+    'id_card_back' => 'image|max:1000|dimensions:min_width=100,min_height=100',
+    'edu_one' => 'image|max:1000|dimensions:min_width=100,min_height=100',
+    'edu_two' => 'image|max:1000|dimensions:min_width=100,min_height=100',
+     */
     public $attributeNames = [
         'certificate_id' => '培训证书',
         'project_id' => '培训项目'
     ];
 
     public $customMessages = [
-        'record_id_num.unique' => '当前培训项目已存在该培训记录',
+        'record_id_num.unique' => '该身份证号码已经在该培训项目中申请过培训！',
         //'record_id_num.identity' => '身份证号码格式错误'
     ];
     protected $casts = [
@@ -68,6 +75,13 @@ class Record extends Model
             'timestamps' => true,
         ],
     ];
+    public $attachMany   = [
+        'id_card' => 'System\Models\File',
+        'edu' => 'System\Models\File',
+        ];
+    public $attachOne  = [
+        'photo' => 'System\Models\File',
+    ];
 
     public function getEduTypeTextAttribute()
     {
@@ -82,7 +96,7 @@ class Record extends Model
         }
         $recordIdNum = ['required','identity'];
 
-        $recordIdNum[] = Rule::unique($this->table,'record_id_num')->where('project_id', $this->project_id);
+        $recordIdNum[] = Rule::unique($this->table, 'record_id_num')->where('project_id', $this->project_id);
 
         $this->rules['record_id_num'] = $recordIdNum;
     }

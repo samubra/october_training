@@ -53,6 +53,7 @@ class Plugin extends PluginBase
             'Samubra\Training\Components\AddRecord' => 'addRecord',
             'Samubra\Training\Components\UserAddresses' => 'userAddresses',
             'Samubra\Training\Components\Cart' => 'cart',
+            'Samubra\Training\Components\AddAttach' => 'addAttach',
         ];
     }
 

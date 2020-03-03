@@ -14,6 +14,7 @@ use Samubra\Training\Repositories\Train\CertificateRepository;
 use Samubra\Training\Repositories\Train\ProjectRepository;
 use Flash;
 use Samubra\Training\Repositories\Train\RecordRepository;
+use Samubra\Training\Repositories\Train\UserAddressesRepository;
 use Validator;
 use ValidationException;
 use SystemException;
@@ -83,9 +84,10 @@ class AddRecord extends ComponentBase
 
     public function onAddRecord()
     {
+        $this->loadProject();
 
         $this->loadCertificate();
-        $this->loadProject();
+
 
 
         $recordData = [
@@ -94,22 +96,32 @@ class AddRecord extends ComponentBase
              'record_phone' => post('phone'),
              'record_address' => post('address'),
              'record_company' => post('company','个体'),
+
         ];
 
-        if ($this->certificateModel){
-            $recordData['certificate_id'] = post('certificate_id');
+            //trace_log($this->certificateModel);
+            $recordData['certificate_id'] = $this->certificateModel->id;
             $recordData['record_name'] = $this->certificateModel->name;
             $recordData['record_id_type'] = $this->certificateModel->id_type;
             $recordData['record_id_num'] = $this->certificateModel->id_num;
-        }else{
-            $recordData['record_name'] = post('name');
-            $recordData['record_id_type'] = Train::ID_TYPE_IDENTITY;
-            $recordData['record_id_num'] = post('identity');
-        }
-        $this->saveRecord($recordData);
+        $recordModel = $this->saveRecord($recordData);
         $this->addCart();
+        if(!$this->auth->addresses->count()){
+            $addressRepository = new UserAddressesRepository();
+            $addressModel = $addressRepository->makeModel();
+                $addressModel->province = '重庆市';
+            $addressModel->city = '重庆市';
+            $addressModel->district = '巫溪县';
+            $addressModel->address = post('address');
+            $addressModel->zip = '405800';
+            $addressModel->contact_name = $this->certificateModel->name;
+            $addressModel->contact_phone = post('phone');
+            $addressModel->user_id = $this->auth->id;
+            $addressModel->save();
+        }
+
         return [
-            '#result' =>$this->renderPartial('pages-training/add_record_result')
+            '#result' =>$this->renderPartial('pages-training/add_record_result',['record' => $this->recordModel])
         ];
     }
     /**
@@ -195,9 +207,8 @@ class AddRecord extends ComponentBase
 
     protected function saveRecord($data)
     {
-
         $recordModel = $this->recordRepository->makeModel();
-        if($this->certificateModel){
+        if($this->certificateModel->print_date){
             $rules = [
                 'certificate_id' => ['required','record:'.$this->projectModel->id],
                 ];
@@ -211,19 +222,34 @@ class AddRecord extends ComponentBase
             }
         }
         $this->recordModel = $recordModel->create($data);
+
     }
-    protected function loadCertificate($certificate_id = null)
+    protected function loadCertificate($certificate_id = null,$certificateData = null)
     {
         $certificate_id = is_null($certificate_id) ? post('certificate_id'):$certificate_id;
-        if($certificate_id){
+
             try {
+                if($certificate_id){
                 $certificateModel = $this->certificateRepository->with('category')->getById($certificate_id);
+                }else {
+                    $certificateModel = $this->certificateRepository->create([
+                        'id_num' => post('identity'),
+                        'id_type' => Train::ID_TYPE_IDENTITY,
+                        'name' => post('name'),
+                        'edu_type' => post('edu_type'),
+                        'phone' => post('phone'),
+                        'address' => post('address'),
+                        'company' => post('company', '个体'),
+                        'category_id' => $this->projectModel->plan->category_id,
+                        'organization_id' => $this->projectModel->plan->organization_id,
+                        'user_id' => $this->loadUser()->id,
+                    ]);
+                }
             } catch (ModelNotFoundException $ex) {
                 $this->setStatusCode(404);
                 return $this->controller->run('404');
             }
-            return $this->certificateModel = $certificateModel;
-        }
+        return $this->certificateModel = $certificateModel;
     }
 
     protected function loadProject($project_slug = null,$project_id = null)
@@ -274,4 +300,5 @@ class AddRecord extends ComponentBase
 
         return $this;
     }
+
 }

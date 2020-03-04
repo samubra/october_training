@@ -294,16 +294,20 @@ class AddRecord extends ComponentBase
                 'password' => post('password')
             ]);
         }elseif(!$this->projectModel->plan->is_retraining && request()->has('name')){
-            $this->auth = Auth::register([
-                'email' => $identity . '@tiikoo.cn',
-                'password' => substr($identity,-8),
-                'password_confirmation' => substr($identity,-8),
-                'name' => $data['name'] ,
-                'username' => $identity ,
-                'identity' => $identity ,
-                'phone' => $data['phone'],
-                'company' => $data['company'],
-            ],true);
+            if(!$this->auth = Auth::findUserByLogin($identity)){
+                $this->auth = Auth::register([
+                    'email' => $identity . '@tiikoo.cn',
+                    'password' => substr($identity,-8),
+                    'password_confirmation' => substr($identity,-8),
+                    'name' => $data['name'] ,
+                    'username' => $identity ,
+                    'identity' => $identity ,
+                    'phone' => $data['phone'],
+                    'company' => $data['company'],
+                ],true);
+                Auth::login($this->auth);
+            }
+
         }else{
             //注册guest账户
             $this->auth = Auth::registerGuest(['email' => 'guest@tiikoo.cn'

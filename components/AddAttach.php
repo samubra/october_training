@@ -87,6 +87,15 @@ class AddAttach extends ComponentBase
             'photo.required' => '寸照必须上传!',
             'id_card.required' => '身份证正反面照片必须上传!',
             'edu.required' => '学历证明照片必须上传!',
+            'photo.image' => '上传的照片必须是图片！',
+            'id_card.image' => '上传的身份证照片必须是图片！',
+            'edu.image' => '上传的学历证明必须是图片！',
+            'edu.max' => '上传的学历证明图片不得超过1M！',
+            'id_card.max' => '上传的身份证图片不得超过1M！',
+            'photo.max' => '上传的寸照不得超过1M！',
+            'photo.dimensions' => '上传的寸照尺寸不得小于100*100！',
+            'id_card.dimensions' => '上传的身份证照片尺寸不得小于100*100！',
+            'edu.dimensions' => '上传的学历证明照片尺寸不得小于100*100！',
         ];
         if(request()->hasFile('edu') || request()->hasFile('id_card') ||  request()->hasFile('id_card')){
             $validation = Validator::make($postData, $rules,$messages);

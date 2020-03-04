@@ -45,6 +45,8 @@ class Cart extends ComponentBase
     {
        $this->carts = $this->page['cartList'] = ShoppingCart::all();
         $this->page['total'] = ShoppingCart::total();
+        $this->page['countRows'] = ShoppingCart::countRows();
+        $this->page['count'] = ShoppingCart::count($totalItems = true);
         //trace_log($this->page['cartList']);
 
     }

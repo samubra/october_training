@@ -18,7 +18,7 @@ class Records extends TrainingController
     public $controllerName = 'records';
     public $requiredPermissions = ['samubra.training.access_record'];
     public $controllerTitle = '申请记录';
-    
+
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
     public $relationConfig = 'config_relation.yaml';
@@ -30,6 +30,8 @@ class Records extends TrainingController
 
         parent::__construct();
         $this->addCss('/plugins/samubra/training/assets/backend.css');
+        $this->addCss('https://cdn.bootcss.com/lightbox2/2.11.1/css/lightbox.min.css');
+        $this->addJs('https://cdn.bootcss.com/lightbox2/2.11.1/js/lightbox.min.js');
         BackendMenu::setContext('Samubra.Training', 'projects', 'records');
     }
 
@@ -65,6 +67,7 @@ class Records extends TrainingController
         $data['record'] = $record;
         return View::make('samubra.training::project.print',$data);
     }
+
 
 
 }

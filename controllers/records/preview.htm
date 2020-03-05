@@ -49,6 +49,7 @@
                             <li><a href="#contentTabTwo">证书信息</a></li>
                             <?php }?>
                             <li><a href="#contentTabThree">培训信息</a></li>
+                            <li><a href="#contentTabFour">上传图片</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active">
@@ -84,6 +85,24 @@
                                     <?php echo $this->makePartial('plugins/samubra/training/controllers/projects/lists/list_table',
             ['formModel'=>$formModel->project]) ?>
                                 </div>
+                            <div class="tab-pane">
+                                <p>寸照:</p>
+                                <a href="<?php echo $formModel->photo_image->getPath();?>" data-lightbox="photo_image" data-title="我上传的的寸照">
+                                    <img src="<?php echo $formModel->photo_image->getThumb(200, 200, ['mode' => 'crop']);?>"/>
+                                </a>
+                                <p>身份证正反面照片:</p>
+                                <?php foreach($formModel->id_card_images as $key=>$id_card_image ){?>
+                                <a href="<?php echo $id_card_image->getPath();?>" data-lightbox="id_card_image" data-title="我上传的身份证正反面照片<?php echo $key+1;?>">
+                                    <img src="<?php echo $id_card_image->getThumb(200, 200, ['mode' => 'crop']);?>"/>
+                                </a>
+                                <?php }?>
+                                <p>学历证明照片:</p>
+                                <?php foreach($formModel->edu_images as $edu_image ){?>
+                                <a href="<?php echo $edu_image->getPath();?>" data-lightbox="edu_image" data-title="我上传的学历证明照片<?php echo $key+1;?>">
+                                    <img src="<?php echo $edu_image->getThumb(200, 200, ['mode' => 'crop']);?>"/>
+                                </a>
+                                <?php }?>
+                            </div>
                         </div>
                     </div>
 

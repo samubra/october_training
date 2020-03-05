@@ -13,6 +13,7 @@ use SystemException;
 use ApplicationException;
 use Auth;
 use Log;
+use System\Models\File;
 
 
 class AddAttach extends ComponentBase
@@ -60,24 +61,24 @@ class AddAttach extends ComponentBase
 
         /**
          * photo' => 'image|max:1000|dimensions:min_width=100,min_height=100',
-        'id_card_front' => 'image|max:1000|dimensions:min_width=100,min_height=100',
-        'id_card_back' => 'image|max:1000|dimensions:min_width=100,min_height=100',
-        'edu_one' => 'image|max:1000|dimensions:min_width=100,min_height=100',
-        'edu_two' => 'image|max:1000|dimensions:min_width=100,min_height=100',
+         * 'id_card_front' => 'image|max:1000|dimensions:min_width=100,min_height=100',
+         * 'id_card_back' => 'image|max:1000|dimensions:min_width=100,min_height=100',
+         * 'edu_one' => 'image|max:1000|dimensions:min_width=100,min_height=100',
+         * 'edu_two' => 'image|max:1000|dimensions:min_width=100,min_height=100',
          */
-        if(request()->hasFile('photo')){
+        if (request()->hasFile('photo')) {
             $rules = [
                 'photo' => 'required|image|max:2000|dimensions:min_width=100,min_height=100',
             ];
             $postData['photo'] = request()->file('photo');
         }
-        if(request()->hasFile('id_card')){
+        if (request()->hasFile('id_card')) {
             $rules = [
                 'id_card' => 'required|image|max:2000|dimensions:min_width=100,min_height=100',
             ];
             $postData['id_card'] = request()->file('id_card');
         }
-        if(request()->hasFile('edu')){
+        if (request()->hasFile('edu')) {
             $rules = [
                 'edu' => 'required|image|max:2000|dimensions:min_width=100,min_height=100',
             ];
@@ -97,8 +98,8 @@ class AddAttach extends ComponentBase
             'id_card.dimensions' => '上传的身份证照片尺寸不得小于100*100！',
             'edu.dimensions' => '上传的学历证明照片尺寸不得小于100*100！',
         ];
-        if(request()->hasFile('edu') || request()->hasFile('id_card') ||  request()->hasFile('id_card')){
-            $validation = Validator::make($postData, $rules,$messages);
+        if (request()->hasFile('edu') || request()->hasFile('id_card') || request()->hasFile('id_card')) {
+            $validation = Validator::make($postData, $rules, $messages);
             if ($validation->fails()) {
                 throw new ValidationException($validation);
             }
@@ -106,23 +107,30 @@ class AddAttach extends ComponentBase
 
         $this->loadRecord(post('record_id'));
 
-        $this->recordModel->photo = request()->file('photo');
-        $this->recordModel->id_card = request()->file('id_card');
-        $this->recordModel->edu = request()->file('edu');
-        $this->recordModel->save();
+        $this->recordModel->photo_image = request()->file('photo');
 
-        if($this->recordModel->photo && $this->recordModel->id_card->count() ==2 && $this->recordModel->edu->count() ==2)
-        {
-            return redirect()->to('/user/carts');
-        }else{
-            return redirect()->refresh();
+        if ($this->recordModel->id_card_images->count() < 3) {
+
+            $file = new File;
+            $file->data = request()->file('id_card');
+            $file->save();
+            $this->recordModel->id_card_images()->add($file);
         }
+        if ($this->recordModel->edu_images->count() < 3) {
+
+            $file = new File;
+            $file->data = request()->file('edu');
+            $file->save();
+            $this->recordModel->edu_images()->add($file);
+        }
+
+        return redirect()->refresh();
 
     }
     protected function loadRecord($record_id= null)
     {
         $record_id = is_null($record_id) ? post('record_id',$this->property('record_id')):$record_id;
-        $this->recordModel = $this->page['record'] = $this->recordRepository->with('project','certificate','project.plan','photo','edu','id_card')->getById($this->property('record_id'));
+        $this->recordModel = $this->page['record'] = $this->recordRepository->with('project','certificate','project.plan','photo_image','edu_images','id_card_images')->getById($this->property('record_id'));
         $this->page['project'] = $this->recordModel->project;
     }
 

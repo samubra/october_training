@@ -100,3 +100,45 @@ tabs:
             default: 0
             type: balloon-selector
             tab: 成绩管理
+        id_card_images:
+            label: 身份证正反面照片
+            mode: image
+            imageWidth: 150
+            imageHeight: 150
+            fileTypes: 'jpg,png'
+            useCaption: true
+            attachOnUpload: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: 图片上传
+        edu_images:
+            label: 学历证明照片
+            mode: image
+            imageWidth: 150
+            imageHeight: 150
+            fileTypes: 'jpg,png'
+            useCaption: true
+            attachOnUpload: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: 图片上传
+        photo_image:
+            label: 寸照
+            mode: image
+            imageWidth: 150
+            imageHeight: 150
+            fileTypes: 'jpg,png'
+            useCaption: true
+            attachOnUpload: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: 图片上传

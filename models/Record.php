@@ -15,7 +15,7 @@ class Record extends Model
     use SaveStatusId;
 
     public $status_filed = 'record_status_id';
-    protected $fillable = ['num','record_status_id','record_edu_type','health_type','certificate_id','project_id','theory_score','operate_score','is_eligible','record_name','record_phone','record_address','record_company','record_id_num','record_id_type'];
+    protected $fillable = ['id_card_images','edu_images','photo_image','num','record_status_id','record_edu_type','health_type','certificate_id','project_id','theory_score','operate_score','is_eligible','record_name','record_phone','record_address','record_company','record_id_num','record_id_type'];
 
 
     /**
@@ -76,11 +76,11 @@ class Record extends Model
         ],
     ];
     public $attachMany   = [
-        'id_card' => 'System\Models\File',
-        'edu' => 'System\Models\File',
+        'id_card_images' => 'System\Models\File',
+        'edu_images' => 'System\Models\File',
         ];
     public $attachOne  = [
-        'photo' => 'System\Models\File',
+        'photo_image' => 'System\Models\File',
     ];
 
     public function getEduTypeTextAttribute()

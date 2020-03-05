@@ -109,20 +109,14 @@ class AddAttach extends ComponentBase
 
         $this->recordModel->photo_image = request()->file('photo');
 
-        if ($this->recordModel->id_card_images->count() < 3) {
-
-            $file = new File;
-            $file->data = request()->file('id_card');
-            $file->save();
-            $this->recordModel->id_card_images()->add($file);
+        if ($this->recordModel->id_card_images->count() < 2) {
+            $this->recordModel->id_card_images = request()->file('id_card');
         }
-        if ($this->recordModel->edu_images->count() < 3) {
+        if ($this->recordModel->edu_images->count() < 2) {
 
-            $file = new File;
-            $file->data = request()->file('edu');
-            $file->save();
-            $this->recordModel->edu_images()->add($file);
+            $this->recordModel->edu_images = request()->file('edu');
         }
+        $this->recordModel->save();
 
         return redirect()->refresh();
 

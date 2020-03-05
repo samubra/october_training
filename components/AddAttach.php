@@ -67,19 +67,19 @@ class AddAttach extends ComponentBase
          */
         if(request()->hasFile('photo')){
             $rules = [
-                'photo' => 'required|image|max:1000|dimensions:min_width=100,min_height=100',
+                'photo' => 'required|image|max:2000|dimensions:min_width=100,min_height=100',
             ];
             $postData['photo'] = request()->file('photo');
         }
         if(request()->hasFile('id_card')){
             $rules = [
-                'id_card' => 'required|image|max:1000|dimensions:min_width=100,min_height=100',
+                'id_card' => 'required|image|max:2000|dimensions:min_width=100,min_height=100',
             ];
             $postData['id_card'] = request()->file('id_card');
         }
         if(request()->hasFile('edu')){
             $rules = [
-                'edu' => 'required|image|max:1000|dimensions:min_width=100,min_height=100',
+                'edu' => 'required|image|max:2000|dimensions:min_width=100,min_height=100',
             ];
             $postData['edu'] = request()->file('edu');
         }
@@ -90,9 +90,9 @@ class AddAttach extends ComponentBase
             'photo.image' => '上传的照片必须是图片！',
             'id_card.image' => '上传的身份证照片必须是图片！',
             'edu.image' => '上传的学历证明必须是图片！',
-            'edu.max' => '上传的学历证明图片不得超过1M！',
-            'id_card.max' => '上传的身份证图片不得超过1M！',
-            'photo.max' => '上传的寸照不得超过1M！',
+            'edu.max' => '上传的学历证明图片不得超过2M！',
+            'id_card.max' => '上传的身份证图片不得超过2M！',
+            'photo.max' => '上传的寸照不得超过2M！',
             'photo.dimensions' => '上传的寸照尺寸不得小于100*100！',
             'id_card.dimensions' => '上传的身份证照片尺寸不得小于100*100！',
             'edu.dimensions' => '上传的学历证明照片尺寸不得小于100*100！',

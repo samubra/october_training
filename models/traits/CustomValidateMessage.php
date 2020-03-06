@@ -13,6 +13,7 @@ trait CustomValidateMessage
 {
     public $customMessages = [
         'identity' => ':attribute 格式不正确。',
-        'phone' => ':attribute 格式不正确。'
+        'phone' => ':attribute 格式不正确。',
+        'id_num.unique' => '你已经申请过该培训',
     ];
 }

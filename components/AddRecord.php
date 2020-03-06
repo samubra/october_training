@@ -244,6 +244,7 @@ class AddRecord extends ComponentBase
                         'address' => post('address'),
                         'company' => post('company'),
                     ]);
+                    //$this->certificateRepository->where('category_id',);
                     $certificateModel = $this->certificateRepository->create([
                         'id_num' => post('identity'),
                         'id_type' => Train::ID_TYPE_IDENTITY,

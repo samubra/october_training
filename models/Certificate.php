@@ -1,5 +1,6 @@
 <?php namespace Samubra\Training\Models;
 
+use Illuminate\Validation\Rule;
 use Model;
 use October\Rain\Database\Traits\SoftDelete;
 use October\Rain\Exception\AjaxException;
@@ -31,7 +32,7 @@ class Certificate extends Model
      * @var array Validation rules
      */
     public $rules = [
-        'id_num' => 'required|identity',
+        'id_num' => ['required','identity'],
         'id_type' => 'required',
         'name' => 'required',
         'phone' => 'required|phone:CN',
@@ -52,6 +53,16 @@ class Certificate extends Model
         'records' => Record::class,
         'records_count' => [Record::class,'count'=>true]
     ];
+
+    public function beforeValidate()
+    {
+
+        trace_log($this->print_date);
+        if(!$this->print_date)
+            array_push($this->rules['id_num'],Rule::unique($this->table, 'id_num')->where('category_id', $this->category_id)->whereNull('print_date'));
+        else
+            array_push($this->rules['id_num'],Rule::unique($this->table, 'id_num')->where('category_id', $this->category_id)->where('print_date',$this->print_date));
+    }
 
     public function getDropdownOptions($fieldName, $value, $formData)
     {

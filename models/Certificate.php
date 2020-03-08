@@ -57,7 +57,7 @@ class Certificate extends Model
     public function beforeValidate()
     {
 
-        trace_log($this->print_date);
+        //trace_log($this->print_date);
         if(!$this->print_date)
             array_push($this->rules['id_num'],Rule::unique($this->table, 'id_num')->where('category_id', $this->category_id)->whereNull('print_date'));
         else

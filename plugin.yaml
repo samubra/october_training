@@ -68,3 +68,14 @@ navigation:
                 label: 证书管理
                 url: samubra/training/certificates
                 icon: icon-suitcase
+    orders:
+        label: 订单管理
+        url: samubra/training/orders
+        icon: icon-shopping-cart
+        sideMenu:
+            orders:
+                label: 订单
+                url: samubra/training/orders
+                attributes:
+                    data-menu-item: orders
+                icon: icon-money

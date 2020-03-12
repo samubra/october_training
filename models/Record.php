@@ -145,4 +145,18 @@ class Record extends Model
 
         return $query->where('record_status_id',$status_id);
     }
+
+    /**
+     * Sets the "url" attribute with a URL to this object
+     * @param string $pageName
+     * @param Cms\Classes\Controller $controller
+     */
+    public function setUrl($pageName, $controller)
+    {
+        $params = [
+            'id' => $this->id,
+        ];
+
+        return $this->url = $controller->pageUrl($pageName, $params);
+    }
 }

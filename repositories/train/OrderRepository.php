@@ -1,7 +1,7 @@
 <?php
 namespace Samubra\Training\Repositories\Train;
 
-use Samubra\Training\Models\Order;
+use Samubra\Training\Models\OrderBack;
 use Samubra\Training\Repositories\BaseRepository;
 
 /**
@@ -14,6 +14,6 @@ class OrderRepository extends BaseRepository
      */
     public function model()
     {
-        return Order::class;
+        return OrderBack::class;
     }
 }

@@ -73,8 +73,29 @@
     - 'Created table samubra_training_user_addresses'
     - builder_table_create_samubra_training_user_addresses.php
 1.0.28:
-    - 'Created table samubra_training_orders'
-    - builder_table_create_samubra_training_orders.php
+    - 'First release of OctoCart.'
+    - create_orders_table.php
 1.0.29:
     - 'Created table samubra_training_order_items'
     - builder_table_create_samubra_training_order_items.php
+2.0.13:
+    - 'Added the status column to the orders table.'
+    - create_orders_status.php
+2.0.14:
+    - 'Added the note column to the orders table.'
+    - create_orders_note.php
+2.0.15:
+    - 'Added the phone column to the orders table.'
+    - create_orders_phone.php
+2018.8.1:
+    - 'Added shipping methods to order.'
+    - create_shipping_methods_table.php
+2018.8.2:
+    - 'Added shipping methods to order2.'
+    - shipping_methods_seed.php
+2018.8.3:
+    - 'Added payment methods to order.'
+    - create_payment_methods_table.php
+2018.8.4:
+    - 'Added payment methods to order2.'
+    - payment_methods_seed.php

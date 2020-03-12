@@ -1,0 +1,25 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: ''
+
+# Model Form Field configuration
+form: $/samubra/training/models/order/fields.yaml
+
+# Model Class name
+modelClass: Samubra\Training\Models\Order
+
+# Default redirect location
+defaultRedirect: samubra/training/orders
+
+# Create page
+create:
+    redirect: samubra/training/orders/update/:id
+    redirectClose: samubra/training/orders
+
+# Update page
+update:
+    redirect: samubra/training/orders
+    redirectClose: samubra/training/orders

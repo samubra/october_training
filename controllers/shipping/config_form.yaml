@@ -1,0 +1,27 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: samubra.training::lang.shipping.create_method
+
+# Model Form Field configuration
+form: $/samubra/training/models/shippingmethod/fields.yaml
+
+# Model Class name
+modelClass: Samubra\Training\Models\ShippingMethod
+
+# Default redirect location
+defaultRedirect: samubra/training/shipping
+
+# Create page
+create:
+    title: samubra.training::lang.shipping.create_method
+    redirect: samubra/training/shipping/update/:id
+    redirectClose: samubra/training/shipping
+
+# Update page
+update:
+    title: samubra.training::lang.shipping.edit_method
+    redirect: samubra/training/shipping
+    redirectClose: samubra/training/shipping

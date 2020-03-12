@@ -1,0 +1,100 @@
+{% if not items is empty %}
+    <div class="row">
+        <div class="col s12">
+            <table class="bordered responsive-table">
+                <thead>
+                    <tr>
+                        <th>照片</th>
+                        <th>申请资料</th>
+                        <th>价格</th>
+                        <th>数量</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                {% for itemId, item in items %}
+                    {% set record = item.record %}
+                    {% set quantity = item.quantity %}
+                    {% set price = item.price %}
+                    {% set attributes = item.attributes %}
+                        <tr>
+                            <td style="width: 166px;">
+                                {% if record.photo_image %}
+                                        <img data-src="{{ record.photo_image.filename }}"
+                                             src="{{ record.photo_image.path }}"
+                                             class="img-responsive"
+                                             style="max-width: 150px;"
+                                             alt="{{ record.record_name }}" />
+                                {% else %}
+                                    <img src="http://placehold.it/150x150" class="img-responsive" alt="{{ record.record_name }}">
+                                {% endif %}
+                            </td>
+                            <td>
+                                <p><strong><a href="{{ record.url }}">{{ record.record_name }}</a></strong></p>
+                                <p><a href="{{ record.project.url }}">{{ record.project.title }}</a></p>
+
+                                {% if attributes is not empty %}
+                                    {% for name, value in attributes %}
+                                        <strong>{{ name }}:</strong>&nbsp;{{ value }}<br>
+                                    {% endfor %}
+                                {% endif %}
+                            </td>
+                            <td>{{ price|price() }}</td>
+                            <td>
+                                <input
+                                        type="text"
+                                        name="quantity"
+                                        class="form-control"
+                                        data-track-input
+                                        style="max-width:50px;"
+                                        value="{{ quantity }}"
+                                        data-request="onUpdateQuantity"
+                                        data-request-success="location.reload()"
+                                        data-request-data="itemId: '{{ itemId }}'"
+                                />
+                            </td>
+                            <td>
+                                <button
+                                        type="button"
+                                        class="btn btn-danger"
+                                        data-request="onRemoveProduct"
+                                        data-request-data="itemId: '{{ itemId }}'"
+                                        data-request-success="location.reload()"
+                                        data-request-confirm="删除该申请记录的同时将删除之前填写的申请资料，你确定要要删除它吗？"
+                                ><i class="fa fa-remove"></i></button>
+                            </td>
+                        </tr>
+                {% endfor %}
+                <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <p class="text-right">
+                            <strong>总额: {{ totalPrice.total|price() }}</strong><br>
+                            税额: {{ totalPrice.vat|price() }}<br>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <p class="text-right">
+                            <a class="waves-effect waves-light btn" href="{{ url().previous() }}">继续报名<i class="material-icons left">arrow_back</i></a>
+                            <button
+                                    type="button"
+                                    class="waves-effect waves-light btn"
+                                    data-request="onClear"
+                                    data-request-success="location.reload()"
+                                    data-request-confirm="清空购物车将删除购物车中所关联的培训申请资料，你确定要清空购物车吗？"
+                            ><i class="material-icons left"> remove_shopping_cart</i> 清空购物车</button>
+                            <a
+                                    href="/{{ checkoutPage }}"
+                                    class="btn btn-primary"
+                            ><i class="material-icons left">monetization_on</i>支付</a>
+                        </p>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+{% else %}
+<div class="card-panel teal lighten-2 white-text">{{ noRecordsMessage }}</div>
+{% endif %}

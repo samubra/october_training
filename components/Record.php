@@ -8,7 +8,7 @@ use Cms\Classes\ComponentBase;
 use Illuminate\Support\Str;
 
 use Samubra\Training\Classes\CheckRecord;
-use Samubra\Training\Models\Record;
+use Samubra\Training\Models\Record as RecordModel;
 use Samubra\Training\Models\Train;
 use Samubra\Training\Repositories\Train\CertificateRepository;
 use Samubra\Training\Repositories\Train\ProjectRepository;
@@ -22,8 +22,9 @@ use ApplicationException;
 use Auth;
 use Log;
 use ShoppingCart;
+use OctoCart;
 
-class AddRecord extends ComponentBase
+class Record extends ComponentBase
 {
     protected $auth;
     protected $certificateRepository;
@@ -88,15 +89,12 @@ class AddRecord extends ComponentBase
 
         $this->loadCertificate();
 
-
-
         $recordData = [
              'record_edu_type' => post('edu_type'),
              'project_id' => post('project_id'),
              'record_phone' => post('phone'),
              'record_address' => post('address'),
              'record_company' => post('company','个体'),
-
         ];
 
             //trace_log($this->certificateModel);
@@ -106,7 +104,7 @@ class AddRecord extends ComponentBase
             $recordData['record_id_num'] = $this->certificateModel->id_num;
 
         $recordModel = $this->saveRecord($recordData);
-        $this->addCart();
+        $this->onAddToCart();
         //trace_log($this->auth->id);
         if(!$this->auth->addresses->count()){
             $addressRepository = new UserAddressesRepository();
@@ -122,30 +120,23 @@ class AddRecord extends ComponentBase
             $addressModel->save();
         }
 
+        return redirect('/carts');
+        /**
         return [
             '#result' =>$this->renderPartial('pages-training/add_record_result',['record' => $this->recordModel])
         ];
+         * **/
     }
-    /**
-     * 添加到购物车
-     */
-    protected function addCart()
-    {
-        ShoppingCart::associate(Record::class);
-
-        ShoppingCart::add(
-            $this->recordModel->id,
-            $this->projectModel->title,
-            1,
-            $this->projectModel->cost,
+    public function onAddToCart() {
+        OctoCart::add($this->recordModel->id, 1,
             [
                 'record_name' => $this->recordModel->record_name,
                 'record_id_type' => $this->recordModel->record_id_type,
                 'record_id_num' => $this->recordModel->record_id_num,
                 'project_id' => $this->projectModel->id,
                 'category_id' => $this->projectModel->plan->category_id,
-            ]
-        );
+            ]);
+
     }
 
     public function onLoadCertificatesList()
@@ -245,7 +236,14 @@ class AddRecord extends ComponentBase
                         'company' => post('company'),
                     ]);
                     //$this->certificateRepository->where('category_id',);
-                    $certificateModel = $this->certificateRepository->create([
+                    $certificateAll = $this->certificateRepository
+                        ->with('category')
+                        ->where('id_num',post('identity'))
+                        ->where('id_type',Train::ID_TYPE_IDENTITY)
+                        ->where('category_id',$this->projectModel->plan->category_id)
+                        ->whereNull('print_date')->get();
+
+                    $certificateModel = $certificateAll->count() ? $certificateAll->first() : $this->certificateRepository->create([
                         'id_num' => post('identity'),
                         'id_type' => Train::ID_TYPE_IDENTITY,
                         'name' => post('name'),

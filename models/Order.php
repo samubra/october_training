@@ -1,15 +1,16 @@
 <?php namespace Samubra\Training\Models;
 
+use Auth;
+use Lang;
+use Event;
 use Model;
-use RainLab\User\Models\User;
 
 /**
- * Model
+ * OrderBack Model
  */
 class Order extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
-
+    use \October\Rain\Database\Traits\Encryptable;
 
     /**
      * @var string The database table used by the model.
@@ -17,71 +18,71 @@ class Order extends Model
     public $table = 'samubra_training_orders';
 
     /**
-     * @var array Validation rules
+     * The attributes that should be mutated to dates.
+     * @var array
      */
-    public $rules = [
-    ];
+    protected $dates = ['date_completed', 'date_paid'];
 
-    const REFUND_STATUS_PENDING = 'pending';
-    const REFUND_STATUS_APPLIED = 'applied';
-    const REFUND_STATUS_PROCESSING = 'processing';
-    const REFUND_STATUS_SUCCESS = 'success';
-    const REFUND_STATUS_FAILED = 'failed';
+    /**
+     * @var array Guarded fields
+     */
+    protected $guarded = ['*'];
 
-    const SHIP_STATUS_PENDING = 'pending';
-    const SHIP_STATUS_DELIVERED = 'delivered';
-    const SHIP_STATUS_RECEIVED = 'received';
+    /**
+     * @var array Fillable fields
+     */
+    protected $fillable = [];
 
-    public static $refundStatusMap = [
-        self::REFUND_STATUS_PENDING    => '未退款',
-        self::REFUND_STATUS_APPLIED    => '已申请退款',
-        self::REFUND_STATUS_PROCESSING => '退款中',
-        self::REFUND_STATUS_SUCCESS    => '退款成功',
-        self::REFUND_STATUS_FAILED     => '退款失败',
-    ];
+    protected $jsonable = ['billing_info', 'shipping_info'];
 
-    public static $shipStatusMap = [
-        self::SHIP_STATUS_PENDING   => '未发货',
-        self::SHIP_STATUS_DELIVERED => '已发货',
-        self::SHIP_STATUS_RECEIVED  => '已收货',
-    ];
+    /**
+     * The attributes that should be encrypted for arrays.
+     *
+     * @var array
+     */
+    public $encryptable = ['payment_data', 'payment_response'];
 
-    protected $fillable = [
-        'no',
-        'address',
-        'total_amount',
-        'remark',
-        'paid_at',
-        'payment_method',
-        'payment_no',
-        'refund_status',
-        'refund_no',
-        'closed',
-        'reviewed',
-        'ship_status',
-        'ship_data',
-        'extra',
-    ];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = ['payment_data'];
 
-    protected $casts = [
-        'closed'    => 'boolean',
-        'reviewed'  => 'boolean',
-        'address'   => 'json',
-        'ship_data' => 'json',
-        'extra'     => 'json',
-    ];
-
-    protected $dates = [
-        'paid_at',
-    ];
-
-    public $belongsTo = [
-        'user' => User::class
-   ];
-
+    /**
+     * @var array Relations
+     */
+    public $hasOne = [];
     public $hasMany = [
         'items' => OrderItem::class
     ];
+    public $belongsTo = [
+        'user' => ['RainLab\User\Models\User'],
+        'payment_method' => ['Samubra\Training\Models\PaymentMethod', 'order' => 'weight asc'],
+        'shipping_method'  => ['Samubra\Training\Models\ShippingMethod', 'order' => 'weight asc'],
+    ];
+    public $belongsToMany = [];
+    public $morphTo = [];
+    public $morphOne = [];
+    public $morphMany = [];
+    public $attachOne = [];
+    public $attachMany = [];
+
+    public function beforeSave()
+    {
+        $user = Auth::getUser();
+        if (!isset($user)) {
+            $this->user_id = 0;
+        }
+        else {
+            $this->user_id = $user['attributes']['id'];
+        }
+    }
+
+    public function afterUpdate()
+    {
+        Event::fire('xeor.octocart.afterOrderUpdate', [$this]);
+    }
 
     protected static function boot()
     {
@@ -99,8 +100,6 @@ class Order extends Model
             }
         });
     }
-
-
     public static function findAvailableNo()
     {
         // 订单流水号前缀
@@ -117,4 +116,76 @@ class Order extends Model
 
         return false;
     }
+    public function getStatusOptions($keyValue = null)
+    {
+
+        return [
+            'pending'=>'待付款',
+            'processing'=>'处理中',
+            'on-hold'=>'待命',
+            'paid'=>'已付费',
+            'completed'=>'已完成',
+            'cancelled'=>'已取消',
+            'refunded'=>'已退款',
+            'failed'=>'失败',
+        ];
+
+    }
+
+    /**
+     * Sets the "url" attribute with a URL to this object
+     * @param string $pageName
+     * @param Cms\Classes\Controller $controller
+     */
+    public function setUrl($pageName, $controller)
+    {
+        $params = [
+            'id' => $this->id,
+            'slug' => $this->slug,
+        ];
+        return $this->url = $controller->pageUrl($pageName, $params);
+    }
+
+    public function getTotal()
+    {
+        return (float)$this->total + (float)$this->shipping_total;
+    }
+
+    public function getSubTotal()
+    {
+        return $this->total;
+    }
+
+    public function getShippingTotal()
+    {
+        return is_null($this->shipping_total) ? 0 : $this->shipping_total;
+    }
+
+    public function getShippingTax()
+    {
+        return is_null($this->shipping_tax) ? 0 : $this->shipping_tax;
+    }
+
+    public function getBillingPhone()
+    {
+        return $this->phone;
+    }
+
+    public function getBillingEmail()
+    {
+        return $this->email;
+    }
+
+    public function getShippingMethodName()
+    {
+        $shippingMethod = $this->shipping_metod;
+        return $shippingMethod ? $shippingMethod->name : '';
+    }
+
+    /**
+    public function getItems()
+    {
+        return json_decode($this->items, true);
+    }
+     * **/
 }

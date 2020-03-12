@@ -59,9 +59,9 @@ class Certificate extends Model
 
         //trace_log($this->print_date);
         if(!$this->print_date)
-            array_push($this->rules['id_num'],Rule::unique($this->table, 'id_num')->where('category_id', $this->category_id)->whereNull('print_date'));
+            array_push($this->rules['id_num'],Rule::unique($this->table, 'id_num')->where('category_id', $this->category_id)->whereNull('print_date')->whereNull('deleted_at'));
         else
-            array_push($this->rules['id_num'],Rule::unique($this->table, 'id_num')->where('category_id', $this->category_id)->where('print_date',$this->print_date));
+            array_push($this->rules['id_num'],Rule::unique($this->table, 'id_num')->where('category_id', $this->category_id)->where('print_date',$this->print_date)->whereNull('deleted_at'));
     }
 
     public function getDropdownOptions($fieldName, $value, $formData)

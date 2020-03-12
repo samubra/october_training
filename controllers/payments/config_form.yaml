@@ -1,0 +1,27 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: samubra.training::lang.payments.create_method
+
+# Model Form Field configuration
+form: $/samubra/training/models/paymentmethod/fields.yaml
+
+# Model Class name
+modelClass: Samubra\Training\Models\PaymentMethod
+
+# Default redirect location
+defaultRedirect: samubra/training/payments
+
+# Create page
+create:
+    title: samubra.training::lang.payments.create_method
+    redirect: samubra/training/payments/update/:id
+    redirectClose: samubra/training/payments
+
+# Update page
+update:
+    title: samubra.training::lang.payments.edit_method
+    redirect: samubra/training/payments
+    redirectClose: samubra/training/payments

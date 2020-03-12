@@ -10,35 +10,35 @@
                 {{ form_token() }}
                 {{ form_sessionKey() }}
                 {% if is_retraining %}
-                <div class="section">
-                    <div class="col s12">
-                        <i class="material-icons prefix">chrome_reader_mode</i>
-                        <div class="input-field inline">
-                            <input id="recordIdentity" type="text" name="identity" data-request-flash>
-                            <label for="recordIdentity" >证件号码<span class="red-text">*</span></label>
+                    <div class="section">
+                        <div class="col s12">
+                            <i class="material-icons prefix">chrome_reader_mode</i>
+                            <div class="input-field inline">
+                                <input id="recordIdentity" type="text" name="identity" data-request-flash>
+                                <label for="recordIdentity" >证件号码<span class="red-text">*</span></label>
+                                <span class="helper-text">请输入正确的证件号码，通常是身份证号码！</span>
+                            </div>
+                            <a class="waves-effect waves-light btn" data-request="onLoadCertificatesList" data-request-success="$('#certificateList').modal('open')">
+                                <i class="material-icons left">more_vert</i>选择证书
+                            </a>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="section" id="selectCertificate"></div>
+                    <div class="section" id="otherField"></div>
+                {% else %}
+                    <div class="section">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">chrome_reader_mode</i>
+                            <input id="recordIdentity_new" type="text" name="identity" data-request-flash>
+                            <label for="recordIdentity_new" >证件号码<span class="red-text">*</span></label>
                             <span class="helper-text">请输入正确的证件号码，通常是身份证号码！</span>
                         </div>
-                        <a class="waves-effect waves-light btn" data-request="onLoadCertificatesList" data-request-success="$('#certificateList').modal('open')">
-                            <i class="material-icons left">more_vert</i>选择证书
-                        </a>
                     </div>
-                </div>
-                <div class="divider"></div>
-                <div class="section" id="selectCertificate"></div>
-                <div class="section" id="otherField"></div>
-                {% else %}
-                <div class="section">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">chrome_reader_mode</i>
-                        <input id="recordIdentity_new" type="text" name="identity" data-request-flash>
-                        <label for="recordIdentity_new" >证件号码<span class="red-text">*</span></label>
-                        <span class="helper-text">请输入正确的证件号码，通常是身份证号码！</span>
+                    <div class="divider"></div>
+                    <div class="section">
+                        {% partial __SELF__ ~'::other_field' %}
                     </div>
-                </div>
-                <div class="divider"></div>
-                <div class="section">
-                    {% partial __SELF__ ~'::other_field' %}
-                </div>
                 {% endif %}
                 <div class="divider"></div>
                 <div class="section">

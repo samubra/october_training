@@ -2,7 +2,7 @@
 #  Form Behavior Config
 # ===================================
 
-# Record name
+# RecordForm name
 name: samubra.training::lang.payments.create_method
 
 # Model Form Field configuration

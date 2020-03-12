@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Samubra\Training\Components;
 
 
@@ -24,7 +23,7 @@ use Log;
 use ShoppingCart;
 use OctoCart;
 
-class Record extends ComponentBase
+class RecordForm extends ComponentBase
 {
     protected $auth;
     protected $certificateRepository;
@@ -58,30 +57,27 @@ class Record extends ComponentBase
                 'description' => 'url中显示培训项目的缩略名',
                 'default'     => '{{ :slug }}',
                 'type'        => 'string',
-            ],
-            'check_auth' => [
-                'title'       => '检查登录状态',
-                'description' => '检查当前是否有用户登录',
-                'default'     => '1',
-                'type'        => 'checkbox ',
             ]
         ];
     }
 
-    public function onRun()
+    public function onRender()
     {
-        $this->projectModel = $this->loadProject();
-        /**如果没有登录用户且培训项目为复训，则需要输入密码
-        if(Auth::guest() && $this->projectModel->is_retraining)
-            $this->page['check_password'] = true;
-        else
-            $this->page['check_password'] = false;
-        //检查是否需要检测，如果需要检测，则检测培训项目是否允许申请**/
+        $this->page['project'] = $this->loadProject($this->property('project_slug'));
+        $this->prepareVars();
         if( !$this->projectModel->active){
             Flash::error('该培训项目已不允许申请培训，请重新选择培训项目！');
             return redirect()->back();
         }
     }
+
+    protected function prepareVars(){
+        $this->page['is_retraining'] = $this->projectModel->plan->is_retraining;
+        $this->page['previous'] = url()->previous();
+        $this->page['eduOptions'] = \Samubra\Training\Models\Train::$eduTypeMap;
+    }
+
+
 
     public function onAddRecord()
     {
@@ -141,54 +137,36 @@ class Record extends ComponentBase
 
     public function onLoadCertificatesList()
     {
-        //trace_sql();
         $this->projectModel  = $this->loadProject();
         $postData = post();
         $rules = [
             'identity' => 'required|identity|exists:samubra_training_certificates,id_num,category_id,'.$this->projectModel->plan->category_id,
-            'agree' => 'required'
         ];
         $messages = [
             'identity.required' => '证件号码必须填写!',
             'identity' => '身份证号码格式错误!',
-            'agree.required' => '必须同意《培训申请须知》,请勾选！',
             'exists' => '你所输入的证件号码没有找到符合该培训项目的证书，请重新输入新的证件号码，或重新选择相匹配的培训项目!'
         ];
-
-        if(request()->has('password')){
-            $rules['password'] = 'required|between:4,255';
-            $messages['password.between'] = '密码长度必须在4至255之间！';
-            $messages['password.required'] = '密码必须填写！';
-        }
-
 
         $validation = Validator::make($postData, $rules,$messages);
         if ($validation->fails()) {
             throw new ValidationException($validation);
         }
 
-        $this->loadUser([
-            'identity' => post('identity')
-        ]);
-
-        $certificates = $this->certificateRepository->where('id_num',$postData['identity'])->where('category_id',$this->projectModel->plan->category_id)->get();
-
-        if(!$this->auth->certificates_count)
-            throw new ApplicationException('没有找到'.$postData['identity'].'的培训证书，如需重新输入证件号码，请刷新页面重试！');
-
+        $certificates = $this->certificateRepository->where('id_num',$postData['identity'])->where('category_id',$this->projectModel->plan->category_id)->where('active',true)->get();
         return [
-            '#retraining_form' => $this->renderPartial('pages-training/certificate_list_modal',['certificates' => $certificates])
+            '#certificateListTable' => $this->renderPartial('@certificate_list_modal',['certificates' => $certificates])
         ];
     }
 
-    public function onLoadRecordForm()
+    public function onLoadRecord()
     {
         $this->loadCertificate();
 
         if(!$this->certificateModel)
         {
-            trace_log(post('查找ID为'.'certificate_id').'的培训证书。');
-            throw new ApplicationException('没有找到相应的培训证书，如需重新输入证件号码，请刷新页面重试！');
+            trace_log('查找ID为'.post('certificate_id').'的培训证书。');
+            throw new ApplicationException('没有找到相应的培训证书，如需重新输入证件号码！');
         }
         $resultData = [
             'certificate' => $this->certificateModel,
@@ -196,7 +174,8 @@ class Record extends ComponentBase
             'project' => $this->loadProject()
         ];
         return [
-            '#result' => $this->renderPartial('pages-training/record_form',['result' => $resultData])
+            '#selectCertificate' => $this->renderPartial('@certificate',['certificate' => $this->certificateModel]),
+            '#otherField' => $this->renderPartial('@other_field',['certificate' => $this->certificateModel,'eduOptions' => Train::$eduTypeMap,])
         ];
     }
 
@@ -225,37 +204,7 @@ class Record extends ComponentBase
         $certificate_id = is_null($certificate_id) ? post('certificate_id'):$certificate_id;
 
             try {
-                if($certificate_id){
-                $certificateModel = $this->certificateRepository->with('category')->getById($certificate_id);
-                }else {
-                    $this->loadUser([
-                        'identity' => post('identity'),
-                        'name' => post('name'),
-                        'phone' => post('phone'),
-                        'address' => post('address'),
-                        'company' => post('company'),
-                    ]);
-                    //$this->certificateRepository->where('category_id',);
-                    $certificateAll = $this->certificateRepository
-                        ->with('category')
-                        ->where('id_num',post('identity'))
-                        ->where('id_type',Train::ID_TYPE_IDENTITY)
-                        ->where('category_id',$this->projectModel->plan->category_id)
-                        ->whereNull('print_date')->get();
-
-                    $certificateModel = $certificateAll->count() ? $certificateAll->first() : $this->certificateRepository->create([
-                        'id_num' => post('identity'),
-                        'id_type' => Train::ID_TYPE_IDENTITY,
-                        'name' => post('name'),
-                        'edu_type' => post('edu_type'),
-                        'phone' => post('phone'),
-                        'address' => post('address'),
-                        'company' => post('company', '个体'),
-                        'category_id' => $this->projectModel->plan->category_id,
-                        'organization_id' => $this->projectModel->plan->organization_id,
-                        'user_id' => $this->auth->id,
-                    ]);
-                }
+                $certificateModel = $this->certificateRepository->with('category')->where('active',true)->getById($certificate_id);
             } catch (ModelNotFoundException $ex) {
                 $this->setStatusCode(404);
                 return $this->controller->run('404');

@@ -1,4 +1,4 @@
-<?php namespace Xeor\OctoCart\Components;
+<?php namespace Samubra\Training\Components;
 
 use Log;
 use Mail;

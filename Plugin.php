@@ -74,7 +74,7 @@ class Plugin extends PluginBase
         return [
             'Samubra\Training\Components\UserCertificates' => 'userCertificates',
             'Samubra\Training\Components\ProjectDetails' => 'projectDetails',
-            'Samubra\Training\Components\Record' => 'addRecord',
+            'Samubra\Training\Components\RecordForm' => 'recordForm',
             'Samubra\Training\Components\UserAddresses' => 'userAddresses',
             //'Samubra\Training\Components\Cartback' => 'cart',
             'Samubra\Training\Components\AddAttach' => 'addAttach',

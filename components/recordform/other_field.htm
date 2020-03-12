@@ -1,0 +1,16 @@
+<div class="input-field col s12">
+    <i class="material-icons prefix">assignment_ind</i>
+    <input type="text" class="validate" id="name" name="name" value="{{ certificate.name}}" {{ certificate ? "disabled" : ''}}>
+    <label for="name" class="{{ certificate ? 'active' : ''}}" >姓名 <span class="red-text">*</span></label>
+</div>
+<div class="input-field col s12">
+    <i class="material-icons prefix">school</i>
+    <select id="edu_type" name="edu_type">
+        <option disabled {{ certificate ? '' : 'selected' }} >选择你的文化程度...</option>
+        {% for id,name in eduOptions %}
+        <option value="{{ id }}" {{ certificate.edu_type==id ? "selected" : "" }}>{{ name }}</option>
+        {% endfor %}
+    </select>
+    <label for="edu_type">文化程度<span class="red-text">*</span></label>
+</div>
+

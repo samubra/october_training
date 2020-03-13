@@ -12,29 +12,31 @@
                     </tr>
                 </thead>
                 {% for itemId, item in items %}
-                    {% set record = item.record %}
+                    {% set project = item.project %}
                     {% set quantity = item.quantity %}
                     {% set price = item.price %}
+                    {% set type = item.type %}
                     {% set attributes = item.attributes %}
                         <tr>
                             <td style="width: 166px;">
-                                {% if record.photo_image %}
-                                        <img data-src="{{ record.photo_image.filename }}"
-                                             src="{{ record.photo_image.path }}"
+                                {% if project.photo_image %}
+                                        <img data-src="{{ project.photo_image.filename }}"
+                                             src="{{ project.photo_image.path }}"
                                              class="img-responsive"
                                              style="max-width: 150px;"
-                                             alt="{{ record.record_name }}" />
+                                             alt="{{ project.project_name }}" />
                                 {% else %}
-                                    <img src="http://placehold.it/150x150" class="img-responsive" alt="{{ record.record_name }}">
+                                    <img src="http://placehold.it/150x150" class="img-responsive" alt="{{ project.project_name }}">
                                 {% endif %}
                             </td>
                             <td>
-                                <p><strong><a href="{{ record.url }}">{{ record.record_name }}</a></strong></p>
-                                <p><a href="{{ record.project.url }}">{{ record.project.title }}</a></p>
+                                <p><strong><a href="{{ project.url }}">{{ project.title }}</a></strong></p>
+                                {{ type }}
+                                <p><a href="{{ project.project.url }}">{{ project.project.title }}</a></p>
 
-                                {% if attributes is not empty %}
-                                    {% for name, value in attributes %}
-                                        <strong>{{ name }}:</strong>&nbsp;{{ value }}<br>
+                                {% if attributes['attributesShow'] is not empty %}
+                                    {% for name, value in attributes['attributesShow'] %}
+                                        <strong>{{ value['label'] }}:</strong>&nbsp;{{ value['value'] }}<br>
                                     {% endfor %}
                                 {% endif %}
                             </td>
@@ -86,8 +88,8 @@
                             ><i class="material-icons left"> remove_shopping_cart</i> 清空购物车</button>
                             <a
                                     href="/{{ checkoutPage }}"
-                                    class="btn btn-primary"
-                            ><i class="material-icons left">monetization_on</i>支付</a>
+                                    class="waves-effect waves-light btn-large red lighten-2"
+                            ><i class="material-icons left">monetization_on</i>支付并完成报名</a>
                         </p>
                     </td>
                 </tr>
@@ -96,5 +98,5 @@
         </div>
     </div>
 {% else %}
-<div class="card-panel teal lighten-2 white-text">{{ noRecordsMessage }}</div>
+<div class="card-panel teal lighten-2 white-text">{{ noCartsMessage }}</div>
 {% endif %}

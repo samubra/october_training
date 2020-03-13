@@ -1,6 +1,6 @@
 <div class="input-field col s12">
     <i class="material-icons prefix">assignment_ind</i>
-    <input type="text" class="validate" id="name" name="name" value="{{ certificate.name}}" {{ certificate ? "disabled" : ''}}>
+    <input type="text" class="validate" id="name" name="name" value="{{ certificate.name}}" {{ certificate ? "readonly" : ''}}>
     <label for="name" class="{{ certificate ? 'active' : ''}}" >姓名 <span class="red-text">*</span></label>
 </div>
 <div class="input-field col s12">

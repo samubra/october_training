@@ -6,25 +6,25 @@ use Session;
 use OctoCart;
 use Cms\Classes\ComponentBase;
 use Samubra\Training\Models\Settings;
-use Samubra\Training\Models\Record as RecordModel;
+use Samubra\Training\Models\Project as ProectModel;
 
 class Cart extends ComponentBase
 {
 
     /**
-     * An array of records.
+     * An array of projects.
      * @var Collection
      */
     public $items;
 
     /**
-     * Message to display when there are no records.
+     * Message to display when there are no projects.
      * @var string
      */
-    public $noRecordsMessage;
+    public $noCartsMessage;
 
     /**
-     * Reference to the page name for linking to records.
+     * Reference to the page name for linking to projects.
      * @var string
      */
     public $projectDisplayPage;
@@ -60,7 +60,7 @@ class Cart extends ComponentBase
     public $count;
 
     /**
-     * An array of records that you promote in the cart, based on the current record.
+     * An array of projects that you promote in the cart, based on the current project.
      * @var Collection
      */
     public $crossSells;
@@ -76,9 +76,9 @@ class Cart extends ComponentBase
     public function defineProperties()
     {
         return [
-            'noRecordsMessage' => [
-                'title'        => 'samubra.training::lang.cart.no_records',
-                'description'  => 'samubra.training::lang.cart.no_records_description',
+            'noCartsMessage' => [
+                'title'        => 'samubra.training::lang.cart.no_projects',
+                'description'  => 'samubra.training::lang.cart.no_projects_description',
                 'type'         => 'string',
                 'default'      => '你的购物车是空的',
                 'showExternalParam' => false
@@ -95,7 +95,7 @@ class Cart extends ComponentBase
     protected function prepareVars()
     {
 
-        $this->noPostsMessage = $this->page['noRecordsMessage'] = $this->property('noRecordsMessage');
+        $this->noCartsMessage = $this->page['noCartsMessage'] = $this->property('noCartsMessage');
 
         $this->totalPrice = $this->page['totalPrice'] = OctoCart::total();
         $this->count = $this->page['count'] = OctoCart::count();
@@ -106,7 +106,6 @@ class Cart extends ComponentBase
         $this->cartPage = $this->page['cartPage'] = Settings::get('cart_page', 'cart');
         $this->checkoutPage = $this->page['checkoutPage'] = Settings::get('checkout_page', 'checkout');
         $this->projectDisplayPage = $this->page['projectDisplayPage'] = Settings::get('project_display_page', 'project');
-        $this->recordDisplayPage = $this->page['recordDisplayPage'] = Settings::get('record_display_page', 'record');
         $this->categoryPage = $this->page['categoryPage'] = Settings::get('category_page', 'category');
     }
 
@@ -115,10 +114,9 @@ class Cart extends ComponentBase
         $items = OctoCart::get();
         if (!is_null($items)) {
             foreach ($items as $itemId => $item) {
-                $record = RecordModel::with('project')->find($item['record']);
-                $record->setUrl($this->recordDisplayPage, $this->controller);
-                $record->project->setUrl($this->projectDisplayPage, $this->controller);
-                $items[$itemId]['record'] = $record;
+                $project = ProectModel::with('plan','plan.category')->find($item['project']);
+                $project->setUrl($this->projectDisplayPage, $this->controller);
+                $items[$itemId]['project'] = $project;
             }
         }
         return $items;
@@ -137,19 +135,11 @@ class Cart extends ComponentBase
         $params = Input::all();
         if (isset($params['itemId'])) {
             $itemId = $params['itemId'];
-            $recordId = OctoCart::get($itemId);
-            RecordModel::find($recordId['record'])->delete();
             $cart = OctoCart::remove($itemId);
         }
     }
 
     public function onClear() {
-        $items = OctoCart::get();
-        if (!is_null($items)) {
-            foreach ($items as $itemId => $item) {
-                $record = RecordModel::with('project')->find($item['record'])->delete();
-            }
-        }
         $cart = OctoCart::clear();
     }
 

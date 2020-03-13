@@ -1,6 +1,6 @@
 <div class="card  hoverable">
     <div class="card-content" id="result">
-        <form data-request="onAddRecord" data-request-validate data-request-flash data-request-data="project_id:'{{ project.id }}'" >
+        <form data-request="onAddToCart" data-request-validate data-request-flash data-request-data="project_id:'{{ project.id }}'" data-request-redirect="{{ 'cart'|page }}">
             <div class="row">
                 <div class="alert alert-danger" data-validate-error>
                     <div class="card-panel red lighten-2 white-text">

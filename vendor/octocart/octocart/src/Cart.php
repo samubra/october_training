@@ -1,32 +1,38 @@
 <?php namespace OctoCart\OctoCart;
 
 use Session;
-use Samubra\Training\Models\Record as RecordModel;
+use Samubra\Training\Models\Project as ProjectModel;
 use Samubra\Training\Models\Settings;
 
 class Cart {
 
     protected $sessionKey = 'octocart';
 
-    public function add($recordId, $quantity = 1, array $attributes = [])
+    public function add($projectId, $quantity = 1,$price = 0, $type=null,array $attributes = [])
     {
         $cart = $this->getCart();
-        $recordId = (int) $recordId;
+        $projectId = (int) $projectId;
         $quantity = (int) $quantity;
-        if ($recordId > 0 && $quantity > 0) {
-            $itemId = $this->generateItemId($recordId, $attributes);
-            // If a record is added more times, just update the quantity.
+        if ($projectId > 0 && $quantity > 0) {
+            $itemId = $this->generateItemId($projectId, $attributes);
+            // If a project is added more times, just update the quantity.
             if ($this->hasItemId($itemId)) {
                 // Clicked 2 times on  to cart button. Increment quantity.
                 $cart[$itemId]['quantity'] += $quantity;
             }
             else {
-                $cart[$itemId]['record'] = $recordId;
+                $cart[$itemId]['project'] = $projectId;
                 $cart[$itemId]['quantity'] = $quantity;
+                if(is_null($type)){
+                    $type = ProjectModel::class;
+                }
 
-                $record = RecordModel::with('project')->find($recordId);
-                $cart[$itemId]['price'] = $record->project->cost;
-
+                if(is_null($price) && $type == ProjectModel::class){
+                    $project = (new $type)->with('plan','plan.category')->find($projectId);
+                    $cart[$itemId]['price'] = $project->cost;
+                }else{
+                    $cart[$itemId]['price'] = $price;
+                }
                 $cart[$itemId]['attributes'] = $attributes;
             }
         }
@@ -144,10 +150,10 @@ class Cart {
      * @param  array   $attributes  Array of additional options, such as 'size' or 'color'
      * @return boolean
      */
-    protected function generateItemId($recordId, $attributes)
+    protected function generateItemId($projectId, $attributes)
     {
         ksort($attributes);
-        return md5($recordId . serialize($attributes));
+        return md5($projectId . serialize($attributes));
     }
 
     /**

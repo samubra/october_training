@@ -22,7 +22,7 @@
                 <td>{{ certificate.review_date }}</td>
                 <td><i class='material-icons'>{{ certificate.active ? "check":"close" }}</i></td>
                 <td>
-                    <a class="btn-floating red light-2" data-request-success="$('select').formSelect();$('#certificateList').modal('close');" data-request="onLoadRecord" >
+                    <a class="btn-floating red light-2" data-request-success="$('select').formSelect();$('#certificateList').modal('close');$('.collapsible').collapsible();" data-request="onLoadRecord" >
                         <i class="material-icons">playlist_add_check</i>
                     </a>
                 </td>

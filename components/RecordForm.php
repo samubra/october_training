@@ -5,6 +5,7 @@ namespace Samubra\Training\Components;
 
 use Cms\Classes\ComponentBase;
 
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Samubra\Training\Classes\CheckRecord;
 use Samubra\Training\Models\Settings;
@@ -91,20 +92,21 @@ class RecordForm extends ComponentBase
         $postData = $this->getPostRecordData();
         $this->validRecordData($postData);
 
+        $this->loadUser($postData);
+
         $cartData['saveData']=$postData;
+
         $cartData['attributesShow'] = [
             "record_name" => ['label' => "姓名" , 'value' => $postData['record_name']],
             "record_id_type" => ['label' => "证件类型" , 'value' => Train::$idTypeMap[$postData['record_id_type']]],
             "record_id_num" => ['label' => "证件号码" , 'value' => $postData['record_id_num']],
             "certificate_id" => ['label' => "培训证书" , 'value' => $this->certificateRepository->with('category')->getById($postData['certificate_id'])->category->name],
-
             "record_edu_type" => ['label' => "文化程度" , 'value' => Train::$eduTypeMap[$postData['record_edu_type']]],
             "record_phone" => ['label' => "联系电话" , 'value' => $postData['record_phone'] ],
             "record_address" => ['label' => "联系地址" , 'value' => $postData['record_address']],
             "record_company" => ['label' => "单位名称" , 'value' => $postData['record_company'] ],
         ];
 
-        trace_log($cartData);
         OctoCart::add($postData['project_id'], 1,null,null,$cartData);
 
         return redirect(Settings::get('redirect_user_after_add_to_cart', 'carts'));
@@ -281,6 +283,35 @@ class RecordForm extends ComponentBase
             throw new ApplicationException('没找到对应的培训项目！');
         }
         return $this->projectModel = $projectModel;
+    }
+
+
+    /**
+     * 获取登录账户，如果未登录，则用该账户注册或登录
+     * @param $data
+     * @return $this
+     */
+    protected function loadUser($data)
+    {
+        $identity = Str::snake(trim($data['record_id_num']));
+        if(Auth::check()){
+            $this->auth = Auth::getUser();
+        }elseif($user = Auth::findUserByLogin($identity)){
+            $this->auth = Auth::login($user);
+        }else{
+            $this->auth = Auth::register([
+                'email' => $identity . '@tiikoo.cn',
+                'password' => substr($identity,-8),
+                'password_confirmation' => substr($identity,-8),
+                'name' => $data['record_name'] ,
+                'username' => $identity ,
+                'identity' => $identity ,
+                'phone' => $data['record_phone'],
+                'company' => $data['record_company'],
+            ],true);
+        }
+
+        return $this->auth;
     }
 
 }

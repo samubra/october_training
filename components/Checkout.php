@@ -5,13 +5,15 @@ use Mail;
 use Input;
 use Event;
 use OctoCart;
+use Auth;
 use Redirect;
 use Cms\Classes\ComponentBase;
-use Xeor\OctoCart\Models\Order;
-use Xeor\OctoCart\Models\Settings;
-use Xeor\OctoCart\Models\Product as ProductModel;
-use Xeor\OctoCart\Models\ShippingMethod;
-use Xeor\OctoCart\Models\PaymentMethod;
+use Samubra\Training\Models\Order;
+use Samubra\Training\Models\Settings;
+use Samubra\Training\Models\Project as ProjectModel;
+use Samubra\Training\Models\ShippingMethod;
+use Samubra\Training\Models\PaymentMethod;
+use Samubra\Training\Repositories\Train\UserAddressesRepository;
 
 class Checkout extends ComponentBase
 {
@@ -23,6 +25,8 @@ class Checkout extends ComponentBase
     public $availableMethods;
 
     public $availableGateways;
+
+    public $user;
 
     public function componentDetails()
     {
@@ -43,10 +47,13 @@ class Checkout extends ComponentBase
 
     protected function prepareVars()
     {
+        $this->user = Auth::getUser();
 
         $this->total = $this->page['total'] = OctoCart::total();
         $this->availableMethods = $this->page['availableMethods'] = $this->loadAvailableMethods();
         $this->availableGateways = $this->page['availableGateways'] = $this->loadavAilableGateways();
+
+        $this->page['userAddresses'] = $this->loadUserAddresses();
 
         /*
          * Page links
@@ -64,6 +71,7 @@ class Checkout extends ComponentBase
         return PaymentMethod::where('active', true)->orderBy('weight')->get();
     }
 
+
     public function onCheckout()
     {
         $input    = Input::all();
@@ -73,6 +81,7 @@ class Checkout extends ComponentBase
         $orderPhone = null;
         $shippingMethod = null;
         $paymentMethod = null;
+
 
         if (!$this->availableMethods) {
             $this->availableMethods = $this->loadAvailableMethods();
@@ -111,26 +120,24 @@ class Checkout extends ComponentBase
             $paymentMethod = PaymentMethod::find($paymentMethodId);
         }
 
-        $items = $products = OctoCart::get();
+        $items = $projects = OctoCart::get();
         if (!is_null($items)) {
             foreach ($items as $itemId => $item) {
-                $product = ProductModel::find($item['product']);
-                $product->setUrl($this->productDisplayPage, $this->controller);
-                $product->categories->each(function($category) {
-                    $category->setUrl($this->categoryPage, $this->controller);
-                });
-                $products[$itemId]['product'] = $product;
+                $project = ProjectModel::with('plan')->find($item['project']);
+                $project->setUrl($this->projectDisplayPage, $this->controller);
+                $projects[$itemId]['project'] = $project;
             }
         }
 
         $totalPrice = OctoCart::total();
         $count = OctoCart::count();
 
+
         $placeOrder = isset($input['place_order']) && !empty($input['place_order']) ? (int)$input['place_order'] : 0;
 
         if ($placeOrder === 0)
             return true;
-
+        trace_log($count);
         // Get Settings
         $settings = Settings::instance();
 
@@ -139,11 +146,14 @@ class Checkout extends ComponentBase
 
         $appName = class_exists('\\Backend\\Models\\BrandSettings') ? \Backend\Models\BrandSettings::get('app_name') : \Backend\Models\BrandSetting::get('app_name');
 
+        trace_sql();
         // Create New OrderBack
+        //status`, `no`, `user_id`, `email`, `phone`, `billing_info`, `shipping_info`, `shipping_method_id`, `shipping_total`, `shipping_tax`, `note`, `vat`, `total`, `currency`, `payment_method_id`, `transaction_id`, `date_paid`, `payment_data`, `payment_response`, `created_at`, `updated_at`, `date_completed
         $order = new Order;
         $order->email = $orderEmail;
         $order->phone = $orderPhone;
-        $order->items = json_encode($items);
+        $order->address = $orderPhone;
+        //$order->items = json_encode($items);
         $order->billing_info = $this->prepareJSON($billing);
         $order->shipping_info = $this->prepareJSON($shipping);
         $order->total = $totalPrice->total;
@@ -165,7 +175,7 @@ class Checkout extends ComponentBase
                 'name'     => 'Customer',
                 'site'     => $appName,
                 'order'    => $order,
-                'items'    => $products,
+                'items'    => $projects,
                 'shipping' => $shipping,
                 'billing'  => $billing,
                 'total'    => $totalPrice->total,
@@ -185,7 +195,7 @@ class Checkout extends ComponentBase
                     'billing'  => $billing,
                     'shipping' => $shipping,
                     'site'     => $appName,
-                    'items'    => $products,
+                    'items'    => $projects,
                     'total'    => $totalPrice->total,
                     'vat'      => $totalPrice->vat,
                     'count'    => $count,
@@ -209,6 +219,18 @@ class Checkout extends ComponentBase
 
     }
 
+
+    protected function loadUserAddresses()
+    {
+        try {
+            $userAddressesRepository = new UserAddressesRepository();
+            $userLists = $userAddressesRepository->where('user_id',$this->user->id)->orderBy('last_used_at',' DESC')->get();
+        } catch (ModelNotFoundException $ex) {
+            $this->setStatusCode(404);
+            return $this->controller->run('404');
+        }
+        return $userLists;
+    }
     protected function prepareJSON($array)
     {
         if (!is_array($array) || empty($array))

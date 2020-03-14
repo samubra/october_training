@@ -6,7 +6,7 @@
 list: $/samubra/training/models/order/columns.yaml
 
 # Model Class name
-modelClass: Xeor\OctoCart\Models\Order
+modelClass: Samubra\Training\Models\Order
 
 # List Title
 title: xeor.octocart::lang.orders.list_title

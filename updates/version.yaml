@@ -102,3 +102,6 @@
 2018.8.5:
     - 'Updated table samubra_training_orders 添加address字段'
     - builder_table_update_samubra_training_orders.php
+2018.8.6:
+    - 'Updated table samubra_training_orders'
+    - builder_table_update_samubra_training_orders2.php

@@ -5,58 +5,58 @@
 columns:
 
     id:
-        label: xeor.octocart::lang.orders.order
+        label: samubra.training::lang.orders.order
         type: partial
-        path: ~/plugins/xeor/octocart/models/order/_id.htm
+        path: ~/plugins/samubra/training/models/order/_id.htm
         searchable: true
 
     status:
-        label: xeor.octocart::lang.orders.status
+        label: samubra.training::lang.orders.status
         type: partial
-        path: ~/plugins/xeor/octocart/models/order/_status.htm
+        path: ~/plugins/samubra/training/models/order/_status.htm
 
     created_at:
-        label: xeor.octocart::lang.orders.created_at
+        label: samubra.training::lang.orders.created_at
         type: date
 
     total:
-        label: xeor.octocart::lang.orders.total
+        label: samubra.training::lang.orders.total
         type: partial
-        path: ~/plugins/xeor/octocart/models/order/_total.htm
+        path: ~/plugins/samubra/training/models/order/_total.htm
         searchable: false
 
     actions:
-        label: xeor.octocart::lang.orders.actions
+        label: samubra.training::lang.orders.actions
         type: partial
-        path: ~/plugins/xeor/octocart/models/order/_actions.htm
+        path: ~/plugins/samubra/training/models/order/_actions.htm
         sortable: false
 
 #    user_id:
-#        label: xeor.octocart::lang.orders.user
+#        label: samubra.training::lang.orders.user
 #        relation: user
 #        select: name
 #        searchable: true
 
 #    email:
-#        label: xeor.octocart::lang.orders.email
+#        label: samubra.training::lang.orders.email
 #        searchable: true
 
 #    currency:
-#        label: xeor.octocart::lang.orders.currency
+#        label: samubra.training::lang.orders.currency
 #        searchable: false
 #    items:
-#        label: xeor.octocart::lang.orders.items
+#        label: samubra.training::lang.orders.items
 #        type: partial
-#        path: ~/plugins/xeor/octocart/models/order/_items.htm
+#        path: ~/plugins/samubra/training/models/order/_items.htm
 #    billing_info:
-#        label: xeor.octocart::lang.orders.billing_info
+#        label: samubra.training::lang.orders.billing_info
 #        type: partial
-#        path: ~/plugins/xeor/octocart/models/order/_billing_info.htm
+#        path: ~/plugins/samubra/training/models/order/_billing_info.htm
 #    shipping_info:
-#        label: xeor.octocart::lang.orders.shipping_info
+#        label: samubra.training::lang.orders.shipping_info
 #        type: partial
-#        path: ~/plugins/xeor/octocart/models/order/_shipping_info.htm
+#        path: ~/plugins/samubra/training/models/order/_shipping_info.htm
 #    vat:
-#        label: xeor.octocart::lang.orders.vat
+#        label: samubra.training::lang.orders.vat
 #        searchable: false
 #        hidden: true

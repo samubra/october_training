@@ -126,12 +126,12 @@ class UserAddresses extends ComponentBase
 
     protected function onLoadAddresses()
     {
-        return $this->userAddressesRepository->where('user_id',$this->loginUser->id)->orderBy('last_used_at',' DESC')->get();
+        return (new UserAddress())->where('user_id',$this->loginUser->id)->orderBy('last_used_at',' DESC')->get();
     }
 
     protected function onLoadLastUseAddress()
     {
-        return $this->userAddressesRepository->where('user_id',$this->loginUser->id)->first();
+        return (new UserAddress())->where('user_id',$this->loginUser->id)->first();
     }
 
 

@@ -2,18 +2,18 @@
 $items = (array) json_decode($value);
 if (!empty($items)):
 foreach ($items as $item):
-$product = \Xeor\OctoCart\Models\Product::find($item->product);
+$project = \Samubra\Training\Models\Project::find($item->project);
 
-if (!$product) { print e(trans('backend::lang.list.no_records')) . '<br>'; }
+if (!$project) { print e(trans('backend::lang.list.no_records')) . '<br>'; }
 else {
 
 ?>
-    <?= $product->title; ?>&nbsp;<?= $item->quantity; ?>&nbsp;x&nbsp;<?= $item->price; ?> <br>
+    <?= $project->title; ?>&nbsp;<?= $item->quantity; ?>&nbsp;x&nbsp;<?= $item->price; ?> <br>
 
-    <?php if ($item->attributes): ?>
+    <?php if ($item->attributes->attributesShow): ?>
         <ul>
-            <?php foreach ($item->attributes as $name => $value): ?>
-                <li><?= $name; ?>:&nbsp;<?= $value; ?></li>
+            <?php foreach ($item->attributes->attributesShow as $name => $value): ?>
+                <li><?= $value->label; ?>:&nbsp;<?= $value->value; ?></li>
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>

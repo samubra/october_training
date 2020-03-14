@@ -100,12 +100,15 @@ class RecordForm extends ComponentBase
             "record_name" => ['label' => "姓名" , 'value' => $postData['record_name']],
             "record_id_type" => ['label' => "证件类型" , 'value' => Train::$idTypeMap[$postData['record_id_type']]],
             "record_id_num" => ['label' => "证件号码" , 'value' => $postData['record_id_num']],
-            "certificate_id" => ['label' => "培训证书" , 'value' => $this->certificateRepository->with('category')->getById($postData['certificate_id'])->category->name],
+           // "certificate_id" => ['label' => "培训证书" , 'value' => $this->certificateRepository->with('category')->getById($postData['certificate_id'])->category->name],
             "record_edu_type" => ['label' => "文化程度" , 'value' => Train::$eduTypeMap[$postData['record_edu_type']]],
             "record_phone" => ['label' => "联系电话" , 'value' => $postData['record_phone'] ],
             "record_address" => ['label' => "联系地址" , 'value' => $postData['record_address']],
             "record_company" => ['label' => "单位名称" , 'value' => $postData['record_company'] ],
         ];
+
+        if(isset($postData['certificate_id']))
+            $cartData['attributesShow']["certificate_id"] = ['label' => "培训证书" , 'value' => $this->certificateRepository->with('category')->getById($postData['certificate_id'])->category->name];
 
         OctoCart::add($postData['project_id'], 1,null,null,$cartData);
 

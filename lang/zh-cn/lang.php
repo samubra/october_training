@@ -140,7 +140,7 @@
         'order_id'=>'订单ID',
         'order_id_description'=>'使用提供的ID值查找订单。',
         'order'=>'订单',
-        'details'=>'details',
+        'details'=>'详细信息',
         'create_order'=>'订单',
         'general_details'=>'常规详细信息',
         'created_at'=>'订购日期：',

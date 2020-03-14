@@ -2,10 +2,10 @@
 <button type="button"
         class="edit-order btn btn-default btn-sm oc-icon-check"
         data-stripe-load-indicator
-        title="<?= e(trans('xeor.octocart::lang.orders.complete')) ?>"
+        title="<?= e(trans('samubra.training::lang.orders.complete')) ?>"
         data-request="onMarkStatus"
         data-request-data="id: <?= $record->id; ?>, status: 'completed'"
-        data-request-redirect="/backend/xeor/octocart/orders">
+        data-request-redirect="/backend/samubra/training/orders">
 </button>
 <?php endif; ?>
 
@@ -13,6 +13,6 @@
         class="delete-order btn btn-default btn-sm oc-icon-eye"
         data-stripe-load-indicator
         data-request="onEdit"
-        title="<?= e(trans('xeor.octocart::lang.orders.view')) ?>"
+        title="<?= e(trans('samubra.training::lang.orders.view')) ?>"
         data-request-data="id: <?= $record->id; ?>">
 </button>

@@ -1,9 +1,7 @@
-<li class="shipping_method {{ 'shipping_method_' ~ method.id }}">
-    <input id="{{ 'shipping_method_' ~ method.id }}" type="radio" class="input-radio" name="shipping_method" value="{{ 'shipping_method_' ~ method.id }}" />
-    <label for="{{ 'shipping_method_' ~ method.id }}">
-        {{ method.title }}
+<p>
+    <label>
+        <input type="radio" id="{{ 'shipping_method_' ~ method.id }}" class="with-gap" name="shipping_method" value="{{ method.id }}">
+        <span> {{ method.name }}</span>
+        {{ method.description|raw }}
     </label>
-    <div class="shipping_box {{ 'shipping_method_' ~ method.id }}">
-        {{ method.description }}
-    </div>
-</li>
+</p>

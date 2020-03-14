@@ -1,9 +1,7 @@
-<li class="payment_method {{ 'payment_method_' ~ gateway.id }}">
-    <input id="{{ 'payment_method_' ~ gateway.id }}" type="radio" class="input-radio" name="payment_method" value="{{ 'payment_method_' ~ gateway.id }}" />
-    <label for="{{ 'payment_method_' ~ gateway.id }}">
-        {{ gateway.title }}
+<p>
+    <label>
+        <input type="radio" id="{{ 'payment_method_' ~ gateway.id }}" class="with-gap" name="payment_method" value="{{ gateway.id }}">
+        <span> {{ gateway.name }}</span>
+        {{ gateway.description|raw }}
     </label>
-    <div class="payment_box {{ 'payment_method_' ~ gateway.id }}">
-        {{ gateway.description }}
-    </div>
-</li>
+</p>

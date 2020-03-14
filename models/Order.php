@@ -33,7 +33,7 @@ class Order extends Model
      */
     protected $fillable = [];
 
-    protected $jsonable = ['billing_info', 'shipping_info'];
+    protected $jsonable = ['billing_info', 'shipping_info','address','cart_items'];
 
     /**
      * The attributes that should be encrypted for arrays.
@@ -141,7 +141,7 @@ class Order extends Model
     {
         $params = [
             'id' => $this->id,
-            'slug' => $this->slug,
+            'no' => $this->no,
         ];
         return $this->url = $controller->pageUrl($pageName, $params);
     }
@@ -182,10 +182,9 @@ class Order extends Model
         return $shippingMethod ? $shippingMethod->name : '';
     }
 
-    /**
-    public function getItems()
+
+    public function getCartItems()
     {
-        return json_decode($this->items, true);
+        return json_decode($this->cart_items, true);
     }
-     * **/
 }

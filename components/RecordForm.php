@@ -221,7 +221,7 @@ class RecordForm extends ComponentBase
             'record_company.required' => '单位名称必须填写，如没有工作单位请填“个体”！',
         ];
 
-        if($this->projectModel->plan->is_certificate)
+        if($this->projectModel->plan->is_certificate && isset($data['certificate_id']))
         {
             $rules['certificate_id'] = ['required','record:'.$data['project_id']];
         }

@@ -118,7 +118,7 @@ class Order extends Model
     }
     public function getStatusOptions($keyValue = null)
     {
-        $list = [
+        return [
             'pending'=>'待付款',
             'processing'=>'处理中',
             'on-hold'=>'待命',
@@ -128,17 +128,19 @@ class Order extends Model
             'refunded'=>'已退款',
             'failed'=>'失败',
         ];
-        if(is_null($keyValue))
-            return $list;
-        else
-            return $list[$keyValue];
+    }
+
+    public function getStatusText($key)
+    {
+        $list = $this->getStatusOptions();
+        return $list[$key];
     }
 
 
     /**
-     * Sets the "url" attribute with a URL to this object
-     * @param string $pageName
-     * @param Cms\Classes\Controller $controller
+     * @param $pageName
+     * @param $controller
+     * @return mixed
      */
     public function setUrl($pageName, $controller)
     {

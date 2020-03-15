@@ -284,6 +284,7 @@ class Checkout extends ComponentBase
 
     protected function saveRecord($saveData)
     {
+	    $this->user = $this->user ? $this->user : Auth::getUser(); 
         $recordModel = (new RecordRepository())->create($saveData);
         if(is_null($recordModel->certificate_id)){
 
@@ -303,7 +304,7 @@ class Checkout extends ComponentBase
                 'organization_id' => $organizationId,
                 'user_id' => $this->user->id,
             ];
-            trace_sql();
+            //trace_sql();
             $certificateAll = (new CertificateRepository())
                 ->with('category')
                 ->where('id_num',$certificateSaveData['id_num'])

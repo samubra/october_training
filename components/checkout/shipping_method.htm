@@ -1,6 +1,6 @@
 <p>
     <label>
-        <input type="radio" id="{{ 'shipping_method_' ~ method.id }}" class="with-gap" name="shipping_method" value="{{ method.id }}">
+        <input type="radio" id="{{ 'shipping_method_' ~ method.id }}" class="with-gap" name="shipping_method" value="{{ method.id }}"  {{ loop.index==1 ? 'checked':'' }}>
         <span> {{ method.name }}</span>
         {{ method.description|raw }}
     </label>

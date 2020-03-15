@@ -1,7 +1,7 @@
 <p>
     <label>
-        <input type="radio" id="{{ 'payment_method_' ~ gateway.id }}" class="with-gap" name="payment_method" value="{{ gateway.id }}">
-        <span> {{ gateway.name }}</span>
+        <input type="radio" id="{{ 'payment_method_' ~ gateway.id }}" class="with-gap" name="payment_method" value="{{ gateway.id }}" {{ loop.index==1 ? 'checked':'' }}>
+        <span>{{ gateway.name }}</span>
         {{ gateway.description|raw }}
     </label>
 </p>

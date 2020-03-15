@@ -1,6 +1,6 @@
 <div id="payment" class="checkout-payment">
         {% for gateway in availableGateways %}
-            {% partial __SELF__ ~ '::payment_method' gateway=gateway %}
+            {% partial __SELF__ ~ '::payment_method' gateway=gateway loop=loop %}
         {% else %}
             {# It seems that there are no available payment methods #}
         {% endfor %}

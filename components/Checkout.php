@@ -231,17 +231,26 @@ class Checkout extends ComponentBase
 
         // To Customer
         if($sendUserMessage && !empty($sendUserMessage) && $orderEmail) {
-            Mail::sendTo($orderEmail, 'samubra.training::mail.order_confirm', [
-                'name'     => '学员',
-                'site'     => $appName,
-                'order'    => $order,
-                'items'    => $projects,
-                'shipping' => $shipping,
-                'billing'  => $billing,
-                'total'    => $totalPrice->total,
-                'vat'      => $totalPrice->vat,
-                'count'    => $count,
-            ]);
+            $mailData = [
+                'email' => $orderEmail,
+                'view' => 'samubra.training::mail.order_confirm',
+                'viewData' => [
+                    'name'     => '学员',
+                    'site'     => $appName,
+                    'order'    => $order,
+                    'items'    => $projects,
+                    'shipping' => $shipping,
+                    'billing'  => $billing,
+                    'total'    => $totalPrice->total,
+                    'vat'      => $totalPrice->vat,
+                    'count'    => $count,
+                ]
+            ];
+            Mail::queue('samubra.training::mail.order_confirm', $mailData['viewData'], function ($message) use($orderEmail) {
+                $message->from('samubra@live.cn', '培训管理系统');
+                $message->to($orderEmail);
+                return $message;
+            });
         }
 
 
@@ -252,7 +261,8 @@ class Checkout extends ComponentBase
             $adminEmails = explode("\n", $adminEmails);
             foreach($adminEmails as $email) {
                 $email = trim($email);
-                Mail::sendTo($email, 'samubra.training::mail.order_confirm_admin', [
+
+                Mail::queue('samubra.training::mail.order_confirm_admin', [
                     'order'    => $order,
                     'billing'  => $billing,
                     'shipping' => $shipping,
@@ -261,7 +271,11 @@ class Checkout extends ComponentBase
                     'total'    => $totalPrice->total,
                     'vat'      => $totalPrice->vat,
                     'count'    => $count,
-                ]);
+                ], function ($message) use($email) {
+                    $message->from('samubra@live.cn', '培训管理系统');
+                    $message->to($email);
+                    return $message;
+                });
             }
         }
 
@@ -273,7 +287,7 @@ class Checkout extends ComponentBase
         /*
          * Extensibility
          */
-        if ($event = Event::fire('xeor.octocart.afterOrderSave', [$order], true)) {
+        if ($event = Event::fire('samubra.training.afterOrderSave', [$order], true)) {
             $result = $event;
         }
 
@@ -284,7 +298,7 @@ class Checkout extends ComponentBase
 
     protected function saveRecord($saveData)
     {
-	    $this->user = $this->user ? $this->user : Auth::getUser(); 
+	    $this->user = $this->user ? $this->user : Auth::getUser();
         $recordModel = (new RecordRepository())->create($saveData);
         if(is_null($recordModel->certificate_id)){
 
@@ -321,29 +335,6 @@ class Checkout extends ComponentBase
         return $recordModel;
     }
 
-    protected function createCertificate($saveData)
-    {
-        $certificateAll = (new CertificateRepository())
-            ->with('category')
-            ->where('id_num',post('identity'))
-            ->where('id_type',Train::ID_TYPE_IDENTITY)
-            ->where('category_id',$this->projectModel->plan->category_id)
-            ->whereNull('print_date')->get();
-
-        $certificateModel = $certificateAll->count() ? $certificateAll->first() : $this->certificateRepository->create([
-            'id_num' => post('identity'),
-            'id_type' => Train::ID_TYPE_IDENTITY,
-            'name' => post('name'),
-            'edu_type' => post('edu_type'),
-            'phone' => post('phone'),
-            'address' => post('address'),
-            'company' => post('company', '个体'),
-            'category_id' => $this->projectModel->plan->category_id,
-            'organization_id' => $this->projectModel->plan->organization_id,
-            'user_id' => $this->auth->id,
-        ]);
-
-    }
     protected function loadUserAddresses()
     {
         try {

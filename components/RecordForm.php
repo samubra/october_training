@@ -14,6 +14,7 @@ use Samubra\Training\Repositories\Train\CertificateRepository;
 use Samubra\Training\Repositories\Train\ProjectRepository;
 use Flash;
 use Samubra\Training\Repositories\Train\RecordRepository;
+use Samubra\Training\Repositories\Train\UserAddressesRepository;
 use Validator;
 use ValidationException;
 use SystemException;
@@ -110,6 +111,18 @@ class RecordForm extends ComponentBase
         if(isset($postData['certificate_id']))
             $cartData['attributesShow']["certificate_id"] = ['label' => "培训证书" , 'value' => $this->certificateRepository->with('category')->getById($postData['certificate_id'])->category->name];
 
+        if(!(new UserAddressesRepository())->where('user_id',$this->auth->id)->get()->count()){
+            $address = (new UserAddressesRepository())->create([
+                'user_id' => $this->auth->id,
+                'province' => '重庆市',
+                'city' => '重庆市',
+                'district' => '巫溪县',
+                'address' => $postData['record_address'],
+                'zip' => '405800',
+                'contact_name' => $postData['record_name'],
+                'contact_phone' => $postData['record_phone']
+            ]);
+        }
         OctoCart::add($postData['project_id'], 1,null,null,$cartData);
 
         return redirect(Settings::get('redirect_user_after_add_to_cart', 'carts'));

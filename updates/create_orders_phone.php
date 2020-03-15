@@ -14,7 +14,7 @@ class CreateOrdersPhone extends Migration
         });
 
         // Fix billing & shipping info
-        if ($orders = \Samubra\Training\Models\OrderBack::all()) {
+        if ($orders = \Samubra\Training\Models\Order::all()) {
             foreach ($orders as $order) {
 
                 $billingInfo = $order->billing_info;

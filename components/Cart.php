@@ -86,7 +86,7 @@ class Cart extends ComponentBase
         ];
     }
 
-    public function onRender()
+    public function onRun()
     {
         $this->prepareVars();
         $this->items = $this->page['items'] = $this->listItems();

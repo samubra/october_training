@@ -5,10 +5,6 @@ plugin:
     icon: oc-icon-coffee
     homepage: ''
 navigation:
-    training:
-        label: 培训管理
-        url: samubra/training/setting/index
-        icon: icon-archive
     setting:
         label: 基础信息
         url: samubra/training/categories

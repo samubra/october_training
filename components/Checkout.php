@@ -216,21 +216,20 @@ class Checkout extends ComponentBase
             }
             $order->save();
 
-
+            foreach ($projects as $cart){
+                $record = $this->saveRecord($cart['attributes']['saveData']);
+                trace_log($record);
+                $item = $order->items()->make([
+                    'amount' => $cart['quantity'],
+                    'price'  => $cart['price'],
+                ]);
+                $item->project()->associate($cart['project']);
+                $item->record()->associate($record);
+                $item->save();
+            }
+            Flash::success('培训申请订单提交成功！');
             return $order;
         });
-
-        foreach ($projects as $cart){
-            $record = $this->saveRecord($cart['attributes']['saveData']);
-            $item = $order->items()->make([
-                'amount' => $cart['quantity'],
-                'price'  => $cart['price'],
-            ]);
-            $item->project()->associate($cart['project']);
-            $item->record()->associate($record);
-            $item->save();
-        }
-        Flash::success('培训申请订单提交成功！');
 
         // To Customer
         if($sendUserMessage && !empty($sendUserMessage) && $orderEmail) {

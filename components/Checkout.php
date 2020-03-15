@@ -90,7 +90,6 @@ class Checkout extends ComponentBase
         $paymentMethod = null;
 
 
-        trace_sql();
         if (!$this->availableMethods) {
             $this->availableMethods = $this->loadAvailableMethods();
         }
@@ -218,7 +217,6 @@ class Checkout extends ComponentBase
 
             foreach ($projects as $cart){
                 $record = $this->saveRecord($cart['attributes']['saveData']);
-                trace_log($record);
                 $item = $order->items()->make([
                     'amount' => $cart['quantity'],
                     'price'  => $cart['price'],
@@ -305,6 +303,7 @@ class Checkout extends ComponentBase
                 'organization_id' => $organizationId,
                 'user_id' => $this->user->id,
             ];
+            trace_sql();
             $certificateAll = (new CertificateRepository())
                 ->with('category')
                 ->where('id_num',$certificateSaveData['id_num'])

@@ -180,8 +180,9 @@ class Checkout extends ComponentBase
 
         // Create New OrderBack
         //status`, `no`, `user_id`, `email`, `phone`, `billing_info`, `shipping_info`, `shipping_method_id`, `shipping_total`, `shipping_tax`, `note`, `vat`, `total`, `currency`, `payment_method_id`, `transaction_id`, `date_paid`, `payment_data`, `payment_response`, `created_at`, `updated_at`, `date_completed
-        $this->user = $this->user ? $this->user : Auth::getUser();
+        $user = $this->user ? $this->user : Auth::getUser();
         $order = DB::transaction(function () use (
+            $user,
             $orderEmail,
             $orderPhone,
             $billing,
@@ -197,7 +198,7 @@ class Checkout extends ComponentBase
             $order = new Order;
             $order->email = $orderEmail;
             $order->phone = $orderPhone;
-            $order->user_id = $this->user->id;
+            $order->user_id = $user->id;
             $order->cart_items = json_encode($items);
             $order->address = $this->prepareJSON($address);
             $order->billing_info = $this->prepareJSON($billing);
@@ -243,6 +244,8 @@ class Checkout extends ComponentBase
                 'count'    => $count,
             ]);
         }
+
+
 
         // To Admins
         $adminEmails = $settings->admin_emails;

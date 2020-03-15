@@ -1,28 +1,28 @@
 <?php namespace Samubra\Training\Components;
 
 use Cms\Classes\ComponentBase;
-use Xeor\OctoCart\Models\Settings;
-use Xeor\OctoCart\Models\Order as OrderModel;
-use Xeor\OctoCart\Models\Product as ProductModel;
+use Samubra\Training\Models\Settings;
+use Samubra\Training\Models\Order as OrderModel;
+use Samubra\Training\Models\Project as ProjectModel;
 
 class Order extends ComponentBase
 {
     /**
-     * @var Xeor\OctoCart\Models\Order The order model used for display.
+     * @var Samubra\Training\Models\Order The order model used for display.
      */
     public $order;
 
     /**
-     * An array of products
+     * An array of projects
      * @var Collection
      */
-    public $items;
+    public $cartItems;
 
     /**
-     * Reference to the page name for linking to products.
+     * Reference to the page name for linking to projects.
      * @var string
      */
-    public $productDisplayPage;
+    public $projectDisplayPage;
 
     /**
      * Reference to the page name for linking to categories.
@@ -33,8 +33,8 @@ class Order extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'xeor.octocart::lang.order.name',
-            'description' => 'xeor.octocart::lang.order.description'
+            'name'        => 'samubra.training::lang.order.name',
+            'description' => 'samubra.training::lang.order.description'
         ];
     }
 
@@ -42,8 +42,8 @@ class Order extends ComponentBase
     {
         return [
             'id' => [
-                'title'       => 'xeor.octocart::lang.order.id',
-                'description' => 'xeor.octocart::lang.order.id_description',
+                'title'       => 'samubra.training::lang.order.id',
+                'description' => 'samubra.training::lang.order.id_description',
                 'default'     => '{{ :id }}',
                 'type'        => 'string'
             ],
@@ -53,8 +53,8 @@ class Order extends ComponentBase
     public function onRun()
     {
         $id = $this->property('id');
-        if ($order = OrderModel::find($id)) {
-            $order->items = json_decode($order->items, true);
+        if ($order = OrderModel::with('items','payment_method','shipping_method')->find($id)) {
+            $order->cart_items = json_decode($order->cart_items, true);
             $this->order = $this->page['order'] = $order;
         }
         else {
@@ -70,23 +70,24 @@ class Order extends ComponentBase
         /*
          * Page links
          */
-        $this->productDisplayPage = $this->page['productDisplayPage'] = Settings::get('product_display_page', 'product');
+        $this->projectDisplayPage = $this->page['projectDisplayPage'] = Settings::get('project_display_page', 'project');
         $this->categoryPage = $this->page['categoryPage'] = Settings::get('category_page', 'category');
 
-        $this->items = $this->page['items'] = $this->listItems();
+        $this->cartItems = $this->page['cartItems'] = $this->listItems();
+
+        trace_log($this->cartItems);
     }
 
     protected function listItems()
     {
-        $items = $this->order->items;
+        $items = $this->order->cart_items;
+
         foreach ($items as $itemId => $item) {
-            $product = ProductModel::find($item['product']);
-            $product->setUrl($this->productDisplayPage, $this->controller);
-            $product->categories->each(function ($category) {
-                $category->setUrl($this->categoryPage, $this->controller);
-            });
-            $items[$itemId]['product'] = $product;
+            $project = ProjectModel::find($item['project']);
+            $project->setUrl($this->projectDisplayPage, $this->controller);
+            $items[$itemId]['project'] = $project;
         }
+
         return $items;
     }
 

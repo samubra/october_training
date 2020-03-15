@@ -2,8 +2,8 @@
 
 use Auth;
 use Cms\Classes\ComponentBase;
-use Xeor\OctoCart\Models\Settings;
-use Xeor\OctoCart\Models\Order as OrderModel;
+use Samubra\Training\Models\Settings;
+use Samubra\Training\Models\Order as OrderModel;
 
 class Orders extends ComponentBase
 {
@@ -29,8 +29,8 @@ class Orders extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'xeor.octocart::lang.orders.name',
-            'description' => 'xeor.octocart::lang.orders.description'
+            'name'        => 'samubra.training::lang.orders.name',
+            'description' => 'samubra.training::lang.orders.description'
         ];
     }
 
@@ -38,8 +38,8 @@ class Orders extends ComponentBase
     {
         return [
             'noOrdersMessage' => [
-                'title'        => 'xeor.octocart::lang.orders.no_orders',
-                'description'  => 'xeor.octocart::lang.orders.no_orders_description',
+                'title'        => 'samubra.training::lang.orders.no_orders',
+                'description'  => 'samubra.training::lang.orders.no_orders_description',
                 'type'         => 'string',
                 'default'      => 'No orders found',
                 'showExternalParam' => false
@@ -70,7 +70,7 @@ class Orders extends ComponentBase
             return array();
         }
         else {
-            $orders = OrderModel::all()->where('user_id', $user->id);
+            $orders = OrderModel::with('items','payment_method','shipping_method')->where('user_id', $user->id)->get();
             /*
              * Add a "url" helper attribute for linking to each category
              */

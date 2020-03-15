@@ -1,7 +1,9 @@
 {% for order in orders %}
-    <li>
-        <a href="{{ order.url }}">Order №{{ order.id }}</a> - {{ order.created_at|date('M d, Y') }}
-    </li>
+<li class="collection-item">
+    <div>{{ loop.index }}、订单编号 №{{ order.no }}  - {{ order.created_at|date('Y年m月d日') }}<a href="{{ order.url }}" class="secondary-content"><i class="material-icons">send</i></a></div>
+</li>
 {% else %}
     <h3 class="text-center">{{ noOrdersMessage }}</h3>
 {% endfor %}
+
+

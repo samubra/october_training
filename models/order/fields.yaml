@@ -95,6 +95,6 @@ tabs:
             tab: samubra.training::lang.order.shipping_details
 
         cart_items:
-            tab: samubra.training::lang.order.items
+            tab:  报名信息
             type: partial
             path: ~/plugins/samubra/training/models/order/_items_field.htm

@@ -5,11 +5,11 @@ Hi {{ name }},
 You recently placed an order {{ '#' ~ order.id }} for {{ count }} items from our website, the details of which are as follows:
 
 {% for item in items %}
-    {% set product = item.product %}
+    {% set project = item.project %}
     {% set quantity = item.quantity %}
     {% set price = item.price %}
-    {% set attributes = item.attributes %}
-    {{ quantity }} x {{ product.title }} @ {{ price|price() }}
+    {% set attributes = item.attributes.attributesShow %}
+    {{ quantity }} x {{ project.title }} @ {{ price|price() }}
 {% endfor %}
 Order total: {{ total|price() }}
 Order VAT: {{ vat|price() }}
@@ -37,11 +37,11 @@ This email was sent automatically by OctoCart, the magic behind {{ site }}. Plea
 <p>You recently placed an order {{ '#' ~ order.id }} for {{ count }} items from our website, the details of which are as follows:</p>
 
 {% for item in items %}
-    {% set product = item.product %}
+    {% set project = item.project %}
     {% set quantity = item.quantity %}
     {% set price = item.price %}
-    {% set attributes = item.attributes %}
-    {{ quantity }} x {{ product.title }} @ {{ price|price() }}<br/>
+    {% set attributes = item.attributes.attributesShow %}
+    {{ quantity }} x {{ project.title }} @ {{ price|price() }}<br/>
 {% endfor %}
 <p><strong>Order total: {{ total|price() }}</strong></p>
 <p><strong>Order VAT: {{ vat|price() }}</strong></p>

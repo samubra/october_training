@@ -118,7 +118,6 @@ class Order extends Model
     }
     public function getStatusOptions($keyValue = null)
     {
-
         return [
             'pending'=>'待付款',
             'processing'=>'处理中',
@@ -129,8 +128,8 @@ class Order extends Model
             'refunded'=>'已退款',
             'failed'=>'失败',
         ];
-
     }
+
 
     /**
      * Sets the "url" attribute with a URL to this object

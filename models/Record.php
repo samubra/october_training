@@ -92,7 +92,7 @@ class Record extends Model
     {
         if($this->project->plan->is_certificate)
         {
-            $this->rules['certificate_id'] = ['required'];
+            //$this->rules['certificate_id'] = ['required'];
         }
         $recordIdNum = ['required','identity'];
 

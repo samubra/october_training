@@ -329,7 +329,7 @@ class Checkout extends ComponentBase
             $certificateModel = !$certificateAll->count() ?
                 (new CertificateRepository())->create($certificateSaveData) :
                 $certificateAll->first()->update($certificateSaveData);
-            $recordModel->certificate_id = $certificateModel->id;
+            $recordModel->certificate()->associate($certificateModel);
             $recordModel->save();
         }
         return $recordModel;

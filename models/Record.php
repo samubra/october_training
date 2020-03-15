@@ -55,13 +55,17 @@ class Record extends Model
     ];
 
     protected $appends = [
-        'edu_type_text'
+        'edu_type_text','id_type_text'
     ];
 
     public $belongsTo = [
         'project' => Project::class,
         'certificate' => Certificate::class,
         'status' => [Status::class,'key' => 'record_status_id'],
+    ];
+
+    public $hasOne = [
+        'item' => [OrderItem::class,'record_id']
     ];
 
     //$related, $name, $table = null, $foreignPivotKey = null,
@@ -86,6 +90,10 @@ class Record extends Model
     public function getEduTypeTextAttribute()
     {
         return Train::$eduTypeMap[$this->record_edu_type];
+    }
+    public function getIdTypeTextAttribute()
+    {
+        return Train::$idTypeMap[$this->record_id_type];
     }
 
     public function beforeValidate()

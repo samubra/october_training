@@ -5,6 +5,7 @@ namespace Samubra\Training\Components;
 
 
 use Cms\Classes\ComponentBase;
+use Samubra\Training\Models\Settings;
 use Samubra\Training\Repositories\Train\RecordRepository;
 use Flash;
 use Validator;
@@ -124,8 +125,19 @@ class AddAttach extends ComponentBase
     protected function loadRecord($record_id= null)
     {
         $record_id = is_null($record_id) ? post('record_id',$this->property('record_id')):$record_id;
-        $this->recordModel = $this->page['record'] = $this->recordRepository->with('project','certificate','project.plan','photo_image','edu_images','id_card_images')->getById($this->property('record_id'));
+        $this->recordModel = $this->page['record'] = $this->recordRepository->with('project','certificate','item.order','project.plan','photo_image','edu_images','id_card_images','status')->getById($this->property('record_id'));
         $this->page['project'] = $this->recordModel->project;
+        $this->page['order'] = $this->recordModel->item->order;
+        $this->page['category'] = $this->recordModel->certificate->category;
+
+        $projectDisplayPage = $this->page['projectDisplayPage'] = Settings::get('project_display_page', 'project');
+        $orderDisplayPage = $this->page['orderDisplayPage'] = Settings::get('order_display_page', 'order');
+        $categoryDisplayPage = $this->page['categoryDisplayPage'] = Settings::get('category_page', 'category');
+
+        $this->page['project']->setUrl($projectDisplayPage, $this->controller);
+        $this->page['order']->setUrl($orderDisplayPage, $this->controller);
+        $this->page['category']->setUrl($categoryDisplayPage, $this->controller);
+
     }
 
 

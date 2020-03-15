@@ -114,7 +114,7 @@ class UserCertificates extends ComponentBase
             $userModel->identity = post('identity');
             $userModel->save();
             $this->certificateRepository->relateCertificates($userModel);
-            return redirect('/account');
+            //return redirect('/account');
         }
     }
 

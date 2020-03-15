@@ -118,7 +118,7 @@ class Order extends Model
     }
     public function getStatusOptions($keyValue = null)
     {
-        return [
+        $list = [
             'pending'=>'待付款',
             'processing'=>'处理中',
             'on-hold'=>'待命',
@@ -128,6 +128,10 @@ class Order extends Model
             'refunded'=>'已退款',
             'failed'=>'失败',
         ];
+        if(is_null($keyValue))
+            return $list;
+        else
+            return $list[$keyValue];
     }
 
 

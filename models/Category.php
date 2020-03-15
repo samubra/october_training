@@ -81,7 +81,6 @@ class Category extends Model
     public function setUrl($pageName, $controller)
     {
         $params = [
-            'id' => $this->id,
             'slug' => $this->slug,
         ];
 

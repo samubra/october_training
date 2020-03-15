@@ -33,6 +33,6 @@ class OrderItem extends Model
     public $belongsTo = [
         'project' => Project::class,
         'record' => Record::class,
-        'order' => OrderBack::class
+        'order' => Order::class
     ];
 }

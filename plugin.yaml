@@ -48,7 +48,7 @@ navigation:
                 url: samubra/training/plancourses
                 icon: icon-tree
     projects:
-        label: 培训项目
+        label: 培训管理
         url: samubra/training/projects
         icon: icon-database
         sideMenu:

@@ -67,7 +67,7 @@ class Order extends Model
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
-
+/**
     public function beforeSave()
     {
         $user = Auth::getUser();
@@ -77,11 +77,13 @@ class Order extends Model
         else {
             $this->user_id = $user['attributes']['id'];
         }
-    }
 
+        trace_log('user_id:',$this->user_id);
+    }
+**/
     public function afterUpdate()
     {
-        Event::fire('xeor.octocart.afterOrderUpdate', [$this]);
+        Event::fire('samubra.training.afterOrderUpdate', [$this]);
     }
 
     protected static function boot()

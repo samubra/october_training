@@ -1,0 +1,15 @@
+<button
+    class="btn btn-default oc-icon-clone"
+    disabled="disabled"
+    onclick="$(this).data('request-data', {
+            checked: $('.control-list').listWidget('getChecked')
+        })"
+    data-request="onCopy"
+    data-request-confirm="你确定要为所选择的培训方案创建新培训方案副本吗？"
+    data-trigger-action="enable"
+    data-trigger=".control-list input[type=checkbox]"
+    data-trigger-condition="checked"
+    data-request-success="$(this).prop('disabled', true)"
+    data-stripe-load-indicator>
+    创建副本
+</button>

@@ -99,7 +99,3 @@ tabs:
             type: partial
             path: status
             tab: 培训状态
-        posts:
-            type: partial
-            path: posts
-            tab: 发布文章

@@ -87,20 +87,26 @@
                                 </div>
                             <div class="tab-pane">
                                 <p>寸照:</p>
+                                <?php if($formModel->photo_image){?>
                                 <a href="<?php echo $formModel->photo_image->getPath();?>" data-lightbox="photo_image" data-title="我上传的的寸照">
                                     <img src="<?php echo $formModel->photo_image->getThumb(200, 200, ['mode' => 'crop']);?>"/>
                                 </a>
-                                <p>身份证正反面照片:</p>
-                                <?php foreach($formModel->id_card_images as $key=>$id_card_image ){?>
-                                <a href="<?php echo $id_card_image->getPath();?>" data-lightbox="id_card_image" data-title="我上传的身份证正反面照片<?php echo $key+1;?>">
-                                    <img src="<?php echo $id_card_image->getThumb(200, 200, ['mode' => 'crop']);?>"/>
-                                </a>
                                 <?php }?>
+                                <p>身份证正反面照片:</p>
+                                <?php if($formModel->id_card_images->count()){?>
+                                    <?php foreach($formModel->id_card_images as $key=>$id_card_image ){?>
+                                    <a href="<?php echo $id_card_image->getPath();?>" data-lightbox="id_card_image" data-title="我上传的身份证正反面照片<?php echo $key+1;?>">
+                                        <img src="<?php echo $id_card_image->getThumb(200, 200, ['mode' => 'crop']);?>"/>
+                                    </a>
+                                    <?php }?>
+                                <?php }?>
+                                <?php if($formModel->edu_images->count()){?>
                                 <p>学历证明照片:</p>
                                 <?php foreach($formModel->edu_images as $edu_image ){?>
-                                <a href="<?php echo $edu_image->getPath();?>" data-lightbox="edu_image" data-title="我上传的学历证明照片<?php echo $key+1;?>">
-                                    <img src="<?php echo $edu_image->getThumb(200, 200, ['mode' => 'crop']);?>"/>
-                                </a>
+                                    <a href="<?php echo $edu_image->getPath();?>" data-lightbox="edu_image" data-title="我上传的学历证明照片<?php echo $key+1;?>">
+                                        <img src="<?php echo $edu_image->getThumb(200, 200, ['mode' => 'crop']);?>"/>
+                                    </a>
+                                    <?php }?>
                                 <?php }?>
                             </div>
                         </div>

@@ -1,0 +1,17 @@
+{% for record in records %}
+<tr>
+    <td>{{ record.project.training_begin_date }}至{{ record.project.training_end_date }}</td>
+    <td>{{ record.edu_type_text }}</td>
+    <td>{{ record.record_phone }}</td>
+    <td>{{ record.record_company }}</td>
+    <td>{{ record.status.name }}</td>
+    <td>理论：{{ record.theory_score }}，操作：{{ record.operate_score }}({{ record.is_eligible ? '通过':'未通过'}})</td>
+    <td><a class="btn-floating" href="{{ record.url }}#upload" >
+        <i class="material-icons">file_upload</i>
+    </a></td>
+</tr>
+{% else %}
+    <tr>{{ noRecordsMessage }}</tr>
+{% endfor %}
+
+

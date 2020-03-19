@@ -28,7 +28,7 @@ class Plugin extends PluginBase
            $idValidator = new \Jxlwqq\IdValidator\IdValidator();
            return $idValidator->isValid($value);
         });
-        Validator::extend('record', function($attribute, $value, $parameters, $validator) {
+        Validator::extend('records', function($attribute, $value, $parameters, $validator) {
             $check = new CheckAddRecord();
             return $check->setCertificateModel($value)->setProjectModel($parameters['0'])->check();
         });
@@ -85,6 +85,7 @@ class Plugin extends PluginBase
            //'Samubra\Training\Components\Products' => 'products',
             'Samubra\Training\Components\Categories' => 'categories',
             'Samubra\Training\Components\Order' => 'order',
+            'Samubra\Training\Components\Records' => 'records',
         ];
     }
 
@@ -149,7 +150,7 @@ class Plugin extends PluginBase
             'plan'      => '培训方案',
             'project'   => '培训项目',
             'certificate'   => '证书',
-            'record'    => '培训记录',
+            'records'    => '培训记录',
             'status'    => '状态',
         ];
         $arrayAccess = [];

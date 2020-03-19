@@ -111,6 +111,7 @@ class RecordForm extends ComponentBase
         if(isset($postData['certificate_id']))
             $cartData['attributesShow']["certificate_id"] = ['label' => "培训证书" , 'value' => $this->certificateRepository->with('category')->getById($postData['certificate_id'])->category->name];
 
+        trace_log($this->auth->id);
         if(!(new UserAddressesRepository())->where('user_id',$this->auth->id)->get()->count()){
             $address = (new UserAddressesRepository())->create([
                 'user_id' => $this->auth->id,
@@ -224,7 +225,7 @@ class RecordForm extends ComponentBase
             $this->loadProject();
 
         $messages = [
-            'record' => '当前证书不符合该培训项目的申请条件！',
+            'records' => '当前证书不符合该培训项目的申请条件！',
             'record_id_num.unique' => '该身份证号码已经在该培训项目中申请过培训！',
             'agree.required' => '请先查看并《培训申请须知》',
             'record_edu_type.required' => '文化程度必须填写！',
@@ -236,7 +237,7 @@ class RecordForm extends ComponentBase
 
         if($this->projectModel->plan->is_certificate && isset($data['certificate_id']))
         {
-            $rules['certificate_id'] = ['required','record:'.$data['project_id']];
+            $rules['certificate_id'] = ['required','records:'.$data['project_id']];
         }
         $rules['record_id_num'] = ['required','identity'];
 

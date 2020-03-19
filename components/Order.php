@@ -74,21 +74,19 @@ class Order extends ComponentBase
         $this->categoryPage = $this->page['categoryPage'] = Settings::get('category_page', 'category');
 
         $this->cartItems = $this->page['cartItems'] = $this->listItems();
-
-        trace_log($this->cartItems);
     }
 
     protected function listItems()
     {
-        $items = $this->order->cart_items;
+        $carItems = $this->order->cart_items;
 
-        foreach ($items as $itemId => $item) {
+        foreach ($carItems as $itemId => $item) {
             $project = ProjectModel::find($item['project']);
             $project->setUrl($this->projectDisplayPage, $this->controller);
             $items[$itemId]['project'] = $project;
         }
 
-        return $items;
+        return $carItems;
     }
 
 

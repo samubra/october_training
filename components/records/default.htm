@@ -1,0 +1,21 @@
+{% if __SELF__.records %}
+<span class="card-title" >所有的申请记录</span>
+<table class="bordered responsive-table">
+    <thead>
+    <tr>
+        <th data-field="date">培训时间</th>
+        <th data-field="edu">文化程度</th>
+        <th data-field="phone">联系电话</th>
+        <th data-field="company">单位名称</th>
+        <th data-field="status">状态</th>
+        <th data-field="score">成绩</th>
+        <th data-field="number">上传照片</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% partial __SELF__ ~ "::items"
+            records = __SELF__.records
+        %}
+    </tbody>
+</table>
+{% endif %}

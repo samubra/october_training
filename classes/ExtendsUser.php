@@ -5,6 +5,8 @@ namespace Samubra\Training\Classes;
 
 use RainLab\User\Models\User as UserModel;
 use RainLab\User\Controllers\Users as UsersController;
+use Samubra\Training\Models\Certificate;
+use Samubra\Training\Models\Record;
 use Samubra\Training\Repositories\Train\CertificateRepository;
 
 class ExtendsUser
@@ -21,6 +23,19 @@ class ExtendsUser
             $model->hasMany['certificates'] = [\Samubra\Training\Models\Certificate::class,'key'=>'user_id'];
             $model->hasMany['certificates_count'] = [\Samubra\Training\Models\Certificate::class,'key'=>'user_id','count'=>true];
             $model->hasMany['addresses'] = [\Samubra\Training\Models\UserAddress::class];
+            $model->hasManyThrough ['records'] = [
+                Record::class,
+                'key'        => 'user_id',
+                'throughKey' => 'certificate_id',
+                'through' => Certificate::class
+                ];
+            $model->hasManyThrough ['records_count'] = [
+                \Samubra\Training\Models\Record::class,
+                'key'        => 'user_id',
+                'throughKey' => 'certificate_id',
+                'through' => Certificate::class,
+                'count' => true
+                ];
             $model->addFillable([
                 'identity',
                 'phone',
